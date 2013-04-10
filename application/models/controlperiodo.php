@@ -290,22 +290,23 @@ class ControlPeriodo extends CI_Model{
 
 /* *************************** ACTUALIZACION PARA VALIDAR NOMINA ANTES DE GAURDAR **/
 
-
-	public function set_nomina_valida($periodo, $week = 0)
+/*
+	public function nomina_validada($week = 0)
 	{
-		$sql = '';		
+		$sql = '';
+		$periodo = $this->getCurrentPeriodoID();
 		if(!empty($week) && !empty($periodo))
 		{
-			$sql = "SELECT id FROM nomina_validada WHERE week = ".$week." AND periodo=".$periodo;
+			$sql = "SELECT ifnull(count(*),0) AS count FROM nomina_validada WHERE week = ".$week." AND periodo=".$periodo;
 			$query = $this->db->query($sql);
-			if($query->num_rows() == 0)
+			if($query->row()->count == 0)
 			{
 				$sql = "INSERT INTO nomina_validada(week, periodo) values(".$week.",".$periodo.");";
-				$this->db->query($sql);
+				$this->db->query($sql);				
 			}			
 		}
 	}
-/*
+
 	public function is_nomina_validada($week = 0, $periodo = 0)
 	{
 		$sql = '';		

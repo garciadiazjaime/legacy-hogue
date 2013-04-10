@@ -1,0 +1,20 @@
+<div id="submenu">
+	<ul>
+		<li class="current"><a href="<?=base_url();?>sistema/periodos" title="Consultar">Consultar</a></li>
+		<li class="last"><a href="<?=base_url();?>sistema/periodos/nuevo" title="Nuevo">Nuevo</a></li>
+	</ul>
+	<br class="clearer" />
+</div>
+<div id="content" class="period">
+	<p class="print_button">
+		<a href="#" title="Imprime esta p&aacute;gina">Imprimir</a>
+	</p>
+	<h1>Per&iacute;odos existentes</h1>
+	<div >
+                       <span id="num_users"><?=$num_users;?><BR></span>
+                       <?=$user_list;?>
+       </div>
+       <div class="pagination">
+               <?php echo $this->pagination->create_links(); ?>
+       </div>	<br class="clearer" />
+</div>
