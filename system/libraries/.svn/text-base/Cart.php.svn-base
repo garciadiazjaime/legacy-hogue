@@ -1,0 +1,100 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * CodeIgniter
+ *
+ * An open source application development framework for PHP 5.1.6 or newer
+ *
+ * @package		CodeIgniter
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2006 - 2011, EllisLab, Inc.
+ * @license		http://codeigniter.com/user_guide/license.html
+ * @link		http://codeigniter.com
+ * @since		Version 1.0
+ * @filesource
+ */
+
+// ------------------------------------------------------------------------
+
+/**
+ * Shopping Cart Class
+ *
+ * @package		CodeIgniter
+ * @subpackage	Libraries
+ * @category	Shopping Cart
+ * @author		ExpressionEngine Dev Team
+ * @link		http://codeigniter.com/user_guide/libraries/cart.html
+ */
+class CI_Cart {
+
+	// These are the regular expression rules that we use to validate the product ID and product name
+	var $product_id_rules	= '\.a-z0-9_-'; // alpha-numeric, dashes, underscores, or periods
+	var $product_name_rules	= '\.\:\-_ a-z0-9'; // alpha-numeric, dashes, underscores, colons or periods
+
+	// Private variables.  Do not change!
+	var $CI;
+	var $_cart_contents	= array();
+
+
+	/**
+	 * Shopping Class Constructor
+	 *
+	 * The constructor loads the Session class, used to store the shopping cart contents.
+	 */
+	public function __construct($params = array())
+	{
+		// Set the super object to a local variable for use later
+		$this->CI =& get_instance();
+
+		// Are any config settings being passed manually?  If so, set them
+		$config = array();
+		if (count($params) > 0)
+		{
+			foreach ($params as $key => $val)
+			{
+				$config[$key] = $val;
+			}
+		}
+
+		// Load the Sessions class
+		$this->CI->load->library('session', $config);
+
+		// Grab the shopping cart array from the session table, if it exists
+		if ($this->CI->session->userdata('cart_contents') !== FALSE)
+		{
+			$this->_cart_contents = $this->CI->session->userdata('cart_contents');
+		}
+		else
+		{
+			// No cart exists so we'll set some base values
+			$this->_cart_contents['cart_total'] = 0;
+			$this->_cart_contents['total_items'] = 0;
+		}
+
+		log_message('debug', "Cart Class Initialized");
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Insert items into the cart and save it to the session table
+	 *
+	 * @access	public
+	 * @param	array
+	 * @return	bool
+	 */
+	function insert($items = array())
+	{
+		// Was any cart data passed? No? Bah...
+		if ( ! is_array($items) OR count($items) == 0)
+		{
+			log_message('error', 'The insert method must be passed an array containing data.');
+			return FALSE;
+		}
+
+		// You can either insert a single product using a one-dimensional array,
+		// or multiple products using a multi-dimensional one. The way we
+		// determine the array type is by looking for a required array key named "id"
+		// at the top level. If it's not found, we will assume it's a multi-dimensional array.
+
+		$save_cart = FALSE;
+		if (iss

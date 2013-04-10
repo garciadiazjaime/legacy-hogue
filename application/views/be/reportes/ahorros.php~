@@ -1,0 +1,21 @@
+<div class="reports content_block"">
+	<h1>Reportes Ahorros</h1>
+	<form action="#" method="POST">
+	<div class="left_column">
+		<span id="msg"><?=$msg;?></span>
+		<label>% Banco:</label> <input type="text" name="banco"
+				maxlength="70" id="banco" />
+	</div>
+	<div class="right_column">
+		<p class="button filter_button_in_form ">
+			<input name="submit" type="submit" id="submit" value="Generar Reporte" class="filter_button_in_form"/>
+		</p>
+	</div>
+<br class="clearer" />
+<h2>Listado de ahorradores</h2>
+	<div id="ahorradores">
+		<?=$ahorradores;?>
+	</div>
+<br class="clearer" />
+	</form>
+</div>

@@ -1,0 +1,92 @@
+10
+
+dir
+2
+https://mint-client-hogue.googlecode.com/svn/trunk/system/database/drivers
+https://mint-client-hogue.googlecode.com/svn
+
+
+
+2012-03-26T03:22:55.362453Z
+2
+jaime@mintitmedia.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ae09a4ca-ddad-3e3d-8fe3-5b50c758f6ca
+
+mssql
+dir
+
+sqlite
+dir
+
+oci8
+dir
+
+pdo
+dir
+
+postgre
+dir
+
+mysql
+dir
+
+odbc
+dir
+
+cubrid
+dir
+
+sqlsrv
+dir
+
+index.html
+file
+
+
+
+
+2012-03-29T03:19:26.000000Z
+0227cfd904e99656279202032b98d4a7
+2012-03-26T03:22:55.362453Z
+2
+jaime@mintitmedia.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+114
+
+mysqli
+dir
+
