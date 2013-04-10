@@ -128,7 +128,7 @@ class ControlPeriodo extends CI_Model{
                 	$response = "Lo sentimos no hay registros";
                 
                 return $response;
-	}//getperiodobyid	
+	}//getperiodobyid
 
 	public function validar_nomina()
 	{
@@ -288,23 +288,24 @@ class ControlPeriodo extends CI_Model{
 		return $return_array;
 	}
 
+/* *************************** ACTUALIZACION PARA VALIDAR NOMINA ANTES DE GAURDAR **/
 
-	public function nomina_validada($week = 0)
+
+	public function set_nomina_valida($periodo, $week = 0)
 	{
-		$sql = '';
-		$periodo = $this->getCurrentPeriodoID();
+		$sql = '';		
 		if(!empty($week) && !empty($periodo))
 		{
-			$sql = "SELECT ifnull(count(*),0) AS count FROM nomina_validada WHERE week = ".$week." AND periodo=".$periodo;
+			$sql = "SELECT id FROM nomina_validada WHERE week = ".$week." AND periodo=".$periodo;
 			$query = $this->db->query($sql);
-			if($query->row()->count == 0)
+			if($query->num_rows() == 0)
 			{
 				$sql = "INSERT INTO nomina_validada(week, periodo) values(".$week.",".$periodo.");";
-				$this->db->query($sql);				
+				$this->db->query($sql);
 			}			
 		}
 	}
-
+/*
 	public function is_nomina_validada($week = 0, $periodo = 0)
 	{
 		$sql = '';		
@@ -319,7 +320,8 @@ class ControlPeriodo extends CI_Model{
 		}
 		return FALSE;
 	}
-
+	*/
+/* *************************** ACTUALIZACION PARA VALIDAR NOMINA ANTES DE GAURDAR **/
 	public function upload_file()
 	{
 		$location = '';

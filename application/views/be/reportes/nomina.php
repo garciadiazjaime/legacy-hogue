@@ -16,7 +16,7 @@ $week = isset($_POST['report_week']) ? $_POST['report_week'] : '';
 		</div> <!-- .left_column --> 
 		<div class="right_column">
 			<p class="button filter_button_in_form ">
-			<input name="generar_reporte" type="submit" id="generar_reporte" value="Generar Reporte" class="filter_button_in_form"/>
+				               <input name="generar_reporte" type="submit" id="generar_reporte" value="Generar Reporte" class="filter_button_in_form"/>
 		</p>
 		</div> <!-- .right_column -->
 		<br class="clearer" />

@@ -280,6 +280,9 @@ if($this->isWeekRegistered($week)){
 
 				if($week_is_registered)
 					$msg =  "La semana ya ha sido registrada.";
+				else
+					$msg =  "<button type=\"button\" value=\"guardar\" onclick=\"registrarNomina(".$week.");\">Guardar N&oacute;mina</button> ";
+				/*
 				else{
 					$nomina_validada = $this->controlperiodo->is_nomina_validada($week, $current_periodo_id);
 					if($nomina_validada)
@@ -287,7 +290,8 @@ if($this->isWeekRegistered($week)){
 					else
 						$msg =  "Para guardar la n&oacute;mina es necesario validarla primero.";
 				}
-					
+				*/
+
 				$response =
 				"<table class=\"report_table\">
 				<tr>

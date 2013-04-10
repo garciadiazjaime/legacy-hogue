@@ -57,7 +57,10 @@ class Periodos extends CI_Controller {
 			
 			if($return_array[0])
 			{
-				$this->controlperiodo->nomina_validada($week);
+				//new option
+				$periodo = $this->controlperiodo->getCurrentPeriodoID();
+				$this->controlperiodo->set_nomina_valida($periodo, $week);
+				//!
 				$msg = "Validada de manera exitosa";
 				$content = $this->load->view('be/periodos/validar_nomina',array('msg'=>$msg,'week'=>$week),true);
 			}
@@ -89,7 +92,6 @@ class Periodos extends CI_Controller {
 			
 			if($return_array[0])
 			{
-
 				$msg = "Validada de manera exitosa";
 				$content = $this->load->view('be/periodos/validar_nomina',array('msg'=>$msg,'week'=>$week),true);
 			}
