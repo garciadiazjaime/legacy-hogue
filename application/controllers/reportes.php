@@ -78,7 +78,6 @@ class Reportes extends CI_Controller {
 			{
 				if(!$this->nomina->isWeekRegistered($report_week))
 				{
-	
 					$resumen = $this->nomina->executeNomina(
 						$report_week,
 						$week_is_registered);

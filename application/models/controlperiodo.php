@@ -312,8 +312,8 @@ class ControlPeriodo extends CI_Model{
 			}			
 		}
 	}
-/*
-	public function is_nomina_validada($week = 0, $periodo = 0)
+
+	public function is_nomina_validada($periodo = 0, $week = 0)
 	{
 		$sql = '';		
 		if(!empty($week) && !empty($periodo))
@@ -327,7 +327,7 @@ class ControlPeriodo extends CI_Model{
 		}
 		return FALSE;
 	}
-	*/
+	
 /* *************************** ACTUALIZACION PARA VALIDAR NOMINA ANTES DE GAURDAR **/
 	public function upload_file()
 	{

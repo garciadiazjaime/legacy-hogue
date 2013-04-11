@@ -122,7 +122,7 @@ class Nomina extends CI_Model{
 		return $registrado;
 	}
 
-	function executeNomina($week,$week_is_registered)
+	function executeNomina($week, $week_is_registered)
 	{
 		$current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
 		if($week_is_registered)
@@ -280,17 +280,18 @@ if($this->isWeekRegistered($week)){
 
 				if($week_is_registered)
 					$msg =  "La semana ya ha sido registrada.";
-				else
-					$msg =  "<button type=\"button\" value=\"guardar\" onclick=\"registrarNomina(".$week.");\">Guardar N&oacute;mina</button> ";
-				/*
 				else{
-					$nomina_validada = $this->controlperiodo->is_nomina_validada($week, $current_periodo_id);
-					if($nomina_validada)
-						$msg =  "<button type=\"button\" value=\"guardar\" onclick=\"registrarNomina(".$week.");\">Guardar N&oacute;mina</button> ";
+					$flag = $this->controlperiodo->is_nomina_validada($current_periodo_id, $week);
+					if($flag)
+						$msg =  "
+							<button type=\"button\" 
+								value=\"guardar\" 
+								onclick=\"registrarNomina(".$week.");\">
+									Guardar N&oacute;mina
+							</button> ";
 					else
 						$msg =  "Para guardar la n&oacute;mina es necesario validarla primero.";
 				}
-				*/
 
 				$response =
 				"<table class=\"report_table\">
