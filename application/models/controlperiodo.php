@@ -3,7 +3,10 @@ class ControlPeriodo extends CI_Model{
 	
 	public function getCurrentPeriodo()
 	{
-		$query = $this->db->query("select * FROM periodo WHERE status = 1 ORDER BY id DESC, year DESC");
+		$query = $this->db->query("SELECT * 
+			FROM periodo 
+			WHERE status = 1
+			ORDER BY id DESC, year DESC");
 		$result = $query->result();
 		if(sizeof($result))
 			return $result[0];			
@@ -290,23 +293,26 @@ class ControlPeriodo extends CI_Model{
 
 /* *************************** ACTUALIZACION PARA VALIDAR NOMINA ANTES DE GAURDAR **/
 
-/*
-	public function nomina_validada($week = 0)
+
+	public function set_nomina_valida($periodo = 0, $week = 0)
 	{
 		$sql = '';
-		$periodo = $this->getCurrentPeriodoID();
 		if(!empty($week) && !empty($periodo))
 		{
-			$sql = "SELECT ifnull(count(*),0) AS count FROM nomina_validada WHERE week = ".$week." AND periodo=".$periodo;
+			$sql = "SELECT id FROM nomina_validada WHERE week = ".$week." AND periodo=".$periodo;
 			$query = $this->db->query($sql);
-			if($query->row()->count == 0)
+			if($query->num_rows() == 0)
 			{
 				$sql = "INSERT INTO nomina_validada(week, periodo) values(".$week.",".$periodo.");";
-				$this->db->query($sql);				
+				$data = array(
+					'week' => $week,
+					'periodo' => $periodo
+					);
+				$this->db->insert('nomina_validada', $data);				
 			}			
 		}
 	}
-
+/*
 	public function is_nomina_validada($week = 0, $periodo = 0)
 	{
 		$sql = '';		
