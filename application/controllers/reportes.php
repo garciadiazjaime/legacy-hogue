@@ -96,6 +96,29 @@ class Reportes extends CI_Controller {
 		$this->load->view('be/layout/main', array('content'=>$content));
 	}
 
+	public function nomina_2()
+	{
+		$week_is_registered = false;
+		$resumen = $report_week = "";
+		if(sizeof($_POST))
+		{
+			$report_week = isset($_POST['report_week']) ? $_POST['report_week'] : '';
+			if(!empty($report_week))
+			{
+				$week_is_registered = $this->nomina->isWeekRegistered($report_week);
+				$resumen = $this->nomina->executeNomina_2(
+						$report_week,
+						$week_is_registered);
+			}
+		}
+		$content = $this->load->view('be/reportes/nomina', array(
+				'resumen'=>$resumen,
+				'report_week'=>$report_week,
+				'week_is_registered'=>$week_is_registered),
+			true);
+		$this->load->view('be/layout/main', array('content'=>$content));
+	}
+
 	public function ahorros()
 	{	
 		$closed_periodo_id = $this->controlperiodo->getLastClosedPeriodoID();

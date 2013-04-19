@@ -57,7 +57,34 @@ $(document)
 						hide("hide_weeks_payment");
 						hide("hide_saving_starts");
 					}
-				});
+
+				$("#table_sort").tablesorter({sortList:[[0,0]], widgets: ['zebra']});
+	
+				$("#table_search").keyup(function(){
+			        // When value of the input is not blank
+			        if( $(this).val() != "")
+			        {
+			            // Show only matching TR, hide rest of them
+			            $("#table_sort tbody>tr").hide();
+			            $("#table_sort td:contains-ci('" + $(this).val() + "')").parent("tr").show();
+			        }
+			        else
+			        {
+			            // When there is no input or clean again, show everything back
+			            $("#table_sort tbody>tr").show();
+			        }
+			    });					
+
+			});
+
+$.extend($.expr[":"], 
+{
+    "contains-ci": function(elem, i, match, array) 
+    {
+        return (elem.textContent || elem.innerText || $(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+    }
+});
+
 
 function getAhorradores(page, header) {
 	var params = $('#form-filtros-Ahorros').serialize()

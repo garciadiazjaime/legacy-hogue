@@ -11,7 +11,11 @@ $pages = array(
 		array('href' => 'sistema/users','title'=>'Usuarios', 'class'=>''),
 		);
 $submenu_periodo="<li class=\"first last\"><a href=\"".base_url()."sistema/periodos/validar_nomina\">Validar N&oacute;mina</a></li>";
-$submenu_reportes="<li class=\"first\"><a href=\"".base_url()."sistema/reportes/nomina\">R. de nomina</a></li><li class=\"last\"><a href=\"".base_url()."sistema/reportes/ahorros\">R. de ahorros</a></li>";
+$submenu_reportes="
+	<li class=\"first\"><a href=\"".base_url()."sistema/reportes/nomina\">R. de nomina</a></li>
+	<li><a href=\"".base_url()."sistema/reportes/nomina_2\">R. de nomina2</a></li>
+	<li class=\"last\"><a href=\"".base_url()."sistema/reportes/ahorros\">R. de ahorros</a></li>
+";
 foreach($pages as $item){
 	$class = (strpos(uri_string(), $item['href']) !== false) ? 'current' : '';
 	if($is_first){

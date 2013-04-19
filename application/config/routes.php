@@ -67,6 +67,8 @@ $route['sistema/reportes/nomina/getReporteNominas'] = "reportes/getReporteNomina
 $route['sistema/reportes/nomina/getNominaExcel/(:num)'] = "reportes/getNominaExcel/$1";
 $route['sistema/reportes/nomina/registrarNomina/(:num)'] = "reportes/registrarNomina/$1";
 
+$route['sistema/reportes/nomina_2'] = "reportes/nomina_2";
+
 $route['sistema/users/(:num)'] = 'users/index/$1';
 $route['sistema/users'] = "users";
 $route['sistema/users/create'] = "users/create";

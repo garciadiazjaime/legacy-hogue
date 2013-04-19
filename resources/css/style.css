@@ -118,7 +118,7 @@ body, html{
 			table tr.odd{
 				background:#e8e9e9;
 			}
-			table tr.pair{
+			table tr.even{
 				background:#fdffff;
 			}
 		table span{
@@ -129,6 +129,18 @@ body, html{
 			font-weight:bold;
 			font-style:italic;
 		}
+	
+	.tablesorter th{
+		cursor: pointer;
+	}	
+
+	.report_table .tabla_nomina span{
+		display: block;
+    	float: left;
+    	text-align: right;
+    	width: 84px;
+	}
+
 	.pagination{
 		color:#4d4d7b;	
 		font:13px Arial, Verdana, sans-serif; 
