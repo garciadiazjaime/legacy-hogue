@@ -1,4 +1,4 @@
-<script src="<?=base_url();?>resources/js/prestamos.js" type="text/javascript"></script>
+<!--<script src="<?=base_url();?>resources/js/prestamos.js" type="text/javascript"></script>-->
 <div id="submenu">
     <ul>
         <li class="current">

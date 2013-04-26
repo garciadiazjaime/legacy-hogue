@@ -62,7 +62,7 @@ class Prestamo extends CI_Model {
             $_Where[] = "P.plazo >= {$_info['payments_from']} AND P.plazo <= {$_info['payments_until']}";
         }
 
-        if(isset($_info['loan_status']) && $_info['loan_status'] != "" ){
+        if(isset($_info['loan_status']) && ($_info['loan_status'] != "" && $_info['loan_status'] != "0") ){
             $_Where[] = "P.status = {$_info['loan_status']}";
         }
 
@@ -83,7 +83,7 @@ class Prestamo extends CI_Model {
         $_InfoInner = " INNER JOIN user AS U ON P.user_id = U.id {$_InfoInner}";
 
         $_Query = "SELECT P.id FROM  prestamo AS P {$_InfoInner} {$_InfoWhere} ";
-
+        
         $_InfoQuery = $this->db->query( $_Query );
         $this->TRegistros = $_InfoQuery->num_rows();
 
@@ -116,12 +116,12 @@ class Prestamo extends CI_Model {
                           U.name
                    FROM prestamo AS P {$_InfoInner} {$_InfoWhere} ORDER BY {$_OrdenBy} 
                    LIMIT ".$_Inicio.",".$_Nregistros;
-        $_InfoQuery = $this->db->query( $_Query );
-	if( isset($_info['pagina']) && $_info['pagina'] > 1)
-        	echo $this->_set_lista_view( $_InfoQuery );
-	else
-        	return $this->_set_lista_view( $_InfoQuery );
 
+        $_InfoQuery = $this->db->query( $_Query );
+    	if(!empty($_POST)) //isset($_info['pagina']) && $_info['pagina'] > 1)
+            echo $this->_set_lista_view( $_InfoQuery );
+    	else
+            return $this->_set_lista_view( $_InfoQuery );
     }
 
     public function _set_format_cantidad( $_Prestamo ){
@@ -337,7 +337,7 @@ class Prestamo extends CI_Model {
                           U.id
                    FROM user AS U
                    WHERE U.no_emp = '{$_info['no_emp']}'";
-                   
+        
         $_InfoQuery = $this->db->query( $_Query );
         $_Empleado = $_InfoQuery->result();
                 
@@ -347,10 +347,7 @@ class Prestamo extends CI_Model {
             $_Ahorrador = $this->_get_infoAhorrador($_Empleado[0]->id);
             $_Nprestamos = $this->_get_infoPrestamos($_Empleado[0]->id);
             
-            if( $_Ahorrador != 0 )
-                $_Tasa = 10;
-            else 
-                $_Tasa = 15;
+            $_Tasa = ( $_Ahorrador != 0 ) ? 10 : 15;
             
             return "{$_Empleado[0]->name}|{$_Tasa}|{$_Nprestamos}|{$_Empleado[0]->id}";
             

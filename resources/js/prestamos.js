@@ -23,7 +23,12 @@ $(document).ready(function(){
     
     
     if( $( "#employee_number" ).length ){
+        /*
         $( "#employee_number" ).keyup(function() {
+            FilePrestamos._get_info_empleado( $(this).val() );
+        });
+        */
+        $( "#employee_number" ).change(function() {
             FilePrestamos._get_info_empleado( $(this).val() );
         });
     }
@@ -215,6 +220,7 @@ function Prestamos() {
                     //$( "#msj").html("Obteniendo informacion de usuario ");
                 },
                 success: function (response) {
+                    console.log(response);
                     if( response != "" ){
                         var _Info = response.split( "|" );
                         $( "#employee_name" ).val( _Info[0] );
