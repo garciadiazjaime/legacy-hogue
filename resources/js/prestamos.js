@@ -2,8 +2,8 @@
 var server = "http://hogue-mxserver:8080/hogue/";
 $(document).ready(function(){
     
-    if( $( "#btn-search-prestamos" ).length ){
-        $( "#btn-search-prestamos" ).click( function() {
+    if( $( "#btn-search-Prestamos" ).length ){
+        $( "#btn-search-Prestamos" ).click( function() {
             if( FilePrestamos._set_valida() )
                 FilePrestamos._get_list_prestamos();
 		return false;

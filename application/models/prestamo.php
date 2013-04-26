@@ -302,9 +302,9 @@ class Prestamo extends CI_Model {
                    FROM ahorro AS A
                    WHERE A.user_id = '{$_Id}' 
                        AND 
-                       A.status = 1 
+                       (A.status = 1 OR A.status = 2) 
                        AND A.periodo_id = ".$current_periodo_id;
-                   
+
         $_InfoQuery = $this->db->query( $_Query );
         
         return $_InfoQuery->num_rows();

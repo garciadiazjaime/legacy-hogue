@@ -8,4 +8,12 @@
 <script src="<?=base_url();?>resources/js/jquery.min.js" type="text/javascript"></script>
 <script src="<?=base_url();?>resources/js/jquery.tablesorter.min.js" type="text/javascript"></script>
 <script src="<?=base_url();?>resources/js/functions.js" type="text/javascript"></script>
+
 <script src="<?=base_url();?>resources/js/ahorros.js" type="text/javascript"></script>
+<!--
+<?php //if(strpos(uri_string(), 'ahorros') !== FALSE):?>
+<script src="<?=base_url();?>resources/js/ahorros.js" type="text/javascript"></script>
+<?php //elseif(strpos(uri_string(), 'prestamos') !== FALSE):?>
+<script src="<?=base_url();?>resources/js/prestamos.js" type="text/javascript"></script>
+<?php //endif; ?>
+-->

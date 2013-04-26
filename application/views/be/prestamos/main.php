@@ -93,17 +93,17 @@
         <div class="right_column">
             <label>Estatus:</label> 
             <select name="loan_status" id="loan_status">
-                <option value="0" >Inactivo</option>
-                <option value="1" selected="selected" >Activo</option>
-                <option value="2" >Standby</option>
-                <option value="3" >Cerrado</option>
+                <option value="0">Seleccionar</option>
+                <option value="1">Activo</option>
+                <option value="2">Excento</option>
+                <option value="3">Cerrado</option>
             </select>
         </div> <!-- .right_column --> 
         <br class="clearer" />
         <div class="right_column">
 			<p class="button filter_button_in_form ">
-                               <input name="btnOK" type="submit" id="btn-search-Prestamos" value="Buscar"                                                 class="filter_button_in_form"/>
-</p>
+                <input name="btnOK" type="submit" id="btn-search-Prestamos" value="Buscar" class="filter_button_in_form"/>
+            </p>
 	</div><!-- .right_column -->
 	<br class="clearer" />
     </form>

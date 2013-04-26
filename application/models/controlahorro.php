@@ -12,13 +12,13 @@ class controlAhorro extends CI_Model{
 		$current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
 		$response = $class = $status = $filter = $date = $pagination = $sql = '';
 		$i = $no = 1;
-		$emp_per_page = 6;
+		$emp_per_page = 20;
 		$keepOrderby = 0;
 		$orderby = "u.id";
 		$orderbyArr = array('','u.no_emp desc','u.no_emp asc','u.name desc','u.name asc','a.year, a.week desc','a.year, a.week','a.monto desc','a.monto asc','ahorrado desc','ahorrado asc','a.status desc','a.status asc');
 		$money_grade = array('',0,1000,5000,10000,1000000);
 		$params = isset($_POST['params']) ? $_POST['params'] : 1;
-		$filters = $_POST; //$this->miscellaneous->sanitize($params);
+		$filters = $_POST;
 		$page = 1;
 		if(count($filters))
 		{
@@ -38,22 +38,24 @@ class controlAhorro extends CI_Model{
 				FROM user u
 				INNER JOIN ahorro a
 				ON u.id = a.user_id
-				AND u.role=0 AND u.status=1 AND (a.status != 0 OR a.status != 3)
+				AND u.role=0 AND u.status=1
 				AND a.periodo_id = ".$current_periodo_id."
 				".$filter."
 				";	
+
 		$query = $this->db->query($sql);
 		$no_empleados = $query->num_rows;
 		$no_pages = ceil($no_empleados / $emp_per_page);
 		$from = $emp_per_page * ($page - 1);
 		$no = ($emp_per_page * ($page - 1)) +1;
+		$status_label = array('inactivo', 'activo', 'excento', 'cerrado');
 		$sql = "
 		SELECT u.id as user_id, a.id, u.no_emp, u.name, a.year, a.week, a.monto,
 		ifnull((SELECT SUM(ar.monto) as monto FROM ahorro_registro ar WHERE ar.ahorro_id = a.id AND ar.status <> 0),0 ) as 'ahorrado', a.status
 		FROM user u
 		INNER JOIN ahorro a
 		ON u.id = a.user_id
-		AND u.role=0 AND u.status=1 AND (a.status != 0 OR a.status != 3)
+		AND u.role=0 AND u.status=1
 		AND a.periodo_id = ".$current_periodo_id."
 		".$filter."
 		ORDER BY ".$orderby."
@@ -63,7 +65,6 @@ class controlAhorro extends CI_Model{
 		{
 			$date = date("d/M/Y", strtotime("1.1.".$row->year." + ".$row->week." weeks")). "<b>(#".$row->week.")</b>";
 			$date = $this->miscellaneous->getSpanishDate($date);
-			$status =  ($row->status == 1) ? 'Activo' : 'Excento';
 			$class = ($i++ % 2 == 0) ? 'pair' : 'odd';
 			if(!empty($filters['employee_number'])) $row->no_emp = str_replace($filters['employee_number'], "<b>".$filters['employee_number']."</b>", $row->no_emp);
 			if(!empty($filters['employee_name'])) $row->name = str_replace($filters['employee_name'], "<b>".$filters['employee_name']."</b>", $row->name);
@@ -75,7 +76,7 @@ class controlAhorro extends CI_Model{
 			<td>".$date."</td>
 			<td class=\"number\">$ ".number_format($row->monto, 2,'.'," ")."</td>
 			<td class=\"number\">$ ".$row->ahorrado."</td>
-			<td>".$status."</td>
+			<td>".$status_label[$row->status]."</td>
 			<td><a href=\"".base_url()."sistema/ahorros/ver/".$row->user_id."\" title=\"Ver m&aacute;s\" class=\"read_more\">Ver +</a></td>
 			</tr>
 			";

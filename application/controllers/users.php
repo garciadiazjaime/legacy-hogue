@@ -227,7 +227,7 @@ class Users extends CI_Controller {
 	}
 
 	public function getInfo(){
-                echo  $this->prestamo->_get_infoEmpleado();
-        }
+		echo  $this->prestamo->_get_infoEmpleado();
+	}
 
 }
