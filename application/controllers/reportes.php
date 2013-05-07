@@ -119,6 +119,22 @@ class Reportes extends CI_Controller {
 		$this->load->view('be/layout/main', array('content'=>$content));
 	}
 
+	public function prestamos($prestamo_id = '')
+	{			
+		if(empty($prestamo_id))
+		{
+			$subdata['prestamos'] = $this->prestamo->get_reporte_prestamos();
+			$content = $this->load->view('be/reportes/prestamos', $subdata, true);	
+		}
+		else
+		{
+			$subdata['general_info'] = $this->prestamo->get_reporte_prestamo_general($prestamo_id);
+			$subdata['desglose'] = $this->prestamo->get_reporte_desglose($prestamo_id);
+			$content = $this->load->view('be/reportes/prestamo_desglose', $subdata, true);	
+		}
+		$this->load->view('be/layout/main', array('content'=>$content));
+	}
+
 	public function ahorros()
 	{	
 		$closed_periodo_id = $this->controlperiodo->getLastClosedPeriodoID();

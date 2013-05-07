@@ -14,6 +14,8 @@ $submenu_periodo="<li class=\"first last\"><a href=\"".base_url()."sistema/perio
 $submenu_reportes="
 	<li class=\"first\"><a href=\"".base_url()."sistema/reportes/nomina\">R. de nomina</a></li>
 	<li><a href=\"".base_url()."sistema/reportes/nomina_2\">R. de nomina2</a></li>
+	<li class=\"last\"><a href=\"".base_url()."sistema/reportes/prestamos\">R. de pr&eacute;stamos</a></li>
+	<li class=\"last\"><a href=\"".base_url()."sistema/reportes/ahorros_2\">R. de ahorros2</a></li>
 	<li class=\"last\"><a href=\"".base_url()."sistema/reportes/ahorros\">R. de ahorros</a></li>
 ";
 foreach($pages as $item){

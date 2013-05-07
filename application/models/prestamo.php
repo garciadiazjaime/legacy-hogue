@@ -7,7 +7,7 @@ class Prestamo extends CI_Model {
     public $InfoPaginado = array();
     public $estatus = array( "0" => "Inactivo",
                              "1" => "Activo",
-                             "2" => "Standby",
+                             "2" => "Excento",
                              "3" => "Cerrado" );
 
     function __construct() {
@@ -661,5 +661,40 @@ class Prestamo extends CI_Model {
         if ($query->num_rows() > 0)
             return true;
         return false;
+    }
+
+    public function get_reporte_prestamos()
+    {        
+        $current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
+        $sql = "SELECT p.id, p.monto_total, p.monto_pago, p.plazo, p.status, u.name, u.no_emp FROM prestamo p
+                INNER JOIN user u 
+                    ON p.user_id = u.id
+                WHERE periodo_id=".$current_periodo_id;
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0)        
+            return $query->result();
+        return false;   
+    }
+
+    public function get_reporte_desglose($prestamo_id = '')
+    {
+        $sql = 'SELECT * FROM prestamo_registro WHERE prestamo_id='.$prestamo_id;
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0)
+            return $query->result();
+        return false;
+    }
+
+
+    public function get_reporte_prestamo_general($prestamo_id = '')
+    {            
+        $sql = "SELECT p.id, p.monto_total, p.monto_pago, p.plazo, p.status, u.name, u.no_emp FROM prestamo p
+                INNER JOIN user u 
+                    ON p.user_id = u.id
+                WHERE p.id=".$prestamo_id;
+        $query = $this->db->query($sql);
+        if ($query->num_rows())        
+            return $query->row();
+        return false;   
     }
 }
