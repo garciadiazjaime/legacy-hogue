@@ -18,6 +18,7 @@
 		</thead> 
 		<tbody>
 		<?php $estatus = array("Inactivo", "Activo", "Excento", "Cerrado" );?>
+		<?php $total_prestado = 0 ?>
 		<?php foreach($prestamos as $row):?>						
 			<tr class="<?=alternator('odd', 'even');?>">				
 				<td><?=$row->no_emp?></td>
@@ -27,9 +28,11 @@
 				<td><?=$row->plazo?></td>
 				<td><?=$estatus[$row->status]?></td>
 				<td><a href="<?=base_url()?>sistema/reportes/prestamos/<?=$row->id?>" title="ver desglose">ver</a></td>
+				<?php $total_prestado += $row->monto_total ?>
 			</tr>
 		<?php endforeach; ?>			
 		</tbody>
 	</table>	
+	<h2>Total prestado en el a&ntilde;o: <b>$ <?=number_format($total_prestado, 2, ',', ' ');?></b></h2>
 	<br class="clearer" />
 </div>
