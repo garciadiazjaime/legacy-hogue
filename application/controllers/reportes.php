@@ -135,6 +135,23 @@ class Reportes extends CI_Controller {
 		$this->load->view('be/layout/main', array('content'=>$content));
 	}
 
+	public function ahorros_2($ahorro_id = '')
+	{			
+		if(empty($ahorro_id))
+		{
+			$subdata['ahorros'] = $this->ahorro->get_reporte_ahorros();
+			$content = $this->load->view('be/reportes/ahorro_2', $subdata, true);	
+		}
+		else
+		{
+			$subdata['general_info'] = $this->ahorro->get_ahorro_general($ahorro_id);
+			$subdata['desglose'] = $this->ahorro->get_ahorro_desglose($ahorro_id);
+			$content = $this->load->view('be/reportes/ahorro_desglose', $subdata, true);	
+		}
+		$this->load->view('be/layout/main', array('content'=>$content));
+	}
+
+
 	public function ahorros()
 	{	
 		$closed_periodo_id = $this->controlperiodo->getLastClosedPeriodoID();
