@@ -183,4 +183,38 @@ class Ahorro extends CI_Model {
 		}
 		return false;
 	}
+
+	function get_reporte_ahorros()
+	{
+		$current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
+        $sql = "SELECT a.id, a.monto, a.status, u.name, u.no_emp FROM ahorro a
+                INNER JOIN user u 
+                    ON a.user_id = u.id
+                WHERE periodo_id=".$current_periodo_id;
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0)        
+            return $query->result();
+        return false;   
+	}
+
+	public function get_ahorro_general($ahorro_id = '')
+    {            
+        $sql = "SELECT a.id, a.monto, a.week, a.year, a.status, u.name, u.no_emp FROM ahorro a
+                INNER JOIN user u 
+                    ON a.user_id = u.id
+                WHERE a.id=".$ahorro_id;
+        $query = $this->db->query($sql);
+        if ($query->num_rows())        
+            return $query->row();
+        return false;   
+    }
+
+    public function get_ahorro_desglose($ahorro_id = '')
+    {
+        $sql = 'SELECT * FROM ahorro_registro WHERE ahorro_id='.$ahorro_id;
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0)
+            return $query->result();
+        return false;
+    }
 }

@@ -70,7 +70,8 @@ $route['sistema/reportes/nomina/registrarNomina/(:num)'] = "reportes/registrarNo
 $route['sistema/reportes/nomina_2'] = "reportes/nomina_2";
 $route['sistema/reportes/prestamos'] = "reportes/prestamos";
 $route['sistema/reportes/prestamos/(:num)'] = "reportes/prestamos/$1";
-$route['sistema/reportes/ahorros_2'] = "reportes/nomina_2";
+$route['sistema/reportes/ahorros_2'] = "reportes/ahorros_2";
+$route['sistema/reportes/ahorros_2/(:num)'] = "reportes/ahorros_2/$1";
 
 $route['sistema/users/(:num)'] = 'users/index/$1';
 $route['sistema/users'] = "users";
