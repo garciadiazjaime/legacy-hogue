@@ -315,12 +315,47 @@ if($this->isWeekRegistered($week)){
 
 
 
+	function get_users_from_period($periodo_id)
+	{
+		$sql = "SELECT 
+					u.id, 
+					u.no_emp,
+					u.name
+				FROM user u
+				LEFT JOIN ahorro a 
+					ON a.user_id = u.id and a.periodo_id=".$periodo_id."				
+				LEFT JOIN prestamo p 				
+					ON p.user_id = u.id and a.periodo_id=".$periodo_id."				
+				group by u.id";		
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 
+	function get_user_ahorros($user_id, $periodo_id)
+	{
+		$sql = "SELECT 
+					* 
+				FROM ahorro
+				WHERE periodo_id = ".$periodo_id."
+					AND user_id = ".$user_id."
+				";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 
 	/***************************** NEW FUNCTION ****************************/
 
 	function executeNomina_2($week, $week_is_registered)
 	{
+		$response = "";
+		$periodo_id = $this->controlperiodo->getCurrentPeriodoID();
+		$data = $this->get_users_from_period($periodo_id);
+		foreach($data as $row):
+			$ahorros = $this->get_user_ahorros($row->id, $periodo_id);
+			print_r($ahorros);
+		endforeach;
+		
+		/*
 		$current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
 		$str_is_registered = ($week_is_registered) ? '1' : '0';	
 		$filters = $_POST;
@@ -553,6 +588,7 @@ if($this->isWeekRegistered($week)){
 			}
 		}
 		return $msg.$response;
+		*/
 	}//executeNomina
 	
 	function get_nomina_excel($week, $week_is_registered)
