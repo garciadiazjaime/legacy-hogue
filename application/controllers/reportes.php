@@ -256,7 +256,14 @@ class Reportes extends CI_Controller {
 
 	public function getNominaExcel_2($week)
 	{
-		return $this->nomina->executeNominaExcel_2($week);
+		$week_is_registered = false;
+		$resumen = $report_week = "";
+		if(!empty($week))
+		{
+			$week_is_registered = $this->nomina->isWeekRegistered($week);
+			$resumen = $this->nomina->get_nomina_excel($week, $week_is_registered);
+		}		
+		return $this->nomina->export_nomina_excel($resumen, $week);
 	}
 	
 	public function getReporteGeneral()
