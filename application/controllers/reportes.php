@@ -111,7 +111,7 @@ class Reportes extends CI_Controller {
 						$week_is_registered);
 			}
 		}
-		$content = $this->load->view('be/reportes/nomina', array(
+		$content = $this->load->view('be/reportes/nomina2', array(
 				'resumen'=>$resumen,
 				'report_week'=>$report_week,
 				'week_is_registered'=>$week_is_registered),
@@ -252,6 +252,11 @@ class Reportes extends CI_Controller {
 	public function getNominaExcel($week)
 	{
 		return $this->nomina->executeNominaExcel($week);
+	}
+
+	public function getNominaExcel_2($week)
+	{
+		return $this->nomina->executeNominaExcel_2($week);
 	}
 	
 	public function getReporteGeneral()
