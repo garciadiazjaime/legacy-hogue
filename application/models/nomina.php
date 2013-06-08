@@ -315,7 +315,7 @@ if($this->isWeekRegistered($week)){
 
 
 
-	function get_users_from_period($periodo_id)
+	function get_users_from_periodo($periodo_id)
 	{
 		$sql = "SELECT 
 					u.id, 
@@ -325,37 +325,103 @@ if($this->isWeekRegistered($week)){
 				LEFT JOIN ahorro a 
 					ON a.user_id = u.id and a.periodo_id=".$periodo_id."				
 				LEFT JOIN prestamo p 				
-					ON p.user_id = u.id and a.periodo_id=".$periodo_id."				
-				group by u.id";		
+					ON p.user_id = u.id and p.periodo_id=".$periodo_id."				
+				group by u.id
+				order by u.no_emp
+				";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 
-	function get_user_ahorros($user_id, $periodo_id)
+	function get_user_ahorro($user_id, $periodo_id)
 	{
 		$sql = "SELECT 
 					* 
 				FROM ahorro
 				WHERE periodo_id = ".$periodo_id."
 					AND user_id = ".$user_id."
+					AND (status = 1 OR status = 2)
+				";
+		$query = $this->db->query($sql);
+		return $query->row();
+	}
+
+	function get_user_prestamos($user_id, $periodo_id)
+	{
+		$sql = "SELECT 
+					* 
+				FROM prestamo
+				WHERE periodo_id = ".$periodo_id."
+					AND user_id = ".$user_id."
+					AND (status = 1 OR status = 2)
 				";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 
+	function get_nomina_data($periodo_id)
+	{
+		$data = array();
+		$response = "";
+		$users = $this->get_users_from_periodo($periodo_id);
+		$i = 0;
+		foreach($users as $row):
+			$ahorro = $this->get_user_ahorro($row->id, $periodo_id);
+			$prestamos = $this->get_user_prestamos($row->id, $periodo_id);
+			$data[$i]['user_data'] = $row;
+			$data[$i]['ahorro'] = $ahorro;
+			$data[$i]['prestamos'] = $prestamos;
+			$i++;
+		endforeach;
+		return $data;
+	}
+
 	/***************************** NEW FUNCTION ****************************/
+
+	function get_html_nomina_excel($week)
+	{
+		$periodo_id = $this->controlperiodo->getCurrentPeriodoID();
+		$data = $this->get_nomina_data($periodo_id);
+		$response = '';
+		$total_ahorro = 0;
+		$total_prestamos = 0;
+		$gran_total = 0;
+		foreach ($data as $row):
+			$semana = '';
+			$response .= $row['user_data']->no_emp."\t".$row['user_data']->name;
+			$response .= array_key_exists('monto', $row['ahorro']) ? 
+				 "\t".$row['ahorro']->monto."":
+				 "\t0";
+			$total_ahorro += array_key_exists('monto', $row['ahorro']) ? 
+				 $row['ahorro']->monto: 0;
+			if( is_array($row['prestamos']) && sizeof($row['prestamos']) ):
+				$i = 0;
+				foreach($row['prestamos'] as $cell):
+					if($cell->week == $week):
+						$semana = $cell->plazo;
+					endif;
+					$response .= "\t".$cell->monto_pago;
+					$total_prestamos += $cell->monto_pago;
+					$i++;
+				endforeach;
+				while($i<4):
+					$response .= "\t0";
+					$i++;
+				endwhile;
+			else:
+				$response .= "\t0\t0\t0";
+			endif;
+			$response .= $semana."\n";
+		endforeach;
+		$gran_total = $total_ahorro + $total_prestamos;
+		$response .= "\t\tTotal Ahorro:\t".$total_ahorro."\n";
+		$response .= "\t\tTotal Prestamos:\t".$total_prestamos."\n";
+		$response .= "\t\tGran Total:\t".$gran_total."\n";
+		return $response;
+	}
 
 	function executeNomina_2($week, $week_is_registered)
 	{
-		$response = "";
-		$periodo_id = $this->controlperiodo->getCurrentPeriodoID();
-		$data = $this->get_users_from_period($periodo_id);
-		foreach($data as $row):
-			$ahorros = $this->get_user_ahorros($row->id, $periodo_id);
-			print_r($ahorros);
-		endforeach;
-		
-		/*
 		$current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
 		$str_is_registered = ($week_is_registered) ? '1' : '0';	
 		$filters = $_POST;
@@ -588,7 +654,6 @@ if($this->isWeekRegistered($week)){
 			}
 		}
 		return $msg.$response;
-		*/
 	}//executeNomina
 	
 	function get_nomina_excel($week, $week_is_registered)

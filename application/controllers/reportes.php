@@ -254,15 +254,22 @@ class Reportes extends CI_Controller {
 		return $this->nomina->executeNominaExcel($week);
 	}
 
-	public function getNominaExcel_2($week)
+	public function download_nomina_excel($week)
 	{
 		$week_is_registered = false;
 		$resumen = $report_week = "";
 		if(!empty($week))
 		{
 			$week_is_registered = $this->nomina->isWeekRegistered($week);
-			$resumen = $this->nomina->get_nomina_excel($week, $week_is_registered);
-		}		
+			//$resumen = $this->nomina->get_nomina_data($week, '8');	
+			$resumen = $this->nomina->get_html_nomina_excel($week);
+			if(!empty($resumen))
+			{
+				$resumen = "\t\tDESCUENTO CAJA DE AHORRO SEMANA #".$week.", ".date('Y')."\n\n# Emp\tNombre\tAhorro\tPrestamo 1\tPrestamo 2\tPrestamo 3\tSemanas\n".$resumen;
+			}
+			
+		}
+		//print_r($resumen);
 		return $this->nomina->export_nomina_excel($resumen, $week);
 	}
 	
