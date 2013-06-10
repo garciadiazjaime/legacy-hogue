@@ -71,8 +71,11 @@ $route['sistema/reportes/nomina/registrarNomina/(:num)'] = "reportes/registrarNo
 $route['sistema/reportes/nomina_2'] = "reportes/nomina_2";
 $route['sistema/reportes/prestamos'] = "reportes/prestamos";
 $route['sistema/reportes/prestamos/(:num)'] = "reportes/prestamos/$1";
+	$route['sistema/reportes/get_prestamos_excel'] = "reportes/download_prestamos_excel";
 $route['sistema/reportes/ahorros_2'] = "reportes/ahorros_2";
 $route['sistema/reportes/ahorros_2/(:num)'] = "reportes/ahorros_2/$1";
+	$route['sistema/reportes/get_ahorros_excel'] = "reportes/download_ahorros_excel";
+	
 
 $route['sistema/users/(:num)'] = 'users/index/$1';
 $route['sistema/users'] = "users";

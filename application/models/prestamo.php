@@ -685,6 +685,75 @@ class Prestamo extends CI_Model {
         return false;
     }
 
+    public function get_prestamos_excel()
+    {
+        $periodo_id = $this->controlperiodo->getCurrentPeriodoID();
+        $response = "";
+        $data = array();
+        $total_prestado = 0;
+        $prestado_por_semana = array();
+        for($i=0; $i<53; $i++)
+            $prestado_por_semana[$i] = 0;
+        $sql = "SELECT 
+                    p.id,
+                    u.name, 
+                    u.no_emp, 
+                    p.monto_total, 
+                    p.monto_pago, 
+                    p.plazo, 
+                    p.status
+                FROM `prestamo` p 
+                INNER JOIN user u
+                    ON p.user_id = u.id
+                WHERE p.`periodo_id`=".$periodo_id."
+                    AND (p.status=1 OR p.status=2)
+                ORDER BY u.no_emp";
+        $query = $this->db->query($sql);
+        $result = $query->result();
+        $i = 0;
+        foreach($result as $row)
+        {
+            $data[$i]['gral_info'] = $row;  
+            $data[$i]['historial'] = $this->get_reporte_desglose($row->id);
+            $i++;
+        }
+        foreach($data as $row)
+        {
+            $response .= $row['gral_info']->no_emp."\t";
+            $response .= $row['gral_info']->name."\t";
+            $response .= $row['gral_info']->monto_total."\t";
+            $response .= $row['gral_info']->monto_pago."\t";
+            $response .= $row['gral_info']->plazo."\t";
+            $total_prestado += $row['gral_info']->monto_total;
+            if( is_array($row['historial']) )
+            {
+                for($i=1; $i < $row['historial'][0]->week; $i++)
+                {
+                    $response .= "-\t";
+                    $prestado_por_semana[($i-1)] += 0;
+                }
+                for($j=0; $j<sizeof($row['historial']); $j++)
+                {
+                    $response .= $row['historial'][$j]->monto."\t";
+                    $prestado_por_semana[($i-1)] += $row['historial'][$j]->monto;
+                    $i++;
+                }
+            }
+            for(;$i<53;$i++)
+            {
+                $response .= "-\t";
+                $prestado_por_semana[($i-1)] += 0;
+            }
+            $response .= "\n";
+        }
+        $response .= "\t\tTotal prestado en el ".date('Y').": ".$total_prestado."\n\t\t\t\t";
+        foreach ($prestado_por_semana as $row) 
+        {
+            $response .= "\t".$row;
+        }
+        $response .= "\n";
+        return $response;
+    }
 
     public function get_reporte_prestamo_general($prestamo_id = '')
     {            

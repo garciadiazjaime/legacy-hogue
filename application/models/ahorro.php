@@ -197,6 +197,70 @@ class Ahorro extends CI_Model {
         return false;   
 	}
 
+	public function get_ahorros_excel()
+    {
+        $periodo_id = $this->controlperiodo->getCurrentPeriodoID();
+        $response = "";
+        $data = array();
+        $total_ahorrado = 0;
+        $ahorro_por_semana = array();
+        for($i=0; $i<53; $i++)
+            $ahorro_por_semana[$i] = 0;
+        $sql = "SELECT 
+        			a.id, 
+        			u.name, 
+        			u.no_emp, 
+        			a.monto, 
+        			a.status
+				FROM  `ahorro` a
+				INNER JOIN user u ON a.user_id = u.id
+				WHERE a.`periodo_id` = ".$periodo_id."
+					AND ( a.status =1 OR a.status =2)
+				ORDER BY u.no_emp";
+        $query = $this->db->query($sql);
+        $result = $query->result();
+        $i=0;
+        foreach($result as $row)
+        {
+            $data[$i]['gral_info'] = $row;  
+            $data[$i]['historial'] = $this->get_ahorro_desglose($row->id);
+            $i++;
+        }
+        foreach($data as $row)
+        {
+            $response .= $row['gral_info']->no_emp."\t";
+            $response .= $row['gral_info']->name."\t";
+            $response .= $row['gral_info']->monto."\t";
+            $total_ahorrado += $row['gral_info']->monto;
+            if( is_array($row['historial']) )
+            {
+                for($i=1; $i < $row['historial'][0]->week; $i++)
+                {
+                    $response .= "-\t";
+                    $ahorro_por_semana[($i-1)] += 0;
+                }
+                for($j=0; $j<sizeof($row['historial']); $j++)
+                {
+                    $response .= $row['historial'][$j]->monto."\t";
+                    $ahorro_por_semana[($i-1)] += $row['historial'][$j]->monto;
+                    $i++;
+                }
+            }
+            for(;$i<53;$i++)
+            {
+                $response .= "-\t";
+                $ahorro_por_semana[($i-1)] += 0;
+            }
+            $response .= "\n";
+        }
+        $response .= "\t\t".$total_ahorrado."\n";
+        $response .= "\tDESCUENTOS POR SEMANA: \t";
+        foreach ($ahorro_por_semana as $row) 
+            $response .= "\t".$row;
+        $response .= "\n";
+        return $response;
+    }
+
 	public function get_ahorro_general($ahorro_id = '')
     {            
         $sql = "SELECT a.id, a.monto, a.week, a.year, a.status, u.name, u.no_emp FROM ahorro a

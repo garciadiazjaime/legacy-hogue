@@ -135,6 +135,25 @@ class Reportes extends CI_Controller {
 		$this->load->view('be/layout/main', array('content'=>$content));
 	}
 
+	public function download_prestamos_excel()
+	{
+		$resumen = "";
+		$header = '';
+		$resumen = $this->prestamo->get_prestamos_excel();
+		if(!empty($resumen))
+		{
+			$header = "\t\tCAJA AHORRO MAM DE LA FRONTERA DIVISION HOGUE\n\n".
+						"# Emp\tNombre\tPrestamo\tDescuento por semana\t# de semanas";
+			for($i=1;$i<54;$i++)
+				$header .= "\t".$i;
+			$header .= "\n";
+			$resumen = $header.$resumen;
+		}
+			
+		//print_r($resumen);
+		return $this->nomina->export_to_excel($resumen, "Reporte de prestamos HOGUE ".date('Y'));
+	}
+
 	public function ahorros_2($ahorro_id = '')
 	{			
 		if(empty($ahorro_id))
@@ -149,6 +168,25 @@ class Reportes extends CI_Controller {
 			$content = $this->load->view('be/reportes/ahorro_desglose', $subdata, true);	
 		}
 		$this->load->view('be/layout/main', array('content'=>$content));
+	}
+
+	public function download_ahorros_excel()
+	{
+		$resumen = "";
+		$header = '';
+		$resumen = $this->ahorro->get_ahorros_excel();
+		if(!empty($resumen))
+		{
+			$header = "\t\tCAJA AHORRO MAM DE LA FRONTERA DIVISION HOGUE\n\n".
+						"# Emp\tNombre\tAhorro semanal";
+			for($i=1;$i<54;$i++)
+				$header .= "\t".$i;
+			$header .= "\n";
+			$resumen = $header.$resumen;
+		}
+			
+		//print_r($resumen);
+		return $this->nomina->export_to_excel($resumen, "Reporte de ahorros HOGUE ".date('Y'));
 	}
 
 

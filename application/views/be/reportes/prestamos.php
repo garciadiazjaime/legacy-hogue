@@ -35,4 +35,7 @@
 	</table>	
 	<h2>Total prestado en el a&ntilde;o: <b>$ <?=number_format($total_prestado, 2, ',', ' ');?></b></h2>
 	<br class="clearer" />
+	<p class="print_button export_button">
+		<a href="<?=base_url()?>sistema/reportes/get_prestamos_excel" title="Exportar a excel" class="export_btn">Exportar</a>
+	</p>
 </div>

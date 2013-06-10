@@ -33,4 +33,7 @@
 	</table>	
 	<h2>Total prestado en el a&ntilde;o: <b>$ <?=number_format($total, 2, ',', ' ');?></b></h2>
 	<br class="clearer" />
+	<p class="print_button export_button">
+		<a href="<?=base_url()?>sistema/reportes/get_ahorros_excel" title="Exportar a excel" class="export_btn">Exportar</a>
+	</p>
 </div>

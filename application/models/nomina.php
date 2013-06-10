@@ -421,7 +421,76 @@ if($this->isWeekRegistered($week)){
 	}
 
 	function executeNomina_2($week, $week_is_registered)
-	{
+	{		
+		$periodo_id = $this->controlperiodo->getCurrentPeriodoID();
+		$data = $this->get_nomina_data($periodo_id);
+		$response = '';
+		$total_ahorro = 0;
+		$total_prestamos = 0;
+		$gran_total = 0;
+		foreach ($data as $row):
+			$semana = '';
+			$response .= "<tr><td>".$row['user_data']->no_emp."</td><td>".$row['user_data']->name."</td>";
+			$response .= array_key_exists('monto', $row['ahorro']) ? 
+				 "<td>".$row['ahorro']->monto."</td>":
+				 "<td>&nbsp;</td>";
+			$total_ahorro += array_key_exists('monto', $row['ahorro']) ? 
+				 $row['ahorro']->monto: 0;
+			if( is_array($row['prestamos']) && sizeof($row['prestamos']) ):
+				$i = 0;
+				foreach($row['prestamos'] as $cell):
+					if($cell->week == $week):
+						$semana = $cell->plazo;
+					endif;
+					$response .= "<td>".$cell->monto_pago."</td>";
+					$total_prestamos += $cell->monto_pago;
+					$i++;
+				endforeach;
+				while($i<3):
+					$response .= "<td>0</td>";
+					$i++;
+				endwhile;
+			else:
+				$response .= "<td>0</td><td>0</td><td>0</td>";
+			endif;
+			$response .= "<td>".$semana."</td></tr>";
+		endforeach;
+		$response =
+					"
+					<input type=\"text\" name=\"table_search\" id=\"table_search\" /> [presionar enter]
+					<table class=\"report_table tablesorter\" id=\"table_sort\">
+						<thead> 
+							<tr>
+								<th class=\"column_report_id_employee\"><span># Emp</span></th>
+								<th class=\"column_report_employee_name\"><span>Nombre</span></th>
+								<th class=\"column_report_savings\"><span>Ahorro</span></th>
+								<th class=\"column_report_loans\">Pr&eacute;stamo 1</th>
+								<th class=\"column_report_loans\">Pr&eacute;stamo 2</th>
+								<th class=\"column_report_loans\">Pr&eacute;stamo 3</th>
+								<th class=\"column_report_total_loans\"><span>Semanas</span></th>
+							</tr>
+						</thead> 
+						<tbody>
+							".$response."
+						</tbody> 
+						</table>
+					<table>
+						<tr>
+							<td colspan=\"1\"><b>Total Ahorro</b></td>
+							<td colspan=\"6\">$ ".number_format(round($total_ahorro,2), 2, '.', ' ')."</td>
+						</tr>
+						<tr>
+							<td colspan=\"1\"><b>Total préstamos</b></td>
+							<td colspan=\"6\">$ ".number_format(round($total_prestamos,2), 2, '.', ' ')."</td>
+						</tr>
+						<tr>
+							<td colspan=\"1\"><b>Gran total</b></td>
+							<td colspan=\"6\">$ ".number_format(round(($total_ahorro+$total_prestamos),2), 2, '.', ' ')."<td>
+						</tr>
+					</table>
+					";
+		return $response;
+		/*
 		$current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
 		$str_is_registered = ($week_is_registered) ? '1' : '0';	
 		$filters = $_POST;
@@ -654,6 +723,7 @@ if($this->isWeekRegistered($week)){
 			}
 		}
 		return $msg.$response;
+		*/
 	}//executeNomina
 	
 	function get_nomina_excel($week, $week_is_registered)
@@ -1051,7 +1121,6 @@ if($this->isWeekRegistered($week)){
 	}//executeNominaExcel
 
 
-/**************** GET NOMINA EXCEL 2 ******************/
 
 function export_nomina_excel($data, $week)
 {
@@ -1062,8 +1131,14 @@ function export_nomina_excel($data, $week)
 	print "$data";
 }
 
-
-/**************** END GET NOMINA EXCEL 2 ************/
+function export_to_excel($data, $name)
+{
+	header("Content-type: application/octet-stream");
+	header("Content-Disposition: attachment; filename=".$name.".xls");
+	header("Pragma: no-cache");
+	header("Expires: 0");
+	print "$data";
+}
 
 
 
