@@ -303,7 +303,7 @@ class Reportes extends CI_Controller {
 			$resumen = $this->nomina->get_html_nomina_excel($week);
 			if(!empty($resumen))
 			{
-				$resumen = "\t\tDESCUENTO CAJA DE AHORRO SEMANA #".$week.", ".date('Y')."\n\n# Emp\tNombre\tAhorro\tPrestamo 1\tPrestamo 2\tPrestamo 3\tSemanas\n".$resumen;
+				$resumen = "\t\tDESCUENTO CAJA DE AHORRO SEMANA #".$week.", ".date('Y')."\n\n# Emp\tNombre\tAhorro\tPrestamo 1\tPrestamo 2\tPrestamo 3\tPrestamo 4\tSemanas\n".$resumen;
 			}
 			
 		}

@@ -354,7 +354,7 @@ if($this->isWeekRegistered($week)){
 				WHERE periodo_id = ".$periodo_id."
 					AND user_id = ".$user_id."
 					AND (status = 1 OR status = 2)
-				";
+				";		
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
@@ -409,9 +409,9 @@ if($this->isWeekRegistered($week)){
 					$i++;
 				endwhile;
 			else:
-				$response .= "\t0\t0\t0";
+				$response .= "\t0\t0\t0\t0";
 			endif;
-			$response .= $semana."\n";
+			$response .= "\t".$semana."\n";
 		endforeach;
 		$gran_total = $total_ahorro + $total_prestamos;
 		$response .= "\t\tTotal Ahorro:\t".$total_ahorro."\n";
@@ -446,12 +446,12 @@ if($this->isWeekRegistered($week)){
 					$total_prestamos += $cell->monto_pago;
 					$i++;
 				endforeach;
-				while($i<3):
+				while($i<4):
 					$response .= "<td>0</td>";
 					$i++;
 				endwhile;
 			else:
-				$response .= "<td>0</td><td>0</td><td>0</td>";
+				$response .= "<td>0</td><td>0</td><td>0</td><td>0</td>";
 			endif;
 			$response .= "<td>".$semana."</td></tr>";
 		endforeach;
@@ -467,6 +467,7 @@ if($this->isWeekRegistered($week)){
 								<th class=\"column_report_loans\">Pr&eacute;stamo 1</th>
 								<th class=\"column_report_loans\">Pr&eacute;stamo 2</th>
 								<th class=\"column_report_loans\">Pr&eacute;stamo 3</th>
+								<th class=\"column_report_loans\">Pr&eacute;stamo 4</th>
 								<th class=\"column_report_total_loans\"><span>Semanas</span></th>
 							</tr>
 						</thead> 
