@@ -437,7 +437,7 @@ if($this->isWeekRegistered($week)){
 			$response .= "<tr><td>".$row['user_data']->no_emp."</td><td>".$row['user_data']->name."</td>";
 			$response .= array_key_exists('monto', $row['ahorro']) ? 
 				 "<td>".$row['ahorro']->monto."</td>":
-				 "<td>&nbsp;</td>";
+				 "<td>0</td>";
 			$total_ahorro += array_key_exists('monto', $row['ahorro']) ? 
 				 $row['ahorro']->monto: 0;
 			if( is_array($row['prestamos']) && sizeof($row['prestamos']) ):
