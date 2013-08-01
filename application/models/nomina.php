@@ -387,6 +387,8 @@ if($this->isWeekRegistered($week)){
 		$total_prestamos = 0;
 		$gran_total = 0;
 		foreach ($data as $row):
+			if( !array_key_exists('monto', $row['ahorro']) && !(is_array($row['prestamos']) && sizeof($row['prestamos'])))
+				continue;
 			$semana = '';
 			$response .= $row['user_data']->no_emp."\t".$row['user_data']->name;
 			$response .= array_key_exists('monto', $row['ahorro']) ? 
@@ -429,6 +431,8 @@ if($this->isWeekRegistered($week)){
 		$total_prestamos = 0;
 		$gran_total = 0;
 		foreach ($data as $row):
+			if( !array_key_exists('monto', $row['ahorro']) && !(is_array($row['prestamos']) && sizeof($row['prestamos'])))
+				continue;
 			$semana = '';
 			$response .= "<tr><td>".$row['user_data']->no_emp."</td><td>".$row['user_data']->name."</td>";
 			$response .= array_key_exists('monto', $row['ahorro']) ? 
