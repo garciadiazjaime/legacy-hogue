@@ -151,7 +151,7 @@ class Reportes extends CI_Controller {
 		}
 			
 		//print_r($resumen);
-		return $this->nomina->export_to_excel($resumen, "Reporte de prestamos HOGUE ".date('Y'));
+		return $this->nomina->export_to_excel($resumen, "Reporte_Pestamos_".date('Y'));
 	}
 
 	public function ahorros_2($ahorro_id = '')
@@ -186,7 +186,7 @@ class Reportes extends CI_Controller {
 		}
 			
 		//print_r($resumen);
-		return $this->nomina->export_to_excel($resumen, "Reporte de ahorros HOGUE ".date('Y'));
+		return $this->nomina->export_to_excel($resumen, "Reporte_Ahorros_".date('Y'));
 	}
 
 
