@@ -21,6 +21,9 @@ class ControlPeriodo extends CI_Model{
 		return 0;
 	}
 
+	/*
+	Regresa el ID el periodo actual (en curso)
+	*/
 	public function getCurrentPeriodoID()
 	{
 		$query = $this->db->query("select * FROM periodo WHERE status = 1 ORDER BY id DESC, year DESC");
@@ -313,6 +316,11 @@ class ControlPeriodo extends CI_Model{
 		}
 	}
 
+	/*
+	Verifica si la nómina ya fue validada,
+	esta fn es paracida a otra, con la diferencia de la tabla,
+	esta utiliza la tabla nomina_validada y la otra utiliza nomina
+	*/
 	public function is_nomina_validada($periodo = 0, $week = 0)
 	{
 		$sql = '';		

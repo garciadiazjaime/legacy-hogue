@@ -67,6 +67,10 @@ class Reportes extends CI_Controller {
 		$this->load->view('be/layout/main', array('content'=>$content));
 	}
 
+	/*
+	Función para mostrar datos de la nómina que en POST se guardan,
+	de igual forma verifica que la nómina no haya sido ya registrada.
+	*/
 	public function nomina()
 	{
 		$week_is_registered = false;
@@ -76,20 +80,9 @@ class Reportes extends CI_Controller {
 			$report_week = isset($_POST['report_week']) ? $_POST['report_week'] : '';
 			if(!empty($report_week))
 			{
-				if(!$this->nomina->isWeekRegistered($report_week))
-				{
-					$resumen = $this->nomina->executeNomina(
-						$report_week,
-						$week_is_registered);
-				}else
-				{
-					$week_is_registered = true;
-					$resumen = $this->nomina->executeNomina(
-						$report_week,
-						$week_is_registered);
-				}
+				$week_is_registered  = $this->nomina->isWeekRegistered($report_week);
+				$resumen = $this->nomina->executeNomina($report_week, $week_is_registered);
 			}
-
 		}
 		$content = $this->load->view('be/reportes/nomina', array('resumen'=>$resumen,
 			'report_week'=>$report_week,'week_is_registered'=>$week_is_registered), true);
@@ -268,14 +261,8 @@ class Reportes extends CI_Controller {
 	{
 		if(sizeof($_POST))
 		{
-			
-			$report_week = isset($_POST['report_week']) ? $_POST['report_week'] : '';
-			if(!empty($report_week))
-			{
-				$week = $report_week;
-				$week_is_registered = $this->nomina->isWeekRegistered($week);
-			}
-
+			$week = isset($_POST['report_week']) ? $_POST['report_week'] : '';
+			if(!empty($week)) $week_is_registered = $this->nomina->isWeekRegistered($week);
 		}
 		else
 			$week_is_registered = $this->nomina->registrarNomina($week);

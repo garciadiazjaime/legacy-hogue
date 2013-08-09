@@ -8,6 +8,12 @@ class Nomina extends CI_Model{
 		$this->load->model('controlperiodo');
 	}
 
+	/*
+	Función que verifica si la nómina ya fue registrada en el sistema,
+	regresa un boolean
+	true: ya se registro
+	false: no se ha registrado
+	*/
 	function isWeekRegistered($week)
 	{
 		$periodo_id = $this->controlperiodo->getCurrentPeriodoID();
@@ -72,6 +78,10 @@ class Nomina extends CI_Model{
 		}
 	}
 
+	/*
+	Guarda el registro de los ahorros, al momento de guardar nómina.
+	Esta función alimenta la tabla:ahorro_registro
+	*/
 	function registrarAhorro($week)
 	{
 		$current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
@@ -98,6 +108,12 @@ class Nomina extends CI_Model{
 		}
 	}
 
+	/*
+	Función principal, pues se encarga de guardar en la BD el registro de la nómina, registro
+	de préstamos y registro de ahorros.
+	Esta fn es ejecutada a través de reportes::registrarNomina
+	*/
+
 	function registrarNomina($week)
 	{
 		$registrado = false;
@@ -112,17 +128,28 @@ class Nomina extends CI_Model{
 						'status' => 1,
 						'periodo_id' => $current_periodo_id
 					);
-			if($this->db->insert('nomina',$nomina_registro))
-				$registrado = true;
-			else
-				$registrado = false;
+			if($this->db->insert('nomina',$nomina_registro)) $registrado = true;
 		}
-		else
-			$registrado = false;
 
 		return $registrado;
 	}
 
+	/*
+	Únicamente muestra la información de la nómina que se guardaría al presionar en
+	"guardar nómina", este botón aparece solo cuando la nómina no está validada.
+	La información mostrada involucra el monto de descuento por concepto de ahorro y préstamos.
+
+	NOTA: La fn se ayuda de crear 2 tablas temporales, poblaras, seleccionar su información y
+	finalmente a esta información darle el formato de tabla, finalmente se borran las tablas
+	temporales. Esto se puedo optimizar al optar por otro método.
+
+	Parámetros:
+	$week = Recibe el número de semana
+	$week_is_registered = Boolean que determina si ya está registrada la semana
+
+	Regresa:
+	El HTML de la tabla que muestra el desglose
+	*/
 	function executeNomina($week, $week_is_registered)
 	{
 		$current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
@@ -133,7 +160,7 @@ class Nomina extends CI_Model{
 		$filters = $_POST;
 		$response = $clas = $prestamo = $pagination = $sql = $msg = '';
 		$i = $no = 1;
-		$emp_per_page = 10;
+		$emp_per_page = 10000;
 		$i = 1;
 		$descontar = $ahorro = 0;
 		$page = 1;
@@ -282,7 +309,7 @@ if($this->isWeekRegistered($week)){
 				if($week_is_registered)
 					$msg =  "La semana ya ha sido registrada.";
 				else{
-					$flag = $this->controlperiodo->is_nomina_validada($current_periodo_id, $week);
+					//$flag = $this->controlperiodo->is_nomina_validada($current_periodo_id, $week);
 					//if($flag)
 						$msg =  "
 							<button type=\"button\" 
@@ -296,7 +323,10 @@ if($this->isWeekRegistered($week)){
 				}
 
 				$response =
-				"<table class=\"report_table\">
+				"<br /><br />
+				<input id=\"table_search\" type=\"text\" name=\"table_search\"> [presionar enter] 
+	
+				<table class=\"report_table\" id=\"table_sort\"report_table tablesorter\">
 				<tr>
 				<th class=\"column_report_id_employee\"><span># Empleado</span></th>
 				<th class=\"column_report_employee_name\"><span>Nombre</span></th>
