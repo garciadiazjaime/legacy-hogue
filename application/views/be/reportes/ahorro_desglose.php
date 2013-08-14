@@ -1,4 +1,5 @@
 <?php $estatus = array("Inactivo", "Activo", "Excento", "Cerrado" );?>
+<?php $week_no = 1 ?>
 <div class="reports content_block">	
 	<h1>Desglose de préstamo</h1>
 	Nombre: <b><?=$general_info->name?></b> <br />
@@ -25,16 +26,28 @@
 					<td>-</td>
 				</tr>
 				<?php
+				$week_no++;
 			endfor;
 			foreach($desglose as $row):
+				while($week_no < $row->week):
+					?>
+				<tr class="<?=alternator('odd','even')?>">
+					<td><?=$week_no?></td>
+					<td>$ 0</td>
+					<td>EXCENTO</td>
+				</tr>
+				<?php 
+					$week_no++;
+				endwhile;
 				?>
-				<?php $monto = ($row->status == 1)?$row->monto:'-'?></td>
+				<?php $monto = ($row->status == 1)?$row->monto:'-'?>
 				<tr class="<?=alternator('odd','even')?>">
 					<td><?=$row->week?></td>
 					<td>$ <?=$monto?></td>
 					<td><?=$estatus[$row->status]?></td>
 				</tr>
-				<?php					
+				<?php
+				$week_no++;					
 			endforeach;
 			for($i=$last_week+1; $i<53; $i++):
 				?>
@@ -44,6 +57,7 @@
 					<td>-</td>
 				</tr>
 				<?php
+				$week_no++;
 			endfor;														
 		?>					
 	</table>	
