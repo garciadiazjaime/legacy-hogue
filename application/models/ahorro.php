@@ -204,6 +204,7 @@ class Ahorro extends CI_Model {
         $data = array();
         $total_ahorrado = 0;
         $ahorro_por_semana = array();
+        $flag = true;
         for($i=0; $i<53; $i++)
             $ahorro_por_semana[$i] = 0;
         $sql = "SELECT 
@@ -215,8 +216,9 @@ class Ahorro extends CI_Model {
 				FROM  `ahorro` a
 				INNER JOIN user u ON a.user_id = u.id
 				WHERE a.`periodo_id` = ".$periodo_id."
-					AND ( a.status =1 OR a.status =2)
+					
 				ORDER BY u.no_emp";
+		//AND ( a.status =1 OR a.status =2) Se quito para que aparezcan todos los ahorros
         $query = $this->db->query($sql);
         $result = $query->result();
         $i=0;
@@ -241,15 +243,32 @@ class Ahorro extends CI_Model {
                 }
                 for($j=0; $j<sizeof($row['historial']); $j++)
                 {
-                    $response .= $row['historial'][$j]->monto."\t";
-                    $ahorro_por_semana[($i-1)] += $row['historial'][$j]->monto;
-                    $i++;
+
+                	while($i < $row['historial'][$j]->week)
+                	{
+                		$response .= "EXCENTO\t";
+                    	$ahorro_por_semana[($i-1)] += 0;
+                    	$i++;		
+                	}
+            		$response .= $row['historial'][$j]->monto."\t";
+                	$ahorro_por_semana[($i-1)] += $row['historial'][$j]->monto;	
+                	$i++;
                 }
             }
+            $flag = true;
             for(;$i<53;$i++)
             {
-                $response .= "-\t";
-                $ahorro_por_semana[($i-1)] += 0;
+            	if($row['gral_info']->status == 3 && $flag == true)
+            	{
+            		$response .= "BAJA\t";
+                	$ahorro_por_semana[($i-1)] += 0;
+                	$flag = false;
+            	}
+            	else
+            	{
+            		$response .= "-\t";
+                	$ahorro_por_semana[($i-1)] += 0;
+            	}
             }
             $response .= "\n";
         }

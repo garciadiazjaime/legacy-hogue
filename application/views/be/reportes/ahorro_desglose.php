@@ -1,7 +1,7 @@
 <?php $estatus = array("Inactivo", "Activo", "Excento", "Cerrado" );?>
 <?php $week_no = 1 ?>
 <div class="reports content_block">	
-	<h1>Desglose de préstamo</h1>
+	<h1>Desglose de Ahorro</h1>
 	Nombre: <b><?=$general_info->name?></b> <br />
 	No. Emp: <b><?=$general_info->no_emp?></b> <br />
 	Ahorro semanal autorizado: <b>$ <?=$general_info->monto?></b> <br />		
@@ -54,7 +54,13 @@
 				<tr class="<?=alternator('odd','even')?>">
 					<td><?=$i?></td>
 					<td>-</td>
-					<td>-</td>
+					<td>
+						<?php if($i == $last_week+1 && $general_info->status == 3):?>
+							<?=$estatus[$general_info->status]?>
+						<?php else: ?>
+							-
+						<?php endif; ?>
+					</td>
 				</tr>
 				<?php
 				$week_no++;
