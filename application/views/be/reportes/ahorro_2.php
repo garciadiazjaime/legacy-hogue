@@ -31,7 +31,9 @@
 		<?php endif; ?>
 		</tbody>
 	</table>	
-	<h2>Total prestado en el a&ntilde;o: <b>$ <?=number_format($total, 2, ',', ' ');?></b></h2>
+	<h2>Total Ahorrado por semana: <b>$ <?=number_format($total, 2, ',', ' ');?></b></h2>
+	<h3>Total Ahorro Activos en el a&ntilde;o: <b>$ <?=number_format($total_activos, 2, ',', ' ');?></b></h3>
+	<h3>Total Ahorro Inactivos en el a&ntilde;o: <b>$ <?=number_format($total_inactivos, 2, ',', ' ');?></b></h3>
 	<br class="clearer" />
 	<p class="print_button export_button">
 		<a href="<?=base_url()?>sistema/reportes/get_ahorros_excel" title="Exportar a excel" class="export_btn">Exportar</a>

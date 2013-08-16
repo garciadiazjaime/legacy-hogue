@@ -152,6 +152,8 @@ class Reportes extends CI_Controller {
 		if(empty($ahorro_id))
 		{
 			$subdata['ahorros'] = $this->ahorro->get_reporte_ahorros();
+			$subdata['total_activos'] = $this->ahorro->get_total_activos();
+			$subdata['total_inactivos'] = $this->ahorro->get_total_inactivos();
 			$content = $this->load->view('be/reportes/ahorro_2', $subdata, true);	
 		}
 		else

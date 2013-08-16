@@ -280,6 +280,40 @@ class Ahorro extends CI_Model {
         return $response;
     }
 
+    public function get_total_activos()
+    {
+    	$periodo_id = $this->controlperiodo->getCurrentPeriodoID();
+    	$sql = "SELECT 
+    		sum(ar.monto) as total
+    	FROM ahorro a 
+    	INNER JOIN ahorro_registro ar
+    	ON ar.ahorro_id = a.id
+    	WHERE a.status =1 
+    		AND periodo_id=".$periodo_id."
+    		AND ar.status=1";
+    	$query = $this->db->query($sql);
+        if ($query->num_rows())        
+            return $query->row()->total;
+        return false;   
+    }
+
+    public function get_total_inactivos()
+    {
+    	$periodo_id = $this->controlperiodo->getCurrentPeriodoID();
+    	$sql = "SELECT 
+    		sum(ar.monto) as total
+    	FROM ahorro a 
+    	INNER JOIN ahorro_registro ar
+    	ON ar.ahorro_id = a.id
+    	WHERE a.status=3 
+    		AND periodo_id=".$periodo_id."
+    		AND ar.status=1";
+    	$query = $this->db->query($sql);
+        if ($query->num_rows())        
+            return $query->row()->total;
+        return false;  	
+    }
+
 	public function get_ahorro_general($ahorro_id = '')
     {            
         $sql = "SELECT a.id, a.monto, a.week, a.year, a.status, u.name, u.no_emp FROM ahorro a
