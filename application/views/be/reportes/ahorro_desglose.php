@@ -1,4 +1,4 @@
-<?php $estatus = array("Inactivo", "Activo", "Excento", "Cerrado" );?>
+<?php $estatus = array("Excento", "Activo", "Excento", "Cerrado" );?>
 <?php $week_no = 1 ?>
 <div class="reports content_block">	
 	<h1>Desglose de Ahorro</h1>
@@ -34,13 +34,13 @@
 				<tr class="<?=alternator('odd','even')?>">
 					<td><?=$week_no?></td>
 					<td>$ 0</td>
-					<td>EXCENTO</td>
+					<td>Excento</td>
 				</tr>
 				<?php 
 					$week_no++;
 				endwhile;
 				?>
-				<?php $monto = ($row->status == 1)?$row->monto:'-'?>
+				<?php $monto = ($row->status == 1)?$row->monto:'0'?>
 				<tr class="<?=alternator('odd','even')?>">
 					<td><?=$row->week?></td>
 					<td>$ <?=$monto?></td>
