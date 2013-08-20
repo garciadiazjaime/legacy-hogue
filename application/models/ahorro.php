@@ -288,7 +288,7 @@ class Ahorro extends CI_Model {
     	FROM ahorro a 
     	INNER JOIN ahorro_registro ar
     	ON ar.ahorro_id = a.id
-    	WHERE a.status =1 
+    	WHERE ( a.status=1 or a.status=2 )
     		AND periodo_id=".$periodo_id."
     		AND ar.status=1";
     	$query = $this->db->query($sql);
