@@ -251,7 +251,7 @@ class Ahorro extends CI_Model {
                     	$i++;		
                 	}
             		$response .= ($row['historial'][$j]->status == 1) ? $row['historial'][$j]->monto."\t" : 'EXCENTO'."\t";
-                	$ahorro_por_semana[($i-1)] += $row['historial'][$j]->monto;	
+                	$ahorro_por_semana[($i-1)] += ($row['historial'][$j]->status == 1) ? $row['historial'][$j]->monto : 0;	
                 	$i++;
                 }
             }
