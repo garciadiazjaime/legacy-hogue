@@ -277,8 +277,8 @@ class Ahorro extends CI_Model {
         foreach ($ahorro_por_semana as $row) 
             $response .= "\t".$row;
       
-        $response .= "\n\tTotal Ahorro Activos en el año: \t".$this->get_total_activos();
-        $response .= "\n\tTotal Ahorro Inactivos en el año: \t".$this->get_total_inactivos();	
+        $response .= "\n\tTotal Ahorro Activos en el periodo: \t".$this->get_total_activos();
+        $response .= "\n\tTotal Ahorro Inactivos en el periodo: \t".$this->get_total_inactivos();	
 
         $response .= "\n";
         return $response;
