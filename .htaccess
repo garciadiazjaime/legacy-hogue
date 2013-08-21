@@ -3,7 +3,7 @@
     RewriteBase /
 
     RewriteCond %{REQUEST_URI} ^system.*
-    RewriteRule ^(.*)$ /houge/index.php?/$1 [L]
+    RewriteRule ^(.*)$ /hogue/index.php?/$1 [L]
     
     RewriteCond %{REQUEST_URI} ^application.*
     RewriteRule ^(.*)$ /hogue/index.php?/$1 [L]

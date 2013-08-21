@@ -4,7 +4,7 @@ class Sistema extends CI_Controller {
 
 	public function __construct()
 	{
-		parent::__construct();
+		parent::__construct();		
 		$this->load->helper('url');
 		$this->load->database();
 		$this->load->model('periodo');
@@ -19,21 +19,22 @@ class Sistema extends CI_Controller {
 		$this->load->library('user_agent');
 		$this->load->library('miscellaneous');
 		$this->is_logged_in();
-		$this->clear_cache();
+		$this->clear_cache();		
 	}
 
 	public function is_logged_in()
-	{
+	{		
 		if ($this->session->userdata('is_logged') != 'true'
 			&& uri_string() != 'sistema/login')
 		{
      		redirect(base_url().'sistema/login', 'refresh');
 		}
+
 	}	
 
 	public function index()
-	{
-		redirect(base_url().'sistema/dashboard', 'refresh');
+	{		
+		redirect(base_url().'sistema/dashboard', 'refresh');		
 	}
 
 	function clear_cache()
@@ -89,7 +90,7 @@ class Sistema extends CI_Controller {
 	}
 	
 	public function dashboard()
-	{
+	{		
 		$content = $this->load->view('be/dashboard','',true);
 		$this->load->view('be/layout/main', array('content'=>$content));
 	}

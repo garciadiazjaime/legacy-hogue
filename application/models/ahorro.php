@@ -225,7 +225,7 @@ class Ahorro extends CI_Model {
         foreach($result as $row)
         {
             $data[$i]['gral_info'] = $row;  
-            $data[$i]['historial'] = $this->get_ahorro_desglose($row->id);
+            $data[$i]['historial'] = $this->get_ahorro_desglose($row->id);            
             $i++;
         }
         foreach($data as $row)
@@ -276,6 +276,10 @@ class Ahorro extends CI_Model {
         $response .= "\tDESCUENTOS POR SEMANA: \t";
         foreach ($ahorro_por_semana as $row) 
             $response .= "\t".$row;
+      
+        $response .= "\n\tTotal Ahorro Activos en el año: \t".$this->get_total_activos();
+        $response .= "\n\tTotal Ahorro Inactivos en el año: \t".$this->get_total_inactivos();	
+
         $response .= "\n";
         return $response;
     }

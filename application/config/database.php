@@ -65,5 +65,22 @@ $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
 
+$db['opt_2']['hostname'] = 'localhost';
+$db['opt_2']['username'] = 'root';
+$db['opt_2']['password'] = 'root';
+$db['opt_2']['database'] = 'hogue';
+$db['opt_2']['dbdriver'] = 'mysql';
+$db['opt_2']['dbprefix'] = '';
+$db['opt_2']['pconnect'] = TRUE;
+$db['opt_2']['db_debug'] = TRUE;
+$db['opt_2']['cache_on'] = FALSE;
+$db['opt_2']['cachedir'] = '';
+$db['opt_2']['char_set'] = 'utf8';
+$db['opt_2']['dbcollat'] = 'utf8_general_ci';
+$db['opt_2']['swap_pre'] = '';
+$db['opt_2']['autoinit'] = TRUE;
+$db['opt_2']['stricton'] = FALSE;
+
+
 /* End of file database.php */
 /* Location: ./application/config/database.php */
