@@ -818,11 +818,11 @@ class Prestamo extends CI_Model {
         $total_recuperados = $this->get_total_recuperado();
         $total_pendientes = $total_prestado - $total_recuperados;
 
-        $response .= "\tTotal prestado en el periodo: \t".number_format($total_prestado, 2, ',', ' ')."\n";
-        $response .= "\tTotal prestamos cerrados: \t".number_format($total_cerrados, 2, ',', ' ')."\n";
-        $response .= "\tTotal prestamos activos: \t".number_format($total_activos, 2, ',', ' ')."\n";
-        $response .= "\tTotal prestamos recuperados: \t".number_format($total_recuperados, 2, ',', ' ')."\n";
-        $response .= "\tTotal prestamos pendientes: \t".number_format($total_pendientes, 2, ',', ' ')."\n";
+        $response .= "\tTotal prestado en el periodo: \t".number_format($total_prestado, 2, '.', '')."\n";
+        $response .= "\tTotal prestamos cerrados: \t".number_format($total_cerrados, 2, '.', '')."\n";
+        $response .= "\tTotal prestamos activos: \t".number_format($total_activos, 2, '.', '')."\n";
+        $response .= "\tTotal prestamos recuperados: \t".number_format($total_recuperados, 2, '.', '')."\n";
+        $response .= "\tTotal prestamos pendientes: \t".number_format($total_pendientes, 2, '.', '')."\n";
         return $response;
     }
 
