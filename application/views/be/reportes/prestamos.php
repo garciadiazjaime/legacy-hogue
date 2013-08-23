@@ -1,5 +1,5 @@
 <div class="reports content_block">	
-	<h1>Reporte de n&oacute;mina</h1> <b>del periodo en Curso</b>
+	<h1>Reporte de Pr&eacute;stamos</h1> <b>del periodo en Curso</b>
 </div>
 <div id="reporte_prestamos" class="content_block">
 	<input id="table_search" type="text" name="table_search">
@@ -18,7 +18,6 @@
 		</thead> 
 		<tbody>
 		<?php $estatus = array("Inactivo", "Activo", "Excento", "Cerrado" );?>
-		<?php $total_prestado = 0 ?>
 		<?php foreach($prestamos as $row):?>						
 			<tr class="<?=alternator('odd', 'even');?>">				
 				<td><?=$row->no_emp?></td>
@@ -28,12 +27,15 @@
 				<td><?=$row->plazo?></td>
 				<td><?=$estatus[$row->status]?></td>
 				<td><a href="<?=base_url()?>sistema/reportes/prestamos/<?=$row->id?>" title="ver desglose">ver</a></td>
-				<?php $total_prestado += $row->monto_total ?>
 			</tr>
 		<?php endforeach; ?>			
 		</tbody>
 	</table>	
 	<h2>Total prestado en el a&ntilde;o: <b>$ <?=number_format($total_prestado, 2, ',', ' ');?></b></h2>
+	<h3>Total pr&eacute;stamos cerrados: <b>$ <?=number_format($total_cerrados, 2, ',', ' ');?></b></h3>
+	<h3>Total pr&eacute;stamos activos: <b>$ <?=number_format($total_activos, 2, ',', ' ');?></b></h3>
+	<h3>Total pr&eacute;stamos recuperados: <b>$ <?=number_format($total_recuperado, 2, ',', ' ');?></b></h3>
+	<h3>Total pr&eacute;stamos pendiente: <b>$ <?=number_format($total_pendiente, 2, ',', ' ');?></b></h3>
 	<br class="clearer" />
 	<p class="print_button export_button">
 		<a href="<?=base_url()?>sistema/reportes/get_prestamos_excel" title="Exportar a excel" class="export_btn">Exportar</a>

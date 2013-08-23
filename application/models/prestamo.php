@@ -685,6 +685,60 @@ class Prestamo extends CI_Model {
         return false;
     }
 
+    public function get_total_prestado($periodo_id = '')
+    {
+        if(empty($periodo_id)) $periodo_id = $this->controlperiodo->getCurrentPeriodoID();   
+        $sql = "SELECT 
+                SUM(monto_total) as monto
+            FROM  `prestamo` 
+            WHERE  `periodo_id`=".$periodo_id;
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0)        
+            return $query->row()->monto;
+        return false;   
+    }
+
+    public function get_total_cerrados($periodo_id = '')
+    {
+        if(empty($periodo_id)) $periodo_id = $this->controlperiodo->getCurrentPeriodoID();   
+        $sql = "SELECT 
+                SUM(monto_total) as monto
+            FROM  `prestamo` 
+            WHERE  `periodo_id`=".$periodo_id."
+            AND status=3";
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0)        
+            return $query->row()->monto;
+        return false;   
+    }
+
+    public function get_total_activos($periodo_id = '')
+    {
+        if(empty($periodo_id)) $periodo_id = $this->controlperiodo->getCurrentPeriodoID();   
+        $sql = "SELECT 
+                SUM(monto_total) as monto
+            FROM  `prestamo` 
+            WHERE  `periodo_id`=".$periodo_id."
+            AND status in (1,2)";
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0)        
+            return $query->row()->monto;
+        return false;   
+    }
+
+    public function get_total_recuperado($periodo_id = '')
+    {
+        if(empty($periodo_id)) $periodo_id = $this->controlperiodo->getCurrentPeriodoID();   
+        $sql = "SELECT 
+                SUM(monto_abonado) as monto
+            FROM  `prestamo` 
+            WHERE  `periodo_id`=".$periodo_id;
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0)        
+            return $query->row()->monto;
+        return false;   
+    }
+
     public function get_prestamos_excel()
     {
         $periodo_id = $this->controlperiodo->getCurrentPeriodoID();
@@ -692,6 +746,7 @@ class Prestamo extends CI_Model {
         $data = array();
         $total_prestado = 0;
         $prestado_por_semana = array();
+        $estatus_label = array("Inactivo", "Activo", "Excento", "Cerrado" );
         for($i=0; $i<53; $i++)
             $prestado_por_semana[$i] = 0;
         $sql = "SELECT 
@@ -706,7 +761,7 @@ class Prestamo extends CI_Model {
                 INNER JOIN user u
                     ON p.user_id = u.id
                 WHERE p.`periodo_id`=".$periodo_id."
-                    AND (p.status=1 OR p.status=2)
+                    AND p.status in (1,2,3)
                 ORDER BY u.no_emp";
         $query = $this->db->query($sql);
         $result = $query->result();
@@ -724,7 +779,8 @@ class Prestamo extends CI_Model {
             $response .= $row['gral_info']->monto_total."\t";
             $response .= $row['gral_info']->monto_pago."\t";
             $response .= $row['gral_info']->plazo."\t";
-            $total_prestado += $row['gral_info']->monto_total;
+            $response .= $estatus_label[$row['gral_info']->status]."\t";
+            //$total_prestado += $row['gral_info']->monto_total;
             if( is_array($row['historial']) )
             {
                 for($i=1; $i < $row['historial'][0]->week; $i++)
@@ -746,12 +802,27 @@ class Prestamo extends CI_Model {
             }
             $response .= "\n";
         }
-        $response .= "\t\tTotal prestado en el ".date('Y').": ".$total_prestado."\n\t\t\t\t";
+        
+        $response .= "\t\t\t\t\t";
+
         foreach ($prestado_por_semana as $row) 
         {
             $response .= "\t".$row;
         }
+
         $response .= "\n";
+
+        $total_prestado = $this->get_total_prestado();
+        $total_cerrados = $this->get_total_cerrados();
+        $total_activos = $this->get_total_activos();
+        $total_recuperados = $this->get_total_recuperado();
+        $total_pendientes = $total_prestado - $total_recuperados;
+
+        $response .= "\tTotal prestado en el periodo: \t".number_format($total_prestado, 2, ',', ' ')."\n";
+        $response .= "\tTotal prestamos cerrados: \t".number_format($total_cerrados, 2, ',', ' ')."\n";
+        $response .= "\tTotal prestamos activos: \t".number_format($total_activos, 2, ',', ' ')."\n";
+        $response .= "\tTotal prestamos recuperados: \t".number_format($total_recuperados, 2, ',', ' ')."\n";
+        $response .= "\tTotal prestamos pendientes: \t".number_format($total_pendientes, 2, ',', ' ')."\n";
         return $response;
     }
 

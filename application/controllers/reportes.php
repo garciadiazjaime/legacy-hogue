@@ -117,6 +117,11 @@ class Reportes extends CI_Controller {
 		if(empty($prestamo_id))
 		{
 			$subdata['prestamos'] = $this->prestamo->get_reporte_prestamos();
+			$subdata['total_prestado'] = $this->prestamo->get_total_prestado();
+			$subdata['total_cerrados'] = $this->prestamo->get_total_cerrados();
+			$subdata['total_activos'] = $this->prestamo->get_total_activos();
+			$subdata['total_recuperado'] = $this->prestamo->get_total_recuperado();
+			$subdata['total_pendiente'] = $subdata['total_prestado'] - $subdata['total_recuperado'];
 			$content = $this->load->view('be/reportes/prestamos', $subdata, true);	
 		}
 		else
@@ -136,7 +141,7 @@ class Reportes extends CI_Controller {
 		if(!empty($resumen))
 		{
 			$header = "\t\tCAJA AHORRO MAM DE LA FRONTERA DIVISION HOGUE\n\n".
-						"# Emp\tNombre\tPrestamo\tDescuento por semana\t# de semanas";
+						"# Emp\tNombre\tPrestamo\tDescuento por semana\t# de semanas\tEstatus";
 			for($i=1;$i<54;$i++)
 				$header .= "\t".$i;
 			$header .= "\n";
