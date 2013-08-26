@@ -188,6 +188,7 @@ class Nomina extends CI_Model{
 		$from = $emp_per_page * ($page - 1);
 		
 if($this->isWeekRegistered($week)){
+
 			$this->db->query("CREATE TEMPORARY TABLE ahorro_temp(
 				no_emp VARCHAR(10) 
 				 , name VARCHAR(90)
@@ -232,6 +233,7 @@ if($this->isWeekRegistered($week)){
 				LIMIT ".$from.",".$emp_per_page.";";
 			
 		} else{
+
 			$this->db->query("CREATE TEMPORARY TABLE ahorro_temp(
 				no_emp VARCHAR(10) 
 				 , name VARCHAR(90)
@@ -421,19 +423,27 @@ if($this->isWeekRegistered($week)){
 				continue;
 			$semana = '';
 			$response .= $row['user_data']->no_emp."\t".$row['user_data']->name;
-			$response .= array_key_exists('monto', $row['ahorro']) ? 
-				 "\t".$row['ahorro']->monto."":
-				 "\t0";
-			$total_ahorro += array_key_exists('monto', $row['ahorro']) ? 
-				 $row['ahorro']->monto: 0;
+			if(array_key_exists('monto', $row['ahorro']) && $row['ahorro']->status==1):
+				$response .= "\t".$row['ahorro']->monto;
+				$total_ahorro += $row['ahorro']->monto;
+			elseif(array_key_exists('monto', $row['ahorro']) && $row['ahorro']->status==2):
+				$response .= "\tEXENTO";
+			else:
+				$response .= "\t0";
+			endif;
+			
 			if( is_array($row['prestamos']) && sizeof($row['prestamos']) ):
 				$i = 0;
 				foreach($row['prestamos'] as $cell):
 					if($cell->week == $week):
 						$semana = $cell->plazo;
 					endif;
-					$response .= "\t".$cell->monto_pago;
-					$total_prestamos += $cell->monto_pago;
+					if($cell->status == 1):
+						$response .= "\t".$cell->monto_pago;
+						$total_prestamos += $cell->monto_pago;
+					else:
+						$response .= "\tEXENTO";
+					endif;
 					$i++;
 				endforeach;
 				while($i<4):
@@ -461,23 +471,34 @@ if($this->isWeekRegistered($week)){
 		$total_prestamos = 0;
 		$gran_total = 0;
 		foreach ($data as $row):
+			//print_r($row);
 			if( !array_key_exists('monto', $row['ahorro']) && !(is_array($row['prestamos']) && sizeof($row['prestamos'])))
 				continue;
 			$semana = '';
 			$response .= "<tr><td>".$row['user_data']->no_emp."</td><td>".$row['user_data']->name."</td>";
-			$response .= array_key_exists('monto', $row['ahorro']) ? 
-				 "<td>".$row['ahorro']->monto."</td>":
-				 "<td>0</td>";
-			$total_ahorro += array_key_exists('monto', $row['ahorro']) ? 
-				 $row['ahorro']->monto: 0;
+			if(array_key_exists('monto', $row['ahorro']) && $row['ahorro']->status == 1):
+				$response .= "<td>".$row['ahorro']->monto."</td>";
+				$total_ahorro += array_key_exists('monto', $row['ahorro']) ? $row['ahorro']->monto: 0;
+			elseif(array_key_exists('monto', $row['ahorro']) && $row['ahorro']->status == 2):
+				$response .=  "<td>EXENTO</td>";
+			else:
+				$response .=  "<td>-</td>";
+			endif;
+			//$response .= array_key_exists('monto', $row['ahorro']) ? "<td>".$row['ahorro']->monto."</td>":
+				
+			
 			if( is_array($row['prestamos']) && sizeof($row['prestamos']) ):
 				$i = 0;
 				foreach($row['prestamos'] as $cell):
 					if($cell->week == $week):
 						$semana = $cell->plazo;
 					endif;
-					$response .= "<td>".$cell->monto_pago."</td>";
-					$total_prestamos += $cell->monto_pago;
+					if($cell->status==1):
+						$response .= "<td>".$cell->monto_pago."</td>";
+						$total_prestamos += $cell->monto_pago;
+					else:
+					 	$response .= "<td>EXENTO</td>";
+					endif;
 					$i++;
 				endforeach;
 				while($i<4):
@@ -487,7 +508,7 @@ if($this->isWeekRegistered($week)){
 			else:
 				$response .= "<td>0</td><td>0</td><td>0</td><td>0</td>";
 			endif;
-			$response .= "<td>".$semana."</td></tr>";
+			$response .= empty($semana) ? "<td>-</td></tr>" : "<td>".$semana."</td></tr>";
 		endforeach;
 		$response =
 					"
@@ -525,240 +546,6 @@ if($this->isWeekRegistered($week)){
 					</table>
 					";
 		return $response;
-		/*
-		$current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
-		$str_is_registered = ($week_is_registered) ? '1' : '0';	
-		$filters = $_POST;
-		$response = $clas = $prestamo = $pagination = $sql = $msg = '';
-		$i = $no = 1;
-		$emp_per_page = 10;
-		$i = 1;
-		$descontar = $ahorro = 0;
-		$page = 1;
-		if(!empty($filters['page'])) $page = $filters['page'];
-		$keepOrderby = 0;
-		$sql = "
-			SELECT DISTINCT (
-				u.no_emp
-				)
-				FROM user u
-				LEFT JOIN ahorro a ON a.user_id = u.id
-				LEFT JOIN prestamo p ON p.user_id = u.id
-				WHERE u.status = 1 
-					AND (
-						p.periodo_id = ".$current_periodo_id."
-						AND p.status = 1
-					)
-					OR(
-						a.periodo_id = ".$current_periodo_id."
-						AND a.status = 1
-					)
-		";
-		$query = $this->db->query($sql);
-		log_message('info', '##### models::nomina::executeNomina_2: '.$this->db->last_query());
-		$no_empleados = $query->num_rows;
-		$no_pages = ceil($no_empleados / $emp_per_page);
-		$from = $emp_per_page * ($page - 1);
-		
-
-		$this->db->query("CREATE TEMPORARY TABLE ahorro_temp(
-				no_emp VARCHAR(10) 
-				 , name VARCHAR(90)
-				, total FLOAT
-				);"
-			);
-		log_message('info', '##### models::nomina::executeNomina_2: '.$this->db->last_query());
-
-		$this->db->query("CREATE TEMPORARY TABLE prestamo_temp(
-				no_emp VARCHAR(10) 
-				,name VARCHAR(90)
-				,prestamos VARCHAR(50)
-				,total FLOAT
-				,prestamo_plazo INTEGER
-				);"
-			);
-		log_message('info', '##### models::nomina::executeNomina_2: '.$this->db->last_query());
-
-		//if($this->isWeekRegistered($week)){
-		if($week_is_registered)
-		{	
-			$this->db->query("INSERT INTO prestamo_temp
-				SELECT 
-					u.no_emp AS No_Emp, 
-					u.name AS Nombre, 
-					IFNULL(GROUP_CONCAT(pr.monto SEPARATOR ', '),0)  AS prestamos,
-					SUM( IFNULL( pr.monto, 0 ) ) AS total,
-					IFNULL((
-                		SELECT p2.plazo 
-                		FROM prestamo p2 
-                		WHERE p2.user_id=u.id 
-                			AND p2.`periodo_id`=".$current_periodo_id."
-                			AND p2.status=1 
-                		ORDER BY p2.id DESC 
-                		LIMIT 1), '') AS prestamo_plazo
-				FROM prestamo_registro pr
-				LEFT JOIN prestamo p ON pr.prestamo_id = p.id AND pr.status <> 0
-				RIGHT JOIN user u ON p.user_id = u.id
-				AND pr.week =".$week."
-				AND p.periodo_id = ".$current_periodo_id."
-				GROUP BY u.no_emp;"
-			);
-			log_message('info', '##### models::nomina::executeNomina_2: '.$this->db->last_query());
-			$this->db->query("INSERT INTO ahorro_temp
-				SELECT u.no_emp AS No_Emp, u.name AS Nombre, IFNULL( ar.monto, 0 ) AS total
-				FROM ahorro_registro ar
-				LEFT JOIN ahorro a ON ar.ahorro_id = a.id AND ar.status <> 0
-				RIGHT JOIN user u ON a.user_id = u.id
-				AND ar.week =".$week."
-				AND a.periodo_id = ".$current_periodo_id."
-				GROUP BY u.no_emp;"
-			);
-			log_message('info', '##### models::nomina::executeNomina_2: '.$this->db->last_query());			
-		}
-		else
-		{
-			$this->db->query("INSERT INTO prestamo_temp
-				SELECT 
-					u.no_emp AS No_Emp, 
-					u.name AS Nombre, 
-                	IFNULL(GROUP_CONCAT(p.monto_pago SEPARATOR ', '),0)  AS prestamos,
-                	SUM( IFNULL( p.monto_pago, 0 ) ) AS total,
-                	IFNULL((
-                		SELECT p2.plazo 
-                		FROM prestamo p2 
-                		WHERE p2.user_id=u.id 
-                			AND p2.`periodo_id`=".$current_periodo_id."
-                			AND p2.status=1 
-                		ORDER BY p2.id DESC 
-                		LIMIT 1), '') AS prestamo_plazo
-				FROM user u
-				LEFT JOIN prestamo p ON p.user_id = u.id
-				AND p.periodo_id = ".$current_periodo_id." AND p.status = 1
-				GROUP BY u.no_emp;"
-			);
-			log_message('info', '##### || models::nomina::executeNomina_2: '.$this->db->last_query());
-			$this->db->query("INSERT INTO ahorro_temp
-				SELECT u.no_emp AS No_Emp, u.name AS Nombre, IFNULL( a.monto, 0 ) AS total
-				FROM user u
-				LEFT JOIN ahorro a ON a.user_id = u.id
-				AND a.periodo_id =".$current_periodo_id." AND a.status = 1
-				GROUP BY u.no_emp;"
-			);
-			log_message('info', '##### models::nomina::executeNomina_2: '.$this->db->last_query());
-		}
-		$sql = "SELECT 
-					ahorro_temp.no_emp as no_emp, 
-					ahorro_temp.name as name,
-					ahorro_temp.total as ahorro, 
-					prestamo_temp.prestamos as prestamos,
-					prestamo_temp.prestamo_plazo as prestamo_plazo,
-				ROUND((ahorro_temp.total + prestamo_temp.total),2) as total
-				FROM ahorro_temp
-				JOIN prestamo_temp 
-					ON (ahorro_temp.no_emp = prestamo_temp.no_emp)
-				where (ahorro_temp.total + prestamo_temp.total)  > 0
-				group by ahorro_temp.no_emp
-				order by ahorro_temp.no_emp
-				";
-				//LIMIT ".$from.",".$emp_per_page.";";
-		log_message('info', '##### models::nomina::executeNomina_2: '.$this->db->last_query());
-
-		$query = $this->db->query($sql);
-		$this->db->query("DROP TABLE prestamo_temp;");
-		$this->db->query("DROP TABLE ahorro_temp;");
-
-		$total_ahorro = 0;
-		$total_prestamos = 0;
-		if ($query->num_rows() > 0)
-		{
-			$row_ind = 0;
-			foreach ($query->result() as $row)
-			{
-				$tmp = explode(',', $row->prestamos);
-				$arr_prestamos = array();
-				if(is_array($tmp))
-				{
-					foreach($tmp as $item)
-						$arr_prestamos[] = $item;
-				}
-				for($i=sizeof($arr_prestamos); $i<3; $i++)
-					$arr_prestamos[] = 0;
-
-				$class = $row_ind % 2 ? 'even' : 'odd';
-				$row_ind++;
-				$total_ahorro += $row->ahorro;
-				$total_prestamos += $row->total;
-				$response .= "
-				<tr class=\"".$class."\">
-					<td>".$row->no_emp."</td>
-					<td>".$row->name."</td>
-					<td class=\"money\">$".number_format(round($row->ahorro,2), 2, '.',' ')."</td>
-					<td class=\"tabla_nomina\">
-						<span>".$arr_prestamos[0]."</span>
-						<span>".$arr_prestamos[1]."</span>
-						<span>".$arr_prestamos[2]."</span>
-					</td>
-					<td>".$row->prestamo_plazo."</td>
-				</tr>
-				";
-				//<!--<td>$".number_format(round($row->total,2), 2, '.', ' ')."</td>-->
-			}
-			if(!empty($response))
-			{
-				if($week_is_registered)
-					$msg =  "La semana ya ha sido registrada.";
-				else{
-					$msg =  "
-						<!--<button type=\"button\" 
-							value=\"guardar\" 
-							onclick=\"registrarNomina(".$week.");\">
-								Guardar N&oacute;mina
-						</button> -->";
-				}
-				$response =
-					"
-					<input type=\"text\" name=\"table_search\" id=\"table_search\" /> [presionar enter]
-					<table class=\"report_table tablesorter\" id=\"table_sort\">
-						<thead> 
-							<tr>
-								<th class=\"column_report_id_employee\"><span># Emp</span></th>
-								<th class=\"column_report_employee_name\"><span>Nombre</span></th>
-								<th class=\"column_report_savings\"><span>Ahorro</span></th>
-								<th class=\"column_report_loans\">
-									<span>Pr&eacute;stamos</span>
-									<div class=\"tabla_nomina\">
-										<span>1</span>
-										<span>2</span>
-										<span>3</span>
-									</div>
-								</th>
-								<th class=\"column_report_total_loans\"><span>Semanas</span></th>
-							</tr>
-						</thead> 
-						<tbody>
-							$response
-						</tbody> 
-						</table>
-					$pagination
-					<table>
-						<tr>
-							<td><b>Total Ahorro</b></td>
-							<td>$ ".number_format(round($total_ahorro,2), 2, '.', ' ')."</td>
-						</tr>
-						<tr>
-							<td><b>Total préstamos</b></td>
-							<td>$ ".number_format(round($total_prestamos,2), 2, '.', ' ')."</td>
-						</tr>
-						<tr>
-							<td><b>Gran total</b></td>
-							<td>$ ".number_format(round(($total_ahorro+$total_prestamos),2), 2, '.', ' ')."<td>
-						</tr>
-					</table>
-					";
-			}
-		}
-		return $msg.$response;
-		*/
 	}//executeNomina
 	
 	function get_nomina_excel($week, $week_is_registered)

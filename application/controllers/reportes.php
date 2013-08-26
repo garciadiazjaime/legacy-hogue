@@ -293,7 +293,6 @@ class Reportes extends CI_Controller {
 		if(!empty($week))
 		{
 			$week_is_registered = $this->nomina->isWeekRegistered($week);
-			//$resumen = $this->nomina->get_nomina_data($week, '8');	
 			$resumen = $this->nomina->get_html_nomina_excel($week);
 			if(!empty($resumen))
 			{
@@ -301,7 +300,6 @@ class Reportes extends CI_Controller {
 			}
 			
 		}
-		//print_r($resumen);
 		return $this->nomina->export_nomina_excel($resumen, $week);
 	}
 	
