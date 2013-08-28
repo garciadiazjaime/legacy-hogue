@@ -22,6 +22,14 @@
 				</b>
 			</p>
 		</div>
+		<?php if ($prestamo->status == 3): ?>
+		<div class="m_column">
+			<p>
+				Pr&eacute;stamo cerrado semana: <span>
+				</span> <b><?=$prestamo->week_end;?></b>
+			</p>
+		</div>
+		<?php endif; ?>
 		<br />
 	<input type="hidden" id="porcentaje" name="porcentaje" value="<?=($prestamo->interes / $prestamo->monto_prestado)*100;?>" />
         <input type="hidden" id="nprestamos" name="nprestamos" value="0" />
@@ -76,7 +84,7 @@
 		<label>Estatus:</label> <select name="loan_status"
 			onchange="changePrestamoStatus()" id="loan_status">
 			<?=$this->ahorro->getOptionStatus($prestamo->status, array('','activo','excento','cerrado'));?>
-		</select> 
+		</select>
 		<div id="extraWeeks">
 			<?=$extraWeeks;?>
 		</div>

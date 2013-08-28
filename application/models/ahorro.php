@@ -134,6 +134,8 @@ class Ahorro extends CI_Model {
 			if($row->status != $_POST['saving_status'])
 			{
 				$updateFields['status'] = $_POST['saving_status'];
+				if($_POST['saving_status'] == 3)
+					$updateFields['week_end'] = date("W");
 			}
 			if(isset($_POST['saving_weeks_pending']) && $_POST['saving_weeks_pending'])// != $query2->row()->val)
 			{

@@ -367,12 +367,13 @@ if($this->isWeekRegistered($week)){
 
 	function get_user_ahorro($user_id, $periodo_id)
 	{
+		$current_week = date('W');
 		$sql = "SELECT 
 					* 
 				FROM ahorro
 				WHERE periodo_id = ".$periodo_id."
 					AND user_id = ".$user_id."
-					AND (status = 1 OR status = 2)
+					AND (status in (1, 2) OR (status = 3 AND week_end=$current_week))
 				";
 		$query = $this->db->query($sql);
 		return $query->row();
@@ -380,12 +381,13 @@ if($this->isWeekRegistered($week)){
 
 	function get_user_prestamos($user_id, $periodo_id)
 	{
+		$current_week = date('W');
 		$sql = "SELECT 
 					* 
 				FROM prestamo
 				WHERE periodo_id = ".$periodo_id."
 					AND user_id = ".$user_id."
-					AND (status = 1 OR status = 2)
+					AND (status in (1, 2) OR (status = 3 AND week_end=$current_week))
 				";		
 		$query = $this->db->query($sql);
 		return $query->result();
@@ -428,6 +430,8 @@ if($this->isWeekRegistered($week)){
 				$total_ahorro += $row['ahorro']->monto;
 			elseif(array_key_exists('monto', $row['ahorro']) && $row['ahorro']->status==2):
 				$response .= "\tEXENTO";
+			elseif(array_key_exists('monto', $row['ahorro']) && $row['ahorro']->status==3):
+				$response .= "\tBAJA";
 			else:
 				$response .= "\t0";
 			endif;
@@ -441,8 +445,12 @@ if($this->isWeekRegistered($week)){
 					if($cell->status == 1):
 						$response .= "\t".$cell->monto_pago;
 						$total_prestamos += $cell->monto_pago;
-					else:
+					elseif($cell->status == 2):
 						$response .= "\tEXENTO";
+					elseif($cell->status == 3):
+						$response .= "\tBAJA";
+					else:
+						$response .= "\t0";
 					endif;
 					$i++;
 				endforeach;
@@ -481,6 +489,8 @@ if($this->isWeekRegistered($week)){
 				$total_ahorro += array_key_exists('monto', $row['ahorro']) ? $row['ahorro']->monto: 0;
 			elseif(array_key_exists('monto', $row['ahorro']) && $row['ahorro']->status == 2):
 				$response .=  "<td>EXENTO</td>";
+			elseif(array_key_exists('monto', $row['ahorro']) && $row['ahorro']->status==3):
+				$response .=  "<td>BAJA</td>";
 			else:
 				$response .=  "<td>-</td>";
 			endif;
@@ -496,8 +506,12 @@ if($this->isWeekRegistered($week)){
 					if($cell->status==1):
 						$response .= "<td>".$cell->monto_pago."</td>";
 						$total_prestamos += $cell->monto_pago;
-					else:
+					elseif($cell->status==2):
 					 	$response .= "<td>EXENTO</td>";
+					elseif($cell->status==3):
+					 	$response .= "<td>BAJA</td>";
+					else:
+					 	$response .= "<td>-</td>";
 					endif;
 					$i++;
 				endforeach;

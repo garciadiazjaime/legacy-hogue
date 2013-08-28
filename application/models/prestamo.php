@@ -452,6 +452,7 @@ class Prestamo extends CI_Model {
                             "plazo" => "{$_info['weeks_payment']}",
                             "interes" => "{$this->_set_format_db($_iva)}",
                             "week" => "{$_info['saving_starts']}",
+                            "week_end" => date("W"),
                             "year" => date("Y"),
                             "status" => "{$_info['loan_status']}",
                             "user_id" => "{$_info['usrid']}",

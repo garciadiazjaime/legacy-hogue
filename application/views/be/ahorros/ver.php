@@ -48,10 +48,19 @@
 			</p>
 		</div>
 		<!-- .r_column -->
-		<label>Estatus:</label> <select name="saving_status"
-			onchange="changeAhorroStatus()" id="saving_status">
-			<?=$this->ahorro->getOptionStatus($ahorro->status, array('','activo','excento','cerrado'));?>
-		</select>
+		<div class="l_column">
+			<label>Estatus:</label> <select name="saving_status"
+				onchange="changeAhorroStatus()" id="saving_status">
+				<?=$this->ahorro->getOptionStatus($ahorro->status, array('','activo','excento','cerrado'));?>
+			</select>
+		</div>
+		<?php if($ahorro->status == 3): ?>
+		<!-- .l_column -->
+		<div class="r_column">
+			<label>Semana cerrado:</label> <span class="data"><?=$ahorro->week_end;?>
+			</span>
+		</div>
+		<?php endif ?>
 		<div id="extraWeeks">
 			<?=$extraWeeks;?>
 		</div>

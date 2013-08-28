@@ -49,7 +49,7 @@ class ControlUser extends CI_Model{
 		if($id)
 		{
 			$sql = "
-			SELECT a.id as ahorro_id,a.monto, a.week, a.year, a.beneficiario, a.status, a.notes, 
+			SELECT a.id as ahorro_id,a.monto, a.week, a.year, a.beneficiario, a.status, a.notes, a.week_end,
 				ifnull((SELECT SUM(ar.monto) FROM ahorro_registro ar 
 			WHERE ar.ahorro_id = a.id AND ar.year = a.year AND ar.status <> 0),0 ) as 'ahorrado',
 				ifnull((SELECT count(ar.id) FROM ahorro_registro ar 
@@ -73,7 +73,7 @@ class ControlUser extends CI_Model{
 		if($id)
 		{
 			$sql = "
-			SELECT p.id as prestamo_id, p.monto_prestado, p.monto_total, p.monto_abonado, p.plazo,
+			SELECT p.id as prestamo_id, p.monto_prestado, p.monto_total, p.monto_abonado, p.plazo, p.week_end,
 			 p.week, p.year, p.status, p.monto_pago, p.interes,
 				ifnull((SELECT SUM(pr.monto) FROM prestamo_registro pr 
 			WHERE pr.prestamo_id = p.id AND pr.year = p.year),0 ) as 'pagado',
