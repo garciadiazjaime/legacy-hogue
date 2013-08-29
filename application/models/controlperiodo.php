@@ -362,4 +362,19 @@ class ControlPeriodo extends CI_Model{
 		}
 		return $location;
 	}
+
+
+	/*
+	Funcion para obtener la última semana registrada en X periodo.
+	Esta función se utiliza para guardar week_starten exento.
+	*/
+	public function get_last_registered_week($periodo_id)
+	{
+		if(!empty($periodo_id))
+		{
+			$sql = "SELECT IFNULL(MAX( week ), 1) AS week FROM  `nomina` WHERE periodo_id =".$periodo_id;
+			$query = $this->db->query($sql);
+			return $query->row()->week;
+		}
+	}
 }

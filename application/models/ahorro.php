@@ -147,7 +147,8 @@ class Ahorro extends CI_Model {
 						" Status actualizado.":
 						" Error, no se puedo actualizar el status.";
 				}else {
-					$response = $this->db->insert('excento',array('val' => $_POST['saving_weeks_pending'], 'ahorro_id' => $ahorro_id, 'status'=>1, 'tipo'=>0)) ?
+					$week_start = $this->controlperiodo->get_last_registered_week($current_periodo_id);
+					$response = $this->db->insert('excento',array('val' => $_POST['saving_weeks_pending'], 'ahorro_id' => $ahorro_id, 'status'=>1, 'tipo'=>0, 'week_start'=>$week_start)) ?
 					" Status registrado.":
 					" Error, no se puedo registrar el status.";
 				}

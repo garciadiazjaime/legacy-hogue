@@ -417,7 +417,8 @@ class Prestamo extends CI_Model {
                         " Status actualizado.":
                         " Error, no se puedo actualizar el status.";
                 }else {
-                    $response = $this->db->insert('excento',array('val' => $_info['loan_weeks_pending'], 'prestamo_id' => $id, 'status'=>1, 'tipo'=>1)) ?
+                    $week_start = $this->controlperiodo->get_last_registered_week($current_periodo_id);
+                    $response = $this->db->insert('excento',array('val' => $_info['loan_weeks_pending'], 'prestamo_id' => $id, 'status'=>1, 'tipo'=>1, 'week_start'=>$week_start)) ?
                     " Status registrado.":
                     " Error, no se puedo registrar el status.";
                 }

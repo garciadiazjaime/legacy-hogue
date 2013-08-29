@@ -109,9 +109,99 @@ class Nomina extends CI_Model{
 	}
 
 	/*
+	Una vez que la nomina es guardada, se va revisar los estados de los exentos
+	para volver activar el prestamo o ahorro. Para esto se va a comparar la suma
+	de cuando empezo el periodo exento mas su fecha de comienzo y debera ser 
+	mayor o igual a la semana en que se esta validando para realizar el cambio.
+	*/
+	function revisar_excentos($week, $periodo_id)
+	{
+		if(!empty($week))
+		{
+			/* parte para ahorrs */
+			$sql = "
+				SELECT 
+					e.id as exento_id,
+					e.val as duracion,
+					ifnull(e.week_start, 0) as comienzo,
+					a.id as ahorro_id
+				FROM excento e
+				INNER JOIN ahorro a
+				ON e.ahorro_id=a.id
+				WHERE e.status=1
+					AND e.tipo=0
+					AND a.periodo_id=".$periodo_id."
+					AND e.val!=0
+					AND a.status=2
+					";
+			$query = $this->db->query($sql); 	
+			if($query->num_rows() > 0)
+			{
+				foreach($query->result() as $row)
+				{
+					$tmp = $row->duracion + $row->comienzo;
+					$flag = $tmp < $week ? 0:1;
+					if( (intval($row->duracion) + intval($row->comienzo)) < intval($week) )
+					{
+						$values = array('status'=>1);
+						$this->db->where('id', $row->ahorro_id);
+						$this->db->update('ahorro', $values); 
+
+						log_message('info', '###### model::nomina::revisar_excentos: '.$this->db->last_query());
+
+						$values = array('status'=>0);
+						$this->db->where('id', $row->exento_id);
+						$this->db->update('excento', $values);
+						log_message('info', '###### model::nomina::revisar_excentos: '.$this->db->last_query());
+					}
+				}
+			}
+
+			/* parte para prestamos */
+			$sql = "
+				SELECT 
+					e.id as exento_id,
+					e.val as duracion,
+					ifnull(e.week_start, 0) as comienzo,
+					p.id as prestamo_id
+				FROM excento e
+				INNER JOIN prestamo p
+				ON e.prestamo_id=p.id
+				WHERE e.status=1
+					AND e.tipo=1
+					AND p.periodo_id=".$periodo_id."
+					AND e.val!=0
+					AND p.status=2
+					";
+			$query = $this->db->query($sql); 	
+			if($query->num_rows() > 0)
+			{
+				foreach($query->result() as $row)
+				{
+					$tmp = $row->duracion + $row->comienzo;
+					$flag = $tmp < $week ? 0:1;
+					if( (intval($row->duracion) + intval($row->comienzo)) < intval($week) )
+					{
+						$values = array('status'=>1);
+						$this->db->where('id', $row->prestamo_id);
+						$this->db->update('prestamo', $values); 
+
+						log_message('info', '###### model::nomina::revisar_excentos: '.$this->db->last_query());
+
+						$values = array('status'=>0);
+						$this->db->where('id', $row->exento_id);
+						$this->db->update('excento', $values);
+						log_message('info', '###### model::nomina::revisar_excentos: '.$this->db->last_query());
+					}
+				}
+			}
+		}
+	}
+
+	/*
 	Función principal, pues se encarga de guardar en la BD el registro de la nómina, registro
 	de préstamos y registro de ahorros.
-	Esta fn es ejecutada a través de reportes::registrarNomina
+	Esta fn es ejecutada a través de reportes::registrarNomina, puede ser llamado a través de JS
 	*/
 
 	function registrarNomina($week)
@@ -128,7 +218,10 @@ class Nomina extends CI_Model{
 						'status' => 1,
 						'periodo_id' => $current_periodo_id
 					);
-			if($this->db->insert('nomina',$nomina_registro)) $registrado = true;
+			if($this->db->insert('nomina',$nomina_registro)){
+				$registrado = true;
+				$this->revisar_excentos($week, $current_periodo_id);
+			}
 		}
 
 		return $registrado;
@@ -138,6 +231,7 @@ class Nomina extends CI_Model{
 	Únicamente muestra la información de la nómina que se guardaría al presionar en
 	"guardar nómina", este botón aparece solo cuando la nómina no está validada.
 	La información mostrada involucra el monto de descuento por concepto de ahorro y préstamos.
+	El monto de ahorro y préstamo son con base al registo
 
 	NOTA: La fn se ayuda de crear 2 tablas temporales, poblaras, seleccionar su información y
 	finalmente a esta información darle el formato de tabla, finalmente se borran las tablas
@@ -182,6 +276,7 @@ class Nomina extends CI_Model{
 				a.periodo_id = ".$current_periodo_id."
 				AND a.status = 1
 			)";
+		
 		$query = $this->db->query($sql);
 		$no_empleados = $query->num_rows;
 		$no_pages = ceil($no_empleados / $emp_per_page);
