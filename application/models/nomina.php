@@ -29,7 +29,7 @@ class Nomina extends CI_Model{
 		$current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
 		$status = '';
 		$sql_prestamo = "
-		SELECT monto_pago, monto_total, year, status, id
+		SELECT monto_pago, monto_total, year, status, id, monto_abonado
 			FROM prestamo
 			WHERE periodo_id = ".$current_periodo_id."
 				AND (status =1)";
@@ -38,14 +38,16 @@ class Nomina extends CI_Model{
 		{
 			foreach ($prestamos->result() as $row)
 			{
+				$total = $row->monto_pago + $row->monto_abonado;
+				$monto_deposito = ($total <= $row->monto_total) ? $row->monto_pago : $row->monto_total - $row->monto_abonado;
 				$prestamos_registro = array(
-					'monto' => $row->monto_pago,
+					'monto' => $monto_deposito,
 					'week' => $week,
 					'year' => $row->year,
 					'status' => $row->status,
 					'prestamo_id' => $row->id
 				);
-				$this->db->insert('prestamo_registro',$prestamos_registro);
+				$this->db->insert('prestamo_registro', $prestamos_registro);					
 
 				$sql_pr = "
 					SELECT SUM(monto) as total_registro 
@@ -59,20 +61,17 @@ class Nomina extends CI_Model{
 					if(round($pr->total_registro) == round($row->monto_total)){
 						$data = array(
 			               'monto_abonado' => $pr->total_registro,
-			               'status' => 3
+			               'status' => 3,
+			               'week_end' => $week
 			            );
-
-						$this->db->where('id', $row->id);
-						$this->db->update('prestamo', $data); 
 					}
 					else{
 						$data = array(
 			               'monto_abonado' => $pr->total_registro
 			            );
-
-						$this->db->where('id', $row->id);
-						$this->db->update('prestamo', $data); 
 					}
+					$this->db->where('id', $row->id);
+					$this->db->update('prestamo', $data); 
 				}
 			}
 		}
@@ -140,8 +139,8 @@ class Nomina extends CI_Model{
 				foreach($query->result() as $row)
 				{
 					$tmp = $row->duracion + $row->comienzo;
-					$flag = $tmp < $week ? 0:1;
-					if( (intval($row->duracion) + intval($row->comienzo)) < intval($week) )
+					$flag = $tmp <= $week ? 1:0;
+					if( $flag )
 					{
 						$values = array('status'=>1);
 						$this->db->where('id', $row->ahorro_id);
@@ -179,8 +178,8 @@ class Nomina extends CI_Model{
 				foreach($query->result() as $row)
 				{
 					$tmp = $row->duracion + $row->comienzo;
-					$flag = $tmp < $week ? 0:1;
-					if( (intval($row->duracion) + intval($row->comienzo)) < intval($week) )
+					$flag = $tmp <= $week ? 1:0;
+					if( $flag )
 					{
 						$values = array('status'=>1);
 						$this->db->where('id', $row->prestamo_id);
