@@ -1,5 +1,5 @@
-var server = "http://localhost/hogue/";
-//var server = "http://hogue-mxserver:8080/hogue/";
+//var server = "http://localhost/hogue/";
+var server = "http://hogue-mxserver:8080/hogue/";
 $(document).ready(function(){
     
     if( $( "#btn-search-Prestamos" ).length ){
