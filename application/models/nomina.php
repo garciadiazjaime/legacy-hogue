@@ -484,21 +484,23 @@ if($this->isWeekRegistered($week)){
 		return $query->row();
 	}
 
-	function get_user_prestamos($user_id, $periodo_id)
+	function get_user_prestamos($user_id, $periodo_id, $week='')
 	{
 		$current_week = date('W');
+		$start_week = !empty($week) ? $week:date('W');
 		$sql = "SELECT 
 					* 
-				FROM prestamo
+				FROM prestamo p
 				WHERE periodo_id = ".$periodo_id."
 					AND user_id = ".$user_id."
 					AND (status in (1, 2) OR (status = 3 AND week_end=$current_week))
-				";		
+					AND p.week <= ".$week."
+				";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
 
-	function get_nomina_data($periodo_id)
+	function get_nomina_data($periodo_id, $week='')
 	{
 		$data = array();
 		$response = "";
@@ -506,7 +508,7 @@ if($this->isWeekRegistered($week)){
 		$i = 0;
 		foreach($users as $row):
 			$ahorro = $this->get_user_ahorro($row->id, $periodo_id);
-			$prestamos = $this->get_user_prestamos($row->id, $periodo_id);
+			$prestamos = $this->get_user_prestamos($row->id, $periodo_id, $week);
 			$data[$i]['user_data'] = $row;
 			$data[$i]['ahorro'] = $ahorro;
 			$data[$i]['prestamos'] = $prestamos;
@@ -520,7 +522,7 @@ if($this->isWeekRegistered($week)){
 	function get_html_nomina_excel($week)
 	{
 		$periodo_id = $this->controlperiodo->getCurrentPeriodoID();
-		$data = $this->get_nomina_data($periodo_id);
+		$data = $this->get_nomina_data($periodo_id, $week);
 		$response = '';
 		$total_ahorro = 0;
 		$total_prestamos = 0;
@@ -578,7 +580,7 @@ if($this->isWeekRegistered($week)){
 	function executeNomina_2($week, $week_is_registered)
 	{		
 		$periodo_id = $this->controlperiodo->getCurrentPeriodoID();
-		$data = $this->get_nomina_data($periodo_id);
+		$data = $this->get_nomina_data($periodo_id, $week);
 		$response = '';
 		$total_ahorro = 0;
 		$total_prestamos = 0;
