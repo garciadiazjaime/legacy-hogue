@@ -9,7 +9,7 @@
 	<form action="#" method="post" id="form_prestamos_consultar">
 		<div class="l_column">		
 			<p>
-				Pr&eacute;stamo creado el: <span><?=$this->miscellaneous->getSpanishDate(date("d/M/Y", strtotime("1.1.".$prestamo->year." + ".$prestamo->week." weeks - 6 days")));?>
+				Semana comienzo: <span><?=$this->miscellaneous->getSpanishDate(date("d/M/Y", strtotime("1.1.".$prestamo->year." + ".$prestamo->week." weeks - 6 days")));?>
 				</span> <b>(#<?=$prestamo->week;?>)
 				</b>
 			</p>
@@ -17,7 +17,7 @@
 
 		<div class="m_column">
 			<p>
-				Pr&eacute;stamo vence el: <span><?=$this->miscellaneous->getSpanishDate(date("d/M/Y", strtotime("1.1.".$prestamo->year." + ".$prestamo->week." weeks + ".$prestamo->plazo." weeks - 1 weeks")));?>
+				Semana fin: <span><?=$this->miscellaneous->getSpanishDate(date("d/M/Y", strtotime("1.1.".$prestamo->year." + ".$prestamo->week." weeks + ".$prestamo->plazo." weeks - 1 weeks")));?>
 				</span> <b>(#<?=$prestamo->week + $prestamo->plazo -1;?>)
 				</b>
 			</p>

@@ -67,7 +67,7 @@ class Sistema extends CI_Controller {
 			if($this->form_validation->run() == TRUE){
 				$username = $this->input->post('username');
 				$password = $this->input->post('password');
-				if($username == 'hogue_user' && $password == md5('Hogue@13')){
+				if($username == 'hogue_user' && $password == md5('Hogue@horro')){
 					$this->session->set_userdata('is_logged', 'true');
 					redirect(base_url().'sistema/dashboard', 'refresh');
 				}

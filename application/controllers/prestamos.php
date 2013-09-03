@@ -50,9 +50,9 @@ class Prestamos extends CI_Controller {
 	}
 
 	public function nuevo(){
-	        $saving_starts = '';
+		$saving_starts = '';
 		$msg = '';
-	        $yearWeeks = $this->miscellaneous->getYearWeeks(
+		$yearWeeks = $this->miscellaneous->getYearWeeks(
 			date('Y'), 
 			1, 
 			$saving_starts

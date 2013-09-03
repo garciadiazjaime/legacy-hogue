@@ -32,8 +32,11 @@ class Nomina extends CI_Model{
 		SELECT monto_pago, monto_total, year, status, id, monto_abonado
 			FROM prestamo
 			WHERE periodo_id = ".$current_periodo_id."
-				AND (status =1)";
-		$prestamos = $this->db->query($sql_prestamo);		
+				AND (status =1)
+				AND week <= ".$week."
+		";
+		$prestamos = $this->db->query($sql_prestamo);
+		log_message('info', '###### model::nomina::registrarPrestamos: '.$this->db->last_query());
 		if ($prestamos->num_rows() > 0)
 		{
 			foreach ($prestamos->result() as $row)
@@ -48,6 +51,7 @@ class Nomina extends CI_Model{
 					'prestamo_id' => $row->id
 				);
 				$this->db->insert('prestamo_registro', $prestamos_registro);					
+				log_message('info', '###### model::nomina::registrarPrestamos: '.$this->db->last_query());
 
 				$sql_pr = "
 					SELECT SUM(monto) as total_registro 
@@ -55,6 +59,7 @@ class Nomina extends CI_Model{
 					WHERE prestamo_id = ".$row->id."
 					AND status <> 0";
 				$query = $this->db->query($sql_pr);
+				log_message('info', '###### model::nomina::registrarPrestamos: '.$this->db->last_query());
 				$result = $query->result();
 				if(sizeof($result)){
 					$pr = $result[0];
@@ -72,6 +77,7 @@ class Nomina extends CI_Model{
 					}
 					$this->db->where('id', $row->id);
 					$this->db->update('prestamo', $data); 
+					log_message('info', '###### model::nomina::registrarPrestamos: '.$this->db->last_query());
 				}
 			}
 		}
@@ -307,6 +313,7 @@ if($this->isWeekRegistered($week)){
 				AND p.periodo_id = ".$current_periodo_id."
 				GROUP BY u.no_emp;"
 			);
+			log_message('info', '##### models::nomina::executeNomina: '.$this->db->last_query());
 			$this->db->query("INSERT INTO ahorro_temp
 				SELECT u.no_emp AS No_Emp, u.name AS Nombre, IFNULL( ar.monto, 0 ) AS total
 				FROM ahorro_registro ar
@@ -316,6 +323,7 @@ if($this->isWeekRegistered($week)){
 				AND a.periodo_id = ".$current_periodo_id."
 				GROUP BY u.no_emp;"
 			);
+			log_message('info', '##### models::nomina::executeNomina: '.$this->db->last_query());
 			$sql = "SELECT ahorro_temp.no_emp as no_emp, ahorro_temp.name as name,
 				ahorro_temp.total as ahorro, prestamo_temp.prestamos as prestamos,
 				ROUND((ahorro_temp.total + prestamo_temp.total),2) as total
@@ -347,9 +355,10 @@ if($this->isWeekRegistered($week)){
                 	SUM( IFNULL( p.monto_pago, 0 ) ) AS total
 				FROM user u
 				LEFT JOIN prestamo p ON p.user_id = u.id
-				AND p.periodo_id = ".$current_periodo_id." AND p.status = 1
+				AND p.periodo_id = ".$current_periodo_id." AND p.status = 1 AND p.week <= ".$week."
 				GROUP BY u.no_emp;"
 			);
+			log_message('info', '##### models::nomina::executeNomina: '.$this->db->last_query());
 			$this->db->query("INSERT INTO ahorro_temp
 				SELECT u.no_emp AS No_Emp, u.name AS Nombre, IFNULL( a.monto, 0 ) AS total
 				FROM user u
@@ -357,6 +366,7 @@ if($this->isWeekRegistered($week)){
 				AND a.periodo_id =".$current_periodo_id." AND a.status = 1
 				GROUP BY u.no_emp;"
 			);
+			log_message('info', '##### models::nomina::executeNomina: '.$this->db->last_query());
 			$sql = "SELECT ahorro_temp.no_emp as no_emp, ahorro_temp.name as name,
 				ahorro_temp.total as ahorro, prestamo_temp.prestamos as prestamos,
 				ROUND((ahorro_temp.total + prestamo_temp.total),2) as total
@@ -368,6 +378,7 @@ if($this->isWeekRegistered($week)){
 				LIMIT ".$from.",".$emp_per_page.";";
 		}
 		$query = $this->db->query($sql);
+		log_message('info', '##### models::nomina::executeNomina: '.$this->db->last_query());
 		$this->db->query("DROP TABLE prestamo_temp;");
 		$this->db->query("DROP TABLE ahorro_temp;");
 		if ($query->num_rows() > 0)
