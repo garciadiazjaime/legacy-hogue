@@ -189,8 +189,9 @@ class ControlPeriodo extends CI_Model{
 				RIGHT JOIN user u ON a.user_id = u.id
 				AND ar.week =".$week_to_validate."
 				AND a.periodo_id = ".$current_periodo_id."
-				GROUP BY u.no_emp";
+				GROUP BY u.no_emp";		
 		$query = $this->db->query($sql);
+		log_message('info', '###### model::ControlPeriodo::validar_nomina: '.$this->db->last_query());
 
 		for($i = 0; $i < count($arr_data,0); $i++){
 			$emp_excel[$i] = $arr_data[$i][0];
@@ -207,9 +208,11 @@ class ControlPeriodo extends CI_Model{
 					LEFT JOIN user u ON u.id = p.user_id
 					WHERE pr.week = ".$week_to_validate."
 					AND p.periodo_id = ".$current_periodo_id."
-					AND u.id = ".$row->uid;
-
+					AND u.id = ".$row->uid."
+					AND pr.status = 1
+					";				
 				$query2 = $this->db->query($sql);
+				log_message('info', '###### model::ControlPeriodo::validar_nomina: '.$this->db->last_query());
 				$ahorro = $row->amonto;
 				if($query2->num_rows())
 				{

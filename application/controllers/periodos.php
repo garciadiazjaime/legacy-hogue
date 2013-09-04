@@ -45,9 +45,9 @@ class Periodos extends CI_Controller {
 
 
 	public function validar_nomina()
-	{
+	{		
 		$msg = $emp_list = $week = '';
-		$return_array = array();
+		$return_array = array();		
 		if(!sizeof($_POST))		
 			$content = $this->load->view('be/periodos/validar_nomina',array('msg'=>$msg,'week'=>$week),true);
 		if(sizeof($_POST))
