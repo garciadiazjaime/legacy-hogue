@@ -13,6 +13,7 @@
 			<th class="column_report_loans header"><span>Descuento por semana</span></th>
 			<th class="column_report_total_loans header"><span># de Semanas</span></th>
 			<th class="column_report_total_loans header"><span>Estatus</span></th>
+			<th class="column_report_total_loans header"><span>Interés</span></th>
 			<th> ver desglose</th>
 		</tr>
 		</thead> 
@@ -26,6 +27,7 @@
 				<td class="money"><?=$row->monto_pago?></td>
 				<td><?=$row->plazo?></td>
 				<td><?=$estatus[$row->status]?></td>
+				<td><?=$row->interes?></td>
 				<td><a href="<?=base_url()?>sistema/reportes/prestamos/<?=$row->id?>" title="ver desglose">ver</a></td>
 			</tr>
 		<?php endforeach; ?>			

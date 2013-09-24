@@ -141,7 +141,7 @@ class Reportes extends CI_Controller {
 		if(!empty($resumen))
 		{
 			$header = "\t\tCAJA AHORRO MAM DE LA FRONTERA DIVISION HOGUE\n\n".
-						"# Emp\tNombre\tPrestamo\tDescuento por semana\t# de semanas\tEstatus";
+						"# Emp\tNombre\tPrestamo\tDescuento por semana\t# de semanas\tEstatus\tInteres";
 			for($i=1;$i<54;$i++)
 				$header .= "\t".$i;
 			$header .= "\n";

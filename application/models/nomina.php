@@ -470,9 +470,9 @@ if($this->isWeekRegistered($week)){
 		return $query->result();
 	}
 
-	function get_user_ahorro($user_id, $periodo_id)
+	function get_user_ahorro($user_id, $periodo_id, $week='')
 	{
-		$current_week = date('W');
+		$current_week = !empty($week) ? $week:date('W');
 		$sql = "SELECT 
 					* 
 				FROM ahorro
@@ -486,7 +486,7 @@ if($this->isWeekRegistered($week)){
 
 	function get_user_prestamos($user_id, $periodo_id, $week='')
 	{
-		$current_week = date('W');
+		$current_week = !empty($week) ? $week:date('W');
 		$start_week = !empty($week) ? $week:date('W');
 		$sql = "SELECT 
 					* 
@@ -507,7 +507,7 @@ if($this->isWeekRegistered($week)){
 		$users = $this->get_users_from_periodo($periodo_id);
 		$i = 0;
 		foreach($users as $row):
-			$ahorro = $this->get_user_ahorro($row->id, $periodo_id);
+			$ahorro = $this->get_user_ahorro($row->id, $periodo_id, $week);
 			$prestamos = $this->get_user_prestamos($row->id, $periodo_id, $week);
 			$data[$i]['user_data'] = $row;
 			$data[$i]['ahorro'] = $ahorro;

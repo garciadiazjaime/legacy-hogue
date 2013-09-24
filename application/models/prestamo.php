@@ -668,7 +668,7 @@ class Prestamo extends CI_Model {
     public function get_reporte_prestamos()
     {        
         $current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
-        $sql = "SELECT p.id, p.monto_total, p.monto_pago, p.plazo, p.status, u.name, u.no_emp FROM prestamo p
+        $sql = "SELECT p.id, p.monto_total, p.monto_pago, p.plazo, p.status, u.name, u.no_emp, p.interes FROM prestamo p
                 INNER JOIN user u 
                     ON p.user_id = u.id
                 WHERE periodo_id=".$current_periodo_id;
@@ -758,7 +758,8 @@ class Prestamo extends CI_Model {
                     p.monto_total, 
                     p.monto_pago, 
                     p.plazo, 
-                    p.status
+                    p.status,
+                    p.interes
                 FROM `prestamo` p 
                 INNER JOIN user u
                     ON p.user_id = u.id
@@ -782,6 +783,7 @@ class Prestamo extends CI_Model {
             $response .= $row['gral_info']->monto_pago."\t";
             $response .= $row['gral_info']->plazo."\t";
             $response .= $estatus_label[$row['gral_info']->status]."\t";
+            $response .= $row['gral_info']->interes."\t";
             //$total_prestado += $row['gral_info']->monto_total;
             if( is_array($row['historial']) )
             {
