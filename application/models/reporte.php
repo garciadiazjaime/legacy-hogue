@@ -220,6 +220,7 @@ class Reporte extends CI_Model{
 		LEFT JOIN ahorro a ON a.id = ar.ahorro_id
 		WHERE a.status =1 AND ar.status <> 0
 		AND a.periodo_id = ".$closed_periodo_id;
+
 		$query = $this->db->query($sql);
 		foreach ($query->result() as $row)
    		{
@@ -254,6 +255,7 @@ class Reporte extends CI_Model{
 		WHERE a.status = 1
 		AND a.periodo_id = ".$closed_periodo_id."
 		ORDER BY u.no_emp";
+
 		$query = $this->db->query($sql);
 		$no_empleados = $query->num_rows;
 		$no_pages = ceil($no_empleados / $emp_per_page);
@@ -409,7 +411,7 @@ class Reporte extends CI_Model{
 			AND ar.year = a.year ) , 0) AS  'depositos',
 		IFNULL( (SELECT SUM( ar.monto ) 
 			FROM ahorro_registro ar
-			WHERE ar.ahorro_id = a.id
+			WHERE ar.ahorro_id = a.id AND ar.status <> 0 
 			AND ar.year = a.year ) , 0) AS  'ahorrado'
 		FROM ahorro a
 		LEFT JOIN user u ON u.id = a.user_id
