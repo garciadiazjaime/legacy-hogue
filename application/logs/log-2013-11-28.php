@@ -1039,3 +1039,77 @@ DEBUG - 2013-11-28 20:52:57 --> File loaded: application/views/be/layout/footer.
 DEBUG - 2013-11-28 20:52:57 --> File loaded: application/views/be/layout/main.php
 DEBUG - 2013-11-28 20:52:57 --> Final output sent to browser
 DEBUG - 2013-11-28 20:52:57 --> Total execution time: 0.0935
+DEBUG - 2013-11-28 21:06:19 --> Config Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Hooks Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Utf8 Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> UTF-8 Support Enabled
+DEBUG - 2013-11-28 21:06:19 --> URI Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Router Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Output Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Security Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Input Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-11-28 21:06:19 --> Language Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Loader Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Controller Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Helper loaded: url_helper
+DEBUG - 2013-11-28 21:06:19 --> Database Driver Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Model Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Model Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Model Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Model Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Model Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Model Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Model Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Model Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Model Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Model Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Session Class Initialized
+DEBUG - 2013-11-28 21:06:19 --> Helper loaded: string_helper
+DEBUG - 2013-11-28 21:06:19 --> Session routines successfully run
+DEBUG - 2013-11-28 21:06:19 --> User Agent Class Initialized
+DEBUG - 2013-11-28 21:06:20 --> File loaded: application/views/be/reportes/prestamos.php
+DEBUG - 2013-11-28 21:06:20 --> File loaded: application/views/be/layout/head.php
+DEBUG - 2013-11-28 21:06:20 --> File loaded: application/views/be/layout/admin_menu.php
+DEBUG - 2013-11-28 21:06:20 --> File loaded: application/views/be/layout/header.php
+DEBUG - 2013-11-28 21:06:20 --> File loaded: application/views/be/layout/footer.php
+DEBUG - 2013-11-28 21:06:20 --> File loaded: application/views/be/layout/main.php
+DEBUG - 2013-11-28 21:06:20 --> Final output sent to browser
+DEBUG - 2013-11-28 21:06:20 --> Total execution time: 0.0994
+DEBUG - 2013-11-28 21:07:23 --> Config Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Hooks Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Utf8 Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> UTF-8 Support Enabled
+DEBUG - 2013-11-28 21:07:23 --> URI Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Router Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Output Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Security Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Input Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Global POST and COOKIE data sanitized
+DEBUG - 2013-11-28 21:07:23 --> Language Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Loader Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Controller Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Helper loaded: url_helper
+DEBUG - 2013-11-28 21:07:23 --> Database Driver Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Model Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Model Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Model Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Model Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Model Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Model Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Model Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Model Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Model Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Model Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Session Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> Helper loaded: string_helper
+DEBUG - 2013-11-28 21:07:23 --> Session routines successfully run
+DEBUG - 2013-11-28 21:07:23 --> User Agent Class Initialized
+DEBUG - 2013-11-28 21:07:23 --> File loaded: application/views/be/reportes/prestamos.php
+DEBUG - 2013-11-28 21:07:23 --> File loaded: application/views/be/layout/head.php
+DEBUG - 2013-11-28 21:07:23 --> File loaded: application/views/be/layout/admin_menu.php
+DEBUG - 2013-11-28 21:07:23 --> File loaded: application/views/be/layout/header.php
+DEBUG - 2013-11-28 21:07:23 --> File loaded: application/views/be/layout/footer.php
+DEBUG - 2013-11-28 21:07:23 --> File loaded: application/views/be/layout/main.php
+DEBUG - 2013-11-28 21:07:23 --> Final output sent to browser
+DEBUG - 2013-11-28 21:07:23 --> Total execution time: 0.0970

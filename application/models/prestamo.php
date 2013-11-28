@@ -693,7 +693,7 @@ class Prestamo extends CI_Model {
         $sql = "SELECT 
                 SUM(monto_total) as monto
             FROM  `prestamo` 
-            WHERE  `periodo_id`=".$periodo_id." and status!= -1";
+            WHERE  `periodo_id`=".$periodo_id." and status!= 4";
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0)        
             return $query->row()->monto;
