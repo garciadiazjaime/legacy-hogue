@@ -18,7 +18,7 @@
 		</tr>
 		</thead> 
 		<tbody>
-		<?php $estatus = array("Inactivo", "Activo", "Excento", "Cerrado" );?>
+		<?php $estatus = array("Inactivo", "Activo", "Excento", "Cerrado", 'ajuste' );?>
 		<?php foreach($prestamos as $row):?>						
 			<tr class="<?=alternator('odd', 'even');?>">				
 				<td><?=$row->no_emp?></td>
