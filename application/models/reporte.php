@@ -381,7 +381,7 @@ class Reporte extends CI_Model{
 		$filters = $_POST;
 		$response = $class = $prestamo = $pagination = $sql = $msg = '';
 		$total_depositos = 0;
-		$query = $this->db->query("select bank_amount FROM periodo WHERE status=3 and bank_amount<>0 ORDER BY year DESC LIMIT 1");
+		$query = $this->db->query("select bank_amount FROM periodo WHERE status=3 and bank_amount<>0 ORDER BY id DESC LIMIT 1");
 		$result = $query->result();	
 		$banco = $result[0]->bank_amount;
 		$i = $no = 1;
@@ -403,6 +403,13 @@ class Reporte extends CI_Model{
    		}
    		$total_intereses = $banco + $prestamo;
 		$calculo_interes = $total_intereses/$total_ahorrado;
+
+		log_message('info', '###### model::reporte::ahorros_excel: banco: '.$banco);
+		log_message('info', '###### model::reporte::ahorros_excel: prestamo: '.$prestamo);
+		log_message('info', '###### model::reporte::ahorros_excel: total_intereses: '.$total_intereses);
+		log_message('info', '###### model::reporte::ahorros_excel: total_ahorrado: '.$total_ahorrado);
+		log_message('info', '###### model::reporte::ahorros_excel: calculo_interes: '.$calculo_interes);
+
 		$sql = "
 		SELECT u.no_emp, u.name, IFNULL( a.monto, 0 ) AS monto, 
 		IFNULL( (SELECT COUNT( ar.monto ) 
