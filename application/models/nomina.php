@@ -317,7 +317,7 @@ if($this->isWeekRegistered($week)){
 			$this->db->query("INSERT INTO ahorro_temp
 				SELECT u.no_emp AS No_Emp, u.name AS Nombre, IFNULL( ar.monto, 0 ) AS total
 				FROM ahorro_registro ar
-				LEFT JOIN ahorro a ON ar.ahorro_id = a.id AND ar.status <> 0
+				LEFT JOIN ahorro a ON ar.ahorro_id = a.id AND ar.status <> 0 AND week <= $week
 				RIGHT JOIN user u ON a.user_id = u.id
 				AND ar.week =".$week."
 				AND a.periodo_id = ".$current_periodo_id."
@@ -362,7 +362,7 @@ if($this->isWeekRegistered($week)){
 			$this->db->query("INSERT INTO ahorro_temp
 				SELECT u.no_emp AS No_Emp, u.name AS Nombre, IFNULL( a.monto, 0 ) AS total
 				FROM user u
-				LEFT JOIN ahorro a ON a.user_id = u.id
+				LEFT JOIN ahorro a ON a.user_id = u.id AND week <= $week
 				AND a.periodo_id =".$current_periodo_id." AND a.status = 1
 				GROUP BY u.no_emp;"
 			);
@@ -479,6 +479,7 @@ if($this->isWeekRegistered($week)){
 				WHERE periodo_id = ".$periodo_id."
 					AND user_id = ".$user_id."
 					AND (status in (1, 2) OR (status = 3 AND week_end=$current_week))
+					AND week <= $week
 				";
 		$query = $this->db->query($sql);
 		return $query->row();
