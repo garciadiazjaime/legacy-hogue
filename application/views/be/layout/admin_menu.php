@@ -17,6 +17,7 @@ $submenu_reportes="
 	<li class=\"last\"><a href=\"".base_url()."sistema/reportes/prestamos\">Reporte de pr&eacute;stamos</a></li>
 	<li class=\"last\"><a href=\"".base_url()."sistema/reportes/ahorros_2\">Reporte de ahorros</a></li>
 	<li class=\"last\"><a href=\"".base_url()."sistema/reportes/ahorros\">Reparticion de ahorros</a></li>
+	<li class=\"last\"><a href=\"".base_url()."sistema/reportes/prestamos_semana\">Prestamos de la semana</a></li>
 ";
 foreach($pages as $item){
 	$class = (strpos(uri_string(), $item['href']) !== false) ? 'current' : '';
