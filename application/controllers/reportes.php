@@ -372,7 +372,7 @@ class Reportes extends CI_Controller {
 			$data .= "Semana\t".$content['week']." del ".$content['year']."\n";
 			$data .= "# Empleado\tNombre\t# de Cuenta\tDeposito\n";
 			foreach ($content['prestamos'] as $row) {
-				$data .= $row->no_emp."\t".$row->name."\t".$row->no_cuenta."\t".$row->monto_prestado."\n";
+				$data .= $row->no_emp."\t".$row->name."\tO".$row->no_cuenta."\t".$row->monto_prestado."\n";
 			}
 			$data .="\n\n\t\tTotal\t".$content['total'];
 			print($data);
