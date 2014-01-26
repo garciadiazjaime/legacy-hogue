@@ -99,14 +99,14 @@ class ControlUser extends CI_Model{
                 $limit = 10;
                 $response = '';
                 $query = $offset != 0 ?
-                        'SELECT id, name, no_emp 
+                        'SELECT id, name, no_emp, no_cuenta 
                         FROM user WHERE status=1 
                         AND role=0 
 			AND name like "%'.$name.'%" 		
 			AND no_emp like "%'.$no_emp.'%" 
 			LIMIT '.$limit.' OFFSET '.$offset
                         :
-                        'SELECT id, name, no_emp 
+                        'SELECT id, name, no_emp, no_cuenta 
                         FROM user WHERE status=1 
                         AND role=0 
 			AND name like "%'.$name.'%" 		
@@ -121,6 +121,7 @@ class ControlUser extends CI_Model{
                                         <tr class = '". $class. "'> 
                                                 <td>".$row->name."</td>
                                                 <td>".$row->no_emp."</td>
+                                                <td>".$row->no_cuenta."</td>
                                                 <td>
                                                         <a href='".base_url().
 							"sistema/users/edit/".
@@ -148,6 +149,7 @@ class ControlUser extends CI_Model{
                                         <tr>
                                               <th>Nombre</th>
                                               <th>No. Emp.</th>
+                                              <th>No. Cuenta</th>
                                               <th>Editar</th>
                                               <th>Eliminar</th>
                                         </tr>
@@ -172,14 +174,14 @@ class ControlUser extends CI_Model{
                 $num_users = '';
                 $limit = 10;
 		$query = $offset != 0 ?
-                        'SELECT id, name, no_emp 
+                        'SELECT id, name, no_emp, no_cuenta 
                         FROM user WHERE status=1 
                         AND role=0 
 			AND name like "%'.$name.'%" 		
 			AND no_emp like "%'.$no_emp.'%" 
 			LIMIT '.$limit.' OFFSET '.$offset
                         :
-                        'SELECT id, name, no_emp 
+                        'SELECT id, name, no_emp, no_cuenta 
                         FROM user WHERE status=1 
                         AND role=0 
 			AND name like "%'.$name.'%" 		

@@ -246,7 +246,8 @@ class Reporte extends CI_Model{
 		IFNULL( (SELECT COUNT( ar.monto ) 
 			FROM ahorro_registro ar
 			WHERE ar.ahorro_id = a.id
-			AND ar.year = a.year ) , 0) AS  'depositos'
+			AND ar.year = a.year ) , 0) AS  'depositos',
+		u.no_cuenta
 		FROM ahorro a
 		LEFT JOIN user u ON u.id = a.user_id
 			AND (a.status <> 0)
@@ -281,7 +282,8 @@ class Reporte extends CI_Model{
 		IFNULL( (SELECT COUNT( ar.monto ) 
 			FROM ahorro_registro ar
 			WHERE ar.ahorro_id = a.id
-			AND ar.year = a.year ) , 0) AS  'depositos'
+			AND ar.year = a.year ) , 0) AS  'depositos',
+		u.no_cuenta
 		FROM ahorro a
 		LEFT JOIN user u ON u.id = a.user_id
 			AND (a.status <>0 )
@@ -303,12 +305,13 @@ class Reporte extends CI_Model{
 				$response .= "
 				<tr class=\"".$class."\">
 				<td>".$row->no_emp."</td>
-				<td>".$row->name."</td>
+				<td align=\"left\">".$row->name."</td>
 				<td class=\"money\">$".number_format(round($row->monto,2), 2, '.',' ')."</td>
 				<td >".$row->depositos."</td>
 				<td class=\"money\">$".number_format(round($row->ahorrado,2), 2, '.',' ')."</td>
 				<td class=\"money\">$".number_format(round(($row->ahorrado*$calculo_interes),2), 2, '.',' ')."</td>
 				<td>$".number_format(round($row->ahorrado + (($row->ahorrado*$calculo_interes)),2), 2, '.', ' ')."</td>
+				<td>".$row->no_cuenta."</td>
 				</tr>
 				";
 			}
@@ -331,13 +334,14 @@ class Reporte extends CI_Model{
 				$response =
 				"<table class=\"report_table\">
 				<tr>
-				<th class=\"column_report_id_employee\"><span># Empleado</span></th>
-				<th class=\"column_report_employee_name\"><span>Nombre</span></th>
-				<th class=\"column_report_savings\"><span>Monto Semanal</span></th>
-				<th class=\"column_report_loans\"><span>Total Dep&oacute;sitos</span></th>
-				<th class=\"column_report_savings\"><span>Total Ahorrado</span></th>
-				<th class=\"column_report_savings\"><span>Intereses</span></th>
-				<th class=\"column_report_total_loans\"><span>Pago Correspondiente</span></th>
+				<th><span># Emp.</span></th>
+				<th><span>Nombre</span></th>
+				<th><span>Monto Semanal</span></th>
+				<th><span>Total Dep&oacute;sitos</span></th>
+				<th><span>Total Ahorrado</span></th>
+				<th><span>Intereses</span></th>
+				<th><span>Pago Final</span></th>
+				<th><span>No. Cuenta</span></th>
 				</tr>
 				$response
 				</table>
@@ -364,7 +368,7 @@ class Reporte extends CI_Model{
 		$this->load->library('PHPExcel');
 		$objPHPExcel = new PHPExcel();
 		$rowNumber = 1;
-		$headings = array('No Emp','Nombre','Monto Semanal','No Depositos', 'Total Ahorrado', 'Intereses', 'Pago Correspondiente');
+		$headings = array('No Emp','Nombre','Monto Semanal','No Depositos', 'Total Ahorrado', 'No Cuenta', 'Intereses', 'Pago Final');
 		$objPHPExcel->getActiveSheet()->fromArray(array($headings),NULL,'A'.$rowNumber);
 		$sql = "
 		SELECT SUM( ar.monto ) as total
@@ -419,7 +423,8 @@ class Reporte extends CI_Model{
 		IFNULL( (SELECT SUM( ar.monto ) 
 			FROM ahorro_registro ar
 			WHERE ar.ahorro_id = a.id AND ar.status <> 0 
-			AND ar.year = a.year ) , 0) AS  'ahorrado'
+			AND ar.year = a.year ) , 0) AS  'ahorrado',
+		u.no_cuenta
 		FROM ahorro a
 		LEFT JOIN user u ON u.id = a.user_id
 			AND (a.status <> 0)

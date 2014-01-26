@@ -135,6 +135,7 @@ class Users extends CI_Controller {
 		$msg = '';
 		$name = '';
 		$no_emp = '';
+		$no_cuenta = '';
 		$list_users = '';
 		$success = false;
 		$this->load->helper(array('form', 'url'));
@@ -153,6 +154,7 @@ class Users extends CI_Controller {
 		$query = $this->db->get_where('user', array('id' => $id));
 		$name = $query->row()->name;
 		$no_emp = $query->row()->no_emp;
+		$no_cuenta = $query->row()->no_cuenta;
 		if(sizeof($_POST))
 		{
 			$POST['name'] = trim($_POST['name']);
@@ -164,10 +166,12 @@ class Users extends CI_Controller {
 			       $data = array(
 				  'name' => $_POST['name'],
 				  'no_emp' => $_POST['no_emp'],
+				  'no_cuenta' => $_POST['no_cuenta'],
 				  'date' => date('Y-m-d')
 			       );
 				$name = $_POST['name'];
 				$no_emp = $_POST['no_emp'];
+				$no_cuenta = $_POST['no_cuenta'];
 				$this->db->where('id', $id);
 				$this->db->update('user', $data); 
 				$success = true;
@@ -177,6 +181,7 @@ class Users extends CI_Controller {
 			$content = $this->load->view('be/users/edit',
  					array('name'=>$name, 
 						'no_emp'=>$no_emp,
+						'no_cuenta'=>$no_cuenta,
 						'msg'=>$msg,
 						'list_users'=>$list_users), 
 					true
@@ -186,7 +191,9 @@ class Users extends CI_Controller {
 		else {
 			$content = $this->load->view('be/users/edit',
  					array('name'=>$name, 
-						'no_emp'=>$no_emp), 
+						'no_emp'=>$no_emp,
+						'no_cuenta'=>$no_cuenta
+						), 
 						true
 					);
 			$this->load->view('be/layout/main', array('content'=>$content));

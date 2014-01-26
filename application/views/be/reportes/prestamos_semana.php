@@ -12,7 +12,7 @@
 		<tr class="<?php echo alternator('pair', 'odd');?>">
 			<td><?=$prestamo->no_emp?></td>
 			<td><?=$prestamo->name?></td>
-			<td>0<?=$prestamo->no_cuenta?></td>
+			<td><?=$prestamo->no_cuenta?></td>
 			<td>$ <?=number_format($prestamo->monto_prestado, 2, '.', ',')?></td>
 		<?php endforeach; ?>
 		<tr>

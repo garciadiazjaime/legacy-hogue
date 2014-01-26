@@ -22,6 +22,15 @@
 	value="<?=$no_emp; ?>"
 	/><BR>
 	<?php echo form_error('no_emp').'<BR>'; ?>
+	<label for="no_cuenta"> 
+      		No. Cuenta:
+    	</label>
+	<input
+        name="no_cuenta"
+        type="text"
+        id="no_cuenta"
+	value="<?=$no_cuenta;?>"
+	/><BR>
 	<input
         name="btnOK"
         type="submit"
