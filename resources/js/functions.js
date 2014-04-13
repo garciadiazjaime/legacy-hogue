@@ -1,6 +1,10 @@
 //var server = "http://localhost/hogue/";
 //var server = "http://hogue-mxserver:8080/hogue/";
-var server = "http://192.168.2.25:8080/hogue/";
+//var server = "http://192.168.2.25:8080/hogue/";
+
+var folder = '/hogue/';
+var server = get_server_path() + folder;
+
 $(document)
 		.ready(
 				function() {
@@ -256,5 +260,9 @@ function registrarNomina(week){
 		var url = server + "sistema/reportes/nomina/";
 		window.location.href = url;
 	} 
-	
+}
+
+function get_server_path(){
+    var loc = window.location;
+    return "http://" + loc.hostname;
 }

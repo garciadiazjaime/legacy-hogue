@@ -1,6 +1,7 @@
-//var server = "http://localhost/hogue/";
 //var server = "http://hogue-mxserver:8080/hogue/";
-var server = "http://192.168.2.25:8080/hogue/";
+//var server = "http://192.168.2.25:8080/hogue/";
+
+
 $(document).ready(function(){
     
     if( $( "#btn-search-Ahorros" ).length ){
