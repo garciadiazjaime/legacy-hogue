@@ -2,7 +2,7 @@
 //var server = "http://hogue-mxserver:8080/hogue/";
 //var server = "http://192.168.2.25:8080/hogue/";
 
-var folder = '/hogue/';
+var folder = ':8080/hogue/';
 var server = get_server_path() + folder;
 
 $(document)
