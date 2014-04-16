@@ -113,7 +113,7 @@ class Ahorro extends CI_Model {
 		$ahorro_id = '';
 		$updateFields = array();
 		$query = $this->db->query("SELECT id,monto, beneficiario, notes, status FROM ahorro where user_id = ".$id." AND periodo_id = ".$current_periodo_id);
-		
+
 		if ($query->num_rows() > 0)
 		{
 			$row = $query->row();
@@ -134,8 +134,12 @@ class Ahorro extends CI_Model {
 			if($row->status != $_POST['saving_status'])
 			{
 				$updateFields['status'] = $_POST['saving_status'];
-				if($_POST['saving_status'] == 3)
-					$updateFields['week_end'] = date("W");
+				if($_POST['saving_status'] == 3){
+					$current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
+					$week_end = $this->controlperiodo->get_last_registered_week($current_periodo_id);
+					$updateFields['week_end'] = $week_end;
+				}
+					
 			}
 			if(isset($_POST['saving_weeks_pending']) && $_POST['saving_weeks_pending'])// != $query2->row()->val)
 			{
