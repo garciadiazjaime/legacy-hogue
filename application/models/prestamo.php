@@ -443,7 +443,9 @@ class Prestamo extends CI_Model {
                             "periodo_id" => "{$current_periodo_id}" );
         }
         else{
-            $_close_week = $this->controlperiodo->get_last_registered_week($current_periodo_id);
+            do{
+                $_close_week++;
+            }while($this->isWeekRegistered($_close_week));
             $_prestamo = array( "monto_prestado" => "{$this->_set_format_db($_info['loan'])}",
                             "monto_total" => "{$this->_set_format_db($_total)}",
                             "monto_pago" => "{$this->_set_format_db($_parcialidades)}",
@@ -451,13 +453,13 @@ class Prestamo extends CI_Model {
                             "plazo" => "{$_info['weeks_payment']}",
                             "interes" => "{$this->_set_format_db($_iva)}",
                             "week" => "{$_info['saving_starts']}",
-                            "week_end" => $_close_week,
+                            "week_end" =>  date("W"),
                             "year" => date("Y"),
                             "status" => "{$_info['loan_status']}",
                             "user_id" => "{$_info['usrid']}",
                             "periodo_id" => "{$current_periodo_id}" );
             $_prestamo_registro = array( "monto" => "{$this->_set_format_db($_deuda)}",
-                            "week" => date('W'),
+                            "week" => $_close_week,
                             "year" => date("Y"),
                             "status" => "{$_info['loan_status']}",
                             "prestamo_id" => "{$id}");
