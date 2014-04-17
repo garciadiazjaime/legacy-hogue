@@ -137,7 +137,7 @@ class Ahorro extends CI_Model {
 				if($_POST['saving_status'] == 3){
 					$current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
 					$week_end = $this->controlperiodo->get_last_registered_week($current_periodo_id);
-					$updateFields['week_end'] = $week_end;
+					$updateFields['week_end'] = $week_end+1;
 				}
 					
 			}
