@@ -56,7 +56,7 @@ class Ahorros extends CI_Controller {
 		$user =  $this->controluser->getUser($id);
 		$ahorro =  $this->controluser->getCurrentAhorro($id);
 		$ahorro->status;
-		if($ahorro->status == 2) $extraWeeks = $this->ahorro->getExtraWeeks($id);
+		if($ahorro->status == 2) $extraWeeks = $this->ahorro->getExtraWeeks($ahorro->ahorro_id);
 		$content = $this->load->view('be/ahorros/ver',array('user' => $user, 'ahorro' => $ahorro, 'extraWeeks' => $extraWeeks, 'msg' => $msg, 'id'=>$id), true);
 		$this->load->view('be/layout/main',array('content'=>$content));
 	}
