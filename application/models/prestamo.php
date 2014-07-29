@@ -453,7 +453,7 @@ class Prestamo extends CI_Model {
                             "plazo" => "{$_info['weeks_payment']}",
                             "interes" => "{$this->_set_format_db($_iva)}",
                             "week" => "{$_info['saving_starts']}",
-                            "week_end" =>  date("W"),
+                            "week_end" => $this->getActiveWeek(),
                             "year" => date("Y"),
                             "status" => "{$_info['loan_status']}",
                             "user_id" => "{$_info['usrid']}",
@@ -465,7 +465,7 @@ class Prestamo extends CI_Model {
                             "prestamo_id" => "{$id}");
             $this->db->insert('prestamo_registro', $_prestamo_registro);
         }
-        $this->db->where('id', $id);                       
+        $this->db->where('id', $id); 
         if( $this->db->update( 'prestamo', $_prestamo ) ){
             return 'Registro actualizado de manera exitosa.';
         }
@@ -665,6 +665,15 @@ class Prestamo extends CI_Model {
         if ($query->num_rows() > 0)
             return true;
         return false;
+    }
+
+    function getActiveWeek()
+    {
+        $_active_week = 1;
+        do{
+            $_active_week++;
+        }while($this->isWeekRegistered($_active_week));
+        return $_active_week;
     }
 
     public function get_reporte_prestamos()
