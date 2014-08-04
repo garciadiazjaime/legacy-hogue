@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd" version="3.2" folio="134" LugarExpedicion="Tijuana" NumCtaPago="No identificado" fecha="2014-08-04T10:56:18" sello="FVH8cmZ1OCeCf0rnSS0S3fJTyXNOXC2LRE7FX43lRny5HmDs85ULuMd7UwgDzhY0yE9x75V7DBJQv95GTzqSo3ln8bruJwuU1f4XaZY9SVoRjRpeeX+b8iPqNZovY1B2E0EO3h9glOcat/R5t2uZax4iFzzKm+Lrb50vGWutj30=" formaDePago="Pago en una sola exhibición" noCertificado="00001000000302654223" certificado="MIIE3jCCA8agAwIBAgIUMDAwMDEwMDAwMDAzMDI2NTQyMjMwDQYJKoZIhvcNAQEFBQAwggGKMTgwNgYDVQQDDC9BLkMuIGRlbCBTZXJ2aWNpbyBkZSBBZG1pbmlzdHJhY2nDs24gVHJpYnV0YXJpYTEvMC0GA1UECgwmU2VydmljaW8gZGUgQWRtaW5pc3RyYWNpw7NuIFRyaWJ1dGFyaWExODA2BgNVBAsML0FkbWluaXN0cmFjacOzbiBkZSBTZWd1cmlkYWQgZGUgbGEgSW5mb3JtYWNpw7NuMR8wHQYJKoZIhvcNAQkBFhBhY29kc0BzYXQuZ29iLm14MSYwJAYDVQQJDB1Bdi4gSGlkYWxnbyA3NywgQ29sLiBHdWVycmVybzEOMAwGA1UEEQwFMDYzMDAxCzAJBgNVBAYTAk1YMRkwFwYDVQQIDBBEaXN0cml0byBGZWRlcmFsMRQwEgYDVQQHDAtDdWF1aHTDqW1vYzEVMBMGA1UELRMMU0FUOTcwNzAxTk4zMTUwMwYJKoZIhvcNAQkCDCZSZXNwb25zYWJsZTogQ2xhdWRpYSBDb3ZhcnJ1YmlhcyBPY2hvYTAeFw0xNDAxMjcxNzUyMDVaFw0xODAxMjcxNzUyNDVaMIHSMSAwHgYDVQQDExdBTEVKQU5EUk8gUk9NTyBNQVJUSU5FWjEgMB4GA1UEKRMXQUxFSkFORFJPIFJPTU8gTUFSVElORVoxIDAeBgNVBAoTF0FMRUpBTkRSTyBST01PIE1BUlRJTkVaMQswCQYDVQQGEwJNWDEoMCYGCSqGSIb3DQEJARYZYWxlamFuZHJvQG1pbnRpdG1lZGlhLmNvbTEWMBQGA1UELRMNUk9NQTg2MTAyMkFMOTEbMBkGA1UEBRMSUk9NQTg2MTAyMkhERk1STDE1MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCJOTMHITbKAFbSr5fM/XotkFWKvOajiqA/CnAgRRXt5pBeer7ihqNuDS0DoAMadL2/uSaBv6I7W3krF/TcMUp3DhPUHxp+4eKae/kOfTm9fyJufDmFYPLTrBtnHQge86lsPysEJJGFNDQYKejRogZAwKSJF8fA6c7C5s1kgm+u+QIDAQABo3UwczAMBgNVHRMBAf8EAjAAMAsGA1UdDwQEAwID2DARBglghkgBhvhCAQEEBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwQGCCsGAQUFBwMCMCQGA1UdEQQdMBuBGWFsZWphbmRyb0BtaW50aXRtZWRpYS5jb20wDQYJKoZIhvcNAQEFBQADggEBACU5EDMDYyuNS0FGNWGkr6YEW6bv2/QKNOfhxEY4RFpLY0z38yZiW3x5ExI0ZONEurGWyeeV58gUzNjoUq1j3uMjUNrwzlJ1kfyMHeZxVOYbIM7d6xs397FV4eJ/DgJ9TMZcV7WVdfl0MDqRwqPjIDrZstP24GmwJ5sup9aC9DpAULzLScd2m7Ks0BGhmw2rTGRAXkEke/3bW6cFerVFdcI5Oq5iO18+FshCUQoLmqeMzJeD0LuNH+QesTY2dr8Og4vLbDWUcxGoIf8nbI8yQHUzFBP74L6yFcX5nGkvSzfg6YxPo5nlawJitcnFEsTVYUEzsimlbda7a914W7wjQnA=" subTotal="9340.00" total="8904.13" metodoDePago="No Identificado" tipoDeComprobante="ingreso" xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <cfdi:Emisor rfc="ROMA861022AL9" nombre="Alejandro Romo Martínez">
+    <cfdi:DomicilioFiscal calle="Picacho" noExterior="2319" colonia="Playas de Tijuana Secc. El Dorado" localidad="Tijuana" municipio="Tijuana" estado="Baja California" pais="México" codigoPostal="22505" />
+    <cfdi:RegimenFiscal Regimen="Régimen de las Personas Físicas con Actividades Empresariales y Profesionales." />
+  </cfdi:Emisor>
+  <cfdi:Receptor rfc="MFR9009252L5" nombre="MAM de la Frontera S.A. de C.V.">
+    <cfdi:Domicilio calle="Romano" noExterior="13525" noInterior="M" colonia="Fracc. Alcalá" localidad="La Mesa" municipio="16" estado="2" pais="México" codigoPostal="22106" />
+  </cfdi:Receptor>
+  <cfdi:Conceptos>
+    <cfdi:Concepto cantidad="1" unidad="Kilo" descripcion="Servicios profesionales" valorUnitario="9340" importe="9340.00" />
+  </cfdi:Conceptos>
+  <cfdi:Impuestos totalImpuestosRetenidos="1930.27" totalImpuestosTrasladados="1494.40">
+    <cfdi:Retenciones>
+      <cfdi:Retencion impuesto="ISR" importe="934.00" />
+      <cfdi:Retencion impuesto="IVA" importe="996.27" />
+    </cfdi:Retenciones>
+    <cfdi:Traslados>
+      <cfdi:Traslado impuesto="IVA" tasa="16" importe="1494.40" />
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/TimbreFiscalDigital/TimbreFiscalDigital.xsd" version="1.0" UUID="B93280D8-A2EF-4B6D-8CA3-5C9FE6B9DF48" FechaTimbrado="2014-08-04T10:56:20" selloCFD="FVH8cmZ1OCeCf0rnSS0S3fJTyXNOXC2LRE7FX43lRny5HmDs85ULuMd7UwgDzhY0yE9x75V7DBJQv95GTzqSo3ln8bruJwuU1f4XaZY9SVoRjRpeeX+b8iPqNZovY1B2E0EO3h9glOcat/R5t2uZax4iFzzKm+Lrb50vGWutj30=" noCertificadoSAT="00001000000202864883" selloSAT="GeR/9LH3BgCSFCV/dIxkeYgKFy48T1HnRb9MX5VeS46Gaz+sRBTXMt70eo2t5pGfiYEyumsw1TlGzsrQaARBLRA4klFfbNdOE27iGkPRPsKzCi8JFF9ZIa5dysQ7gI+p9YEtsTJAGcEqyaVtYNEIcbfFzgdB8L9p4Ksuz3/qK60=" xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+  </cfdi:Complemento>
+</cfdi:Comprobante>
