@@ -48,7 +48,7 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
+$db['default']['hostname'] = '127.0.0.1';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
 $db['default']['database'] = 'hogue';
@@ -65,9 +65,9 @@ $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
 
-$db['opt_2']['hostname'] = 'localhost';
+$db['opt_2']['hostname'] = '127.0.0.1';
 $db['opt_2']['username'] = 'root';
-$db['opt_2']['password'] = 'root';
+$db['opt_2']['password'] = '';
 $db['opt_2']['database'] = 'hogue';
 $db['opt_2']['dbdriver'] = 'mysql';
 $db['opt_2']['dbprefix'] = '';

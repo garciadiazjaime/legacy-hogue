@@ -3,14 +3,14 @@
     RewriteBase /
 
     RewriteCond %{REQUEST_URI} ^system.*
-    RewriteRule ^(.*)$ /hogue/index.php?/$1 [L]
+    RewriteRule ^(.*)$ /hogue_2/index.php?/$1 [L]
     
     RewriteCond %{REQUEST_URI} ^application.*
-    RewriteRule ^(.*)$ /hogue/index.php?/$1 [L]
+    RewriteRule ^(.*)$ /hogue_2/index.php?/$1 [L]
 
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ hogue/index.php?/$1 [L]
+    RewriteRule ^(.*)$ hogue_2/index.php?/$1 [L]
 </IfModule>
 
 <IfModule !mod_rewrite.c>
