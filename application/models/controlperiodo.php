@@ -41,64 +41,55 @@ class ControlPeriodo extends CI_Model{
                 $query = $offset != 0 ?
                         'SELECT id, start_week, end_week, year, status
                         FROM periodo WHERE status=1
-			LIMIT '.$limit.' OFFSET '.$offset
+						LIMIT '.$limit.' OFFSET '.$offset
                         :
                         'SELECT id, start_week, end_week, year, status
                         FROM periodo WHERE status=1
-			LIMIT '.$limit;
+						LIMIT '.$limit;
                 $data = $this->db->query($query);
                 if($data->num_rows() > 0){
-                         $counter = 1;
-                         foreach($data->result() as $row){
-                                $class = $counter % 2 == 0 ? 'odd' : 'pair';
-				$start_week = date('d-M-Y', strtotime("1.1.2012 + ".
-					$row->start_week." weeks - 6 days"));
-				$end_week = date('d-M-Y', strtotime("1.1.2012 + ".
-					$row->end_week." weeks"));
-				$status = $row->status ? 'Activo':'Pendiente';
-                                $response .= "
-                                        <tr class = '". $class. "'> 
-                                                <td>".$row->id."</td>
-                                                <td>".$start_week."</td>
-						<td>".$end_week."</td>
-                                                <td>".$status."</td>
-                                                <td>
-                                                        <a href='".base_url().
-							"sistema/periodos/editar/".
-							$row->id."' title=\"edit periodos".
-							$row->id."\">
-                                                                <img src=\"".base_url().
-				"resources/images/edit_icon_active.png\" alt=\"edit\" />
-                                                        </a>
-                                                </td>
-						<td>
-                                                        <a href='".base_url().
-							"sistema/periodos/eliminar/".
-							$row->id."' title=\"eliminar periodo".
-							$row->id."\">
-                                                                <img src=\"".base_url().
-				"resources/images/delete_icon_active.png\" alt=\"eliminar\" />
-                                                        </a>
-                                                </td>
-                                                
-                                        </tr>";
+                     $counter = 1;
+                     foreach($data->result() as $row){
+                            $class = $counter % 2 == 0 ? 'odd' : 'pair';
+							$start_week = date('d-M-Y', strtotime("1.1.".$row->year." + ".
+							$row->start_week." weeks - 6 days"));
+							$end_week = date('d-M-Y', strtotime("1.1.".$row->id." + ".
+							$row->end_week." weeks"));
+							$status = $row->status ? 'Activo':'Pendiente';
+                            $response .= "
+								<tr class = '". $class. "'> 
+									<td>".$row->id."</td>
+									<td>".$start_week."</td>
+									<td>".$end_week."</td>
+									<td>".$status."</td>
+									<td>
+										<a href='".base_url()."sistema/periodos/editar/".$row->id."' title=\"edit periodos".$row->id."\">
+											<img src=\"".base_url()."resources/images/edit_icon_active.png\" alt=\"edit\" />
+										</a>
+									</td>
+									<td>
+									<a href='".base_url()."sistema/periodos/eliminar/".$row->id."' title=\"eliminar periodo".$row->id."\">
+										<img src=\"".base_url()."resources/images/delete_icon_active.png\" alt=\"eliminar\" />
+									</a>
+									</td>
+								</tr>";
                                 $counter++;
                         }//foreach
 						if(!empty($response)){
-                                $response = "
-                                <table style = 'width: 925px;'>
-                                        <tr>
-                                              <th># De Período</th>
-                                              <th>Inicio</th>
-                                              <th>Fin</th>
-                                              <th>Estatus</th>
-					      <th>Editar</th>
-					      <th>Eliminar</th>
-                                        </tr>
-                                        $response
-                                </table>";
-                                $query = $this->db->query('SELECT count(*) as total 
-					FROM periodo WHERE status=1');
+							$response = "
+							<table style = 'width: 925px;'>
+								<tr>
+									<th># De Período</th>
+									<th>Inicio</th>
+									<th>Fin</th>
+									<th>Estatus</th>
+									<th>Editar</th>
+									<th>Eliminar</th>
+								</tr>
+								$response
+							</table>";
+							$query = $this->db->query('SELECT count(*) as total 
+								FROM periodo WHERE status=1');
                                 $config['base_url'] = base_url().'sistema/periodos';
                                 $config['total_rows'] = $query->row()->total;
                                 $config['per_page'] = $limit;

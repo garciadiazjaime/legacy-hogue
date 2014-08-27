@@ -44,13 +44,13 @@ class Users extends CI_Controller {
 
 	
 	public function create()
-       {
+	{
 		$msg = '';
 		$success = false;
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');
 		$this->lang->load('form_validation', 'spanish');
-	        $this->form_validation->set_rules(
+	    $this->form_validation->set_rules(
 			'name', 
 			'Nombre', 
 			'trim|required|max_length[90]|xss_clean'
@@ -60,54 +60,61 @@ class Users extends CI_Controller {
 			'No. Emp.', 
 			'required|max_length[10]|xss_clean|numeric'
 		);
-	        
+		$this->form_validation->set_rules(
+			'no_cuenta', 
+			'No. de Cuenta.', 
+			'xss_clean'
+		);
+
 		if(sizeof($_POST))
 		{
 			$POST['name'] = trim($_POST['name']);
 			if ($this->form_validation->run() == FALSE)
-				$msg = 'Error, favor de capturar la '.
-				       'informaci&oacute;n de forma correcta';
+			{
+				$msg = 'Error, favor de capturar la informaci&oacute;n de forma correcta';
+			}
 			else
 			{
-			       $data = array(
-				  'name' => $_POST['name'],
-				  'no_emp' => $_POST['no_emp'],
-				  'date' => date('Y-m-d')
-			       );
+				$data = array(
+					'name' => $_POST['name'],
+					'no_emp' => $_POST['no_emp'],
+					'no_cuenta' => $_POST['no_cuenta'],
+					'date' => date('Y-m-d')
+				);
 				$query = $this->db->query(
 					'select id, status '.
 					'from user where name="'.$data['name'].
 					'" && no_emp="'.$data['no_emp'].'"'
 				);
-				if ($query->num_rows() > 0)
+				if($query->num_rows() > 0)
 				{
 					if($query->row()->status)
-						$msg = 'Error, esto usuario ya'.
-							' ha sido registro anteriormente';	
-					else{
-	                                   	$this->db->query(
-							'update user set status=1,'.
-							' date = NOW() where id = ?', 
-							$query->row()->id);
-	                                   	$msg = "Operaci&oacute;n con ".
-							"&Eacute;xito, Usuario activado";
+					{
+						$msg = 'Error, esto usuario ya ha sido registro anteriormente';
+					}
+					else
+					{
+						$this->db->query(
+							'update user set status=1, date = NOW() where id = ?', 
+							$query->row()->id
+						);
+						$msg = "Operaci&oacute;n con &Eacute;xito, Usuario activado";
 					}
 				}
 				else
 				{
 					$this->db->insert('user', $data);
-			                $msg = "Operaci&oacute;n con &Eacute;xito,".
-						" Usuario registrado";
+					$msg = "Operaci&oacute;n con &Eacute;xito, Usuario registrado";
 				}
 				$success = true;
 			}
 		}
  		$content = $this->load->view(
 			'be/users/create',
-			array('msg'=>$msg,'success'=>$success),
+			array('msg'=>$msg, 'success'=>$success),
 			true
 		);
-	        $this->load->view('be/layout/main', array('content'=>$content));
+		$this->load->view('be/layout/main', array('content'=>$content));
 	}
 
 	public function index($offset = 0)
@@ -135,6 +142,7 @@ class Users extends CI_Controller {
 		$msg = '';
 		$name = '';
 		$no_emp = '';
+		$no_cuenta = '';
 		$list_users = '';
 		$success = false;
 		$this->load->helper(array('form', 'url'));
@@ -153,6 +161,7 @@ class Users extends CI_Controller {
 		$query = $this->db->get_where('user', array('id' => $id));
 		$name = $query->row()->name;
 		$no_emp = $query->row()->no_emp;
+		$no_cuenta = $query->row()->no_cuenta;
 		if(sizeof($_POST))
 		{
 			$POST['name'] = trim($_POST['name']);
@@ -164,10 +173,12 @@ class Users extends CI_Controller {
 			       $data = array(
 				  'name' => $_POST['name'],
 				  'no_emp' => $_POST['no_emp'],
+				  'no_cuenta' => $_POST['no_cuenta'],
 				  'date' => date('Y-m-d')
 			       );
 				$name = $_POST['name'];
 				$no_emp = $_POST['no_emp'];
+				$no_cuenta = $_POST['no_cuenta'];
 				$this->db->where('id', $id);
 				$this->db->update('user', $data); 
 				$success = true;
@@ -177,6 +188,7 @@ class Users extends CI_Controller {
 			$content = $this->load->view('be/users/edit',
  					array('name'=>$name, 
 						'no_emp'=>$no_emp,
+						'no_cuenta'=>$no_cuenta,
 						'msg'=>$msg,
 						'list_users'=>$list_users), 
 					true
@@ -186,7 +198,9 @@ class Users extends CI_Controller {
 		else {
 			$content = $this->load->view('be/users/edit',
  					array('name'=>$name, 
-						'no_emp'=>$no_emp), 
+						'no_emp'=>$no_emp,
+						'no_cuenta'=>$no_cuenta
+						), 
 						true
 					);
 			$this->load->view('be/layout/main', array('content'=>$content));

@@ -3,11 +3,11 @@
 	<form action="#" method="POST">
 	<div class="left_column">
 		<span id="msg"><?=$msg;?></span><BR/>
-		<span>% Banco:</span> <?=round($banco,2);?><BR/>
-		<span>Total Pr&eacute;stamo:</span> <?=round($prestamo,2);?><BR/>
-		<span>Total Intereses:</span> <?=round($total_intereses,2);?><BR/>
-		<span>Total Ahorrado:</span> <?=round($total_ahorrado,2);?><BR/>
-		<span>Valor de peso por Inter&eacute;s:</span> <?=$calculo;?><BR/>
+		<span>% Banco:</span> <b><?=!empty($banco) ? number_format($banco, 2, ',', ' ') : '0';?></b><BR/>
+		<span>Total Pr&eacute;stamo:</span> <b><?=!empty($prestamo) ? number_format($prestamo, 2, ',', ' '): '0';;?></b><BR/>
+		<span>Total Intereses:</span> <b><?=!empty($total_intereses) ? number_format($total_intereses, 2, ',', ' '): '0';;?></b><BR/>
+		<span>Total Ahorrado:</span> <b><?=!empty($total_ahorrado) ? number_format($total_ahorrado, 2, ',', ' '): '0';;?></b><BR/>
+		<span>Valor de peso por Inter&eacute;s:</span> <?=!empty($calculo) ? $calculo: '0';?><BR/>
 	</div>
 	<div class="right_column">
 		<p class="button filter_button_in_form ">

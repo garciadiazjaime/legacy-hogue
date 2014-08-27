@@ -220,6 +220,7 @@ class Reporte extends CI_Model{
 		LEFT JOIN ahorro a ON a.id = ar.ahorro_id
 		WHERE a.status =1 AND ar.status <> 0
 		AND a.periodo_id = ".$closed_periodo_id;
+
 		$query = $this->db->query($sql);
 		foreach ($query->result() as $row)
    		{
@@ -245,7 +246,8 @@ class Reporte extends CI_Model{
 		IFNULL( (SELECT COUNT( ar.monto ) 
 			FROM ahorro_registro ar
 			WHERE ar.ahorro_id = a.id
-			AND ar.year = a.year ) , 0) AS  'depositos'
+			AND ar.year = a.year ) , 0) AS  'depositos',
+		u.no_cuenta
 		FROM ahorro a
 		LEFT JOIN user u ON u.id = a.user_id
 			AND (a.status <> 0)
@@ -254,6 +256,7 @@ class Reporte extends CI_Model{
 		WHERE a.status = 1
 		AND a.periodo_id = ".$closed_periodo_id."
 		ORDER BY u.no_emp";
+
 		$query = $this->db->query($sql);
 		$no_empleados = $query->num_rows;
 		$no_pages = ceil($no_empleados / $emp_per_page);
@@ -279,7 +282,8 @@ class Reporte extends CI_Model{
 		IFNULL( (SELECT COUNT( ar.monto ) 
 			FROM ahorro_registro ar
 			WHERE ar.ahorro_id = a.id
-			AND ar.year = a.year ) , 0) AS  'depositos'
+			AND ar.year = a.year ) , 0) AS  'depositos',
+		u.no_cuenta
 		FROM ahorro a
 		LEFT JOIN user u ON u.id = a.user_id
 			AND (a.status <>0 )
@@ -301,12 +305,13 @@ class Reporte extends CI_Model{
 				$response .= "
 				<tr class=\"".$class."\">
 				<td>".$row->no_emp."</td>
-				<td>".$row->name."</td>
+				<td align=\"left\">".$row->name."</td>
 				<td class=\"money\">$".number_format(round($row->monto,2), 2, '.',' ')."</td>
 				<td >".$row->depositos."</td>
 				<td class=\"money\">$".number_format(round($row->ahorrado,2), 2, '.',' ')."</td>
 				<td class=\"money\">$".number_format(round(($row->ahorrado*$calculo_interes),2), 2, '.',' ')."</td>
 				<td>$".number_format(round($row->ahorrado + (($row->ahorrado*$calculo_interes)),2), 2, '.', ' ')."</td>
+				<td>".$row->no_cuenta."</td>
 				</tr>
 				";
 			}
@@ -329,13 +334,14 @@ class Reporte extends CI_Model{
 				$response =
 				"<table class=\"report_table\">
 				<tr>
-				<th class=\"column_report_id_employee\"><span># Empleado</span></th>
-				<th class=\"column_report_employee_name\"><span>Nombre</span></th>
-				<th class=\"column_report_savings\"><span>Monto Semanal</span></th>
-				<th class=\"column_report_loans\"><span>Total Dep&oacute;sitos</span></th>
-				<th class=\"column_report_savings\"><span>Total Ahorrado</span></th>
-				<th class=\"column_report_savings\"><span>Intereses</span></th>
-				<th class=\"column_report_total_loans\"><span>Pago Correspondiente</span></th>
+				<th><span># Emp.</span></th>
+				<th><span>Nombre</span></th>
+				<th><span>Monto Semanal</span></th>
+				<th><span>Total Dep&oacute;sitos</span></th>
+				<th><span>Total Ahorrado</span></th>
+				<th><span>Intereses</span></th>
+				<th><span>Pago Final</span></th>
+				<th><span>No. Cuenta</span></th>
 				</tr>
 				$response
 				</table>
@@ -362,7 +368,7 @@ class Reporte extends CI_Model{
 		$this->load->library('PHPExcel');
 		$objPHPExcel = new PHPExcel();
 		$rowNumber = 1;
-		$headings = array('No Emp','Nombre','Monto Semanal','No Depositos', 'Total Ahorrado', 'Intereses', 'Pago Correspondiente');
+		$headings = array('No Emp','Nombre','Monto Semanal','No Depositos', 'Total Ahorrado', 'No Cuenta', 'Intereses', 'Pago Final');
 		$objPHPExcel->getActiveSheet()->fromArray(array($headings),NULL,'A'.$rowNumber);
 		$sql = "
 		SELECT SUM( ar.monto ) as total
@@ -379,7 +385,7 @@ class Reporte extends CI_Model{
 		$filters = $_POST;
 		$response = $class = $prestamo = $pagination = $sql = $msg = '';
 		$total_depositos = 0;
-		$query = $this->db->query("select bank_amount FROM periodo WHERE status=3 and bank_amount<>0 ORDER BY year DESC LIMIT 1");
+		$query = $this->db->query("select bank_amount FROM periodo WHERE status=3 and bank_amount<>0 ORDER BY id DESC LIMIT 1");
 		$result = $query->result();	
 		$banco = $result[0]->bank_amount;
 		$i = $no = 1;
@@ -401,6 +407,13 @@ class Reporte extends CI_Model{
    		}
    		$total_intereses = $banco + $prestamo;
 		$calculo_interes = $total_intereses/$total_ahorrado;
+
+		log_message('info', '###### model::reporte::ahorros_excel: banco: '.$banco);
+		log_message('info', '###### model::reporte::ahorros_excel: prestamo: '.$prestamo);
+		log_message('info', '###### model::reporte::ahorros_excel: total_intereses: '.$total_intereses);
+		log_message('info', '###### model::reporte::ahorros_excel: total_ahorrado: '.$total_ahorrado);
+		log_message('info', '###### model::reporte::ahorros_excel: calculo_interes: '.$calculo_interes);
+
 		$sql = "
 		SELECT u.no_emp, u.name, IFNULL( a.monto, 0 ) AS monto, 
 		IFNULL( (SELECT COUNT( ar.monto ) 
@@ -409,8 +422,9 @@ class Reporte extends CI_Model{
 			AND ar.year = a.year ) , 0) AS  'depositos',
 		IFNULL( (SELECT SUM( ar.monto ) 
 			FROM ahorro_registro ar
-			WHERE ar.ahorro_id = a.id
-			AND ar.year = a.year ) , 0) AS  'ahorrado'
+			WHERE ar.ahorro_id = a.id AND ar.status <> 0 
+			AND ar.year = a.year ) , 0) AS  'ahorrado',
+		u.no_cuenta
 		FROM ahorro a
 		LEFT JOIN user u ON u.id = a.user_id
 			AND (a.status <> 0)

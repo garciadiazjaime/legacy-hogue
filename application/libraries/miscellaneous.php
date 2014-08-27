@@ -22,13 +22,13 @@ class Miscellaneous /*extends CI_Controller*/{
 		$flag = $saving_starts ? $saving_starts : date('W');
 		if($fromCurrent){
 			$dayOfYear = mktime(0, 0, 0, date('m'), date('d'), $year);
-			$startFrom = date('W')-8; 
+			$startFrom = date('W')-8;
 			$thisMonday = strtotime('monday -9 week', $dayOfYear);
 		}
 		else{
 			$dayOfYear = mktime(0, 0, 0, 1, 1, $year);
 			$startFrom = 1;
-			$thisMonday = strtotime('monday', $dayOfYear);
+			$thisMonday = strtotime('monday -7 days', $dayOfYear);
 		}
 		for($i=$startFrom; $i<53 ; $i++)
 		{

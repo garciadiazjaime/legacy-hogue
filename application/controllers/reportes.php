@@ -141,7 +141,7 @@ class Reportes extends CI_Controller {
 		if(!empty($resumen))
 		{
 			$header = "\t\tCAJA AHORRO MAM DE LA FRONTERA DIVISION HOGUE\n\n".
-						"# Emp\tNombre\tPrestamo\tDescuento por semana\t# de semanas\tEstatus";
+						"# Emp\tNombre\tPrestamo\tDescuento por semana\t# de semanas\tEstatus\tInteres";
 			for($i=1;$i<54;$i++)
 				$header .= "\t".$i;
 			$header .= "\n";
@@ -314,6 +314,69 @@ class Reportes extends CI_Controller {
 
 	public function getAhorrosExcel(){
 		echo $this->reporte->ahorros_excel();
+	}
+
+	/*
+		Author: Jaime Garcia
+		Función para mostrar solo los prestamos registrados en la semana en curso,
+		adicionalmente la información se puede exportar a excel (csv) y para eso
+		se utiliza la variable 'flag', si ésta tiene valor=excel entonces la información
+		se muestra en archivo csv.
+	*/
+	public function prestamos_semana($flag = ''){
+		$content = array();
+		$current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
+		$weekNumber = date("W");
+		$year = date("Y");
+		$total = 0;
+		$sql = "SELECT u.no_emp, u.name, u.no_cuenta, p.monto_prestado
+			FROM  `prestamo` p
+			INNER JOIN user u ON p.user_id = u.id
+			WHERE p.periodo_id = ".$current_periodo_id."
+			AND p.week = ".$weekNumber;
+		$query = $this->db->query($sql);
+		if($query->num_rows()){
+			$result = $query->result();
+			$sql = "SELECT sum(p.monto_prestado) as total
+				FROM  `prestamo` p
+				INNER JOIN user u ON p.user_id = u.id
+				WHERE p.periodo_id = ".$current_periodo_id."
+				AND p.week = ".$weekNumber;
+			$query = $this->db->query($sql);
+			$total = $query->row('total');
+			$content = array(
+				'status' => True,
+				'prestamos' => $result,
+				'week' => $weekNumber,
+				'year' => $year,
+				'total' => $total
+			);
+		}
+		else{
+			$content = array(
+				'status' => False,
+				'week' => $weekNumber,
+				'year' => $year
+			);
+		}
+		if(empty($flag)){
+			$content = $this->load->view('be/reportes/prestamos_semana', $content, true);
+			$this->load->view('be/layout/main', array('content'=>$content));	
+		}
+		elseif($flag == 'excel' && $content['status'] == True){
+			header("Content-type: application/octet-stream");
+			header("Content-Disposition: attachment; filename=prestamos_semana_".$content['week'].".xls");
+			header("Pragma: no-cache");
+			header("Expires: 0");
+			$data = "Prestamos\t";
+			$data .= "Semana\t".$content['week']." del ".$content['year']."\n";
+			$data .= "# Empleado\tNombre\t# de Cuenta\tDeposito\n";
+			foreach ($content['prestamos'] as $row) {
+				$data .= $row->no_emp."\t".$row->name."\t'".$row->no_cuenta."\t".$row->monto_prestado."\n";
+			}
+			$data .="\n\n\t\tTotal\t".$content['total'];
+			print($data);
+		}
 	}
 }
 

@@ -30,6 +30,17 @@
 		value="<?php echo ($success) ? '' : set_value('name'); ?>"
 		input><BR>
 		<?php echo form_error('name').'<BR>'; ?>
+		
+		<label for="cuenta"> 
+			# de cuenta:
+		</label>
+		<input
+			name="no_cuenta"
+			type="text"
+			id="no_cuenta"
+		value="<?php echo ($success) ? '' : set_value('no_cuenta'); ?>"
+		input><BR>
+		<?php echo form_error('no_cuenta').'<BR>'; ?>
 		<input
 			name="btnOK"
 			type="submit"

@@ -453,7 +453,7 @@ class Prestamo extends CI_Model {
                             "plazo" => "{$_info['weeks_payment']}",
                             "interes" => "{$this->_set_format_db($_iva)}",
                             "week" => "{$_info['saving_starts']}",
-                            "week_end" => date("W"),
+                            "week_end" => $this->getActiveWeek(),
                             "year" => date("Y"),
                             "status" => "{$_info['loan_status']}",
                             "user_id" => "{$_info['usrid']}",
@@ -465,11 +465,13 @@ class Prestamo extends CI_Model {
                             "prestamo_id" => "{$id}");
             $this->db->insert('prestamo_registro', $_prestamo_registro);
         }
-        $this->db->where('id', $id);                       
-        if( $this->db->update( 'prestamo', $_prestamo ) )
+        $this->db->where('id', $id); 
+        if( $this->db->update( 'prestamo', $_prestamo ) ){
             return 'Registro actualizado de manera exitosa.';
-        else 
+        }
+        else{
             return 'Hubo un error al insertar el registro.';
+        }
     }
 
     function getUserId($id)
@@ -665,10 +667,19 @@ class Prestamo extends CI_Model {
         return false;
     }
 
+    function getActiveWeek()
+    {
+        $_active_week = 1;
+        do{
+            $_active_week++;
+        }while($this->isWeekRegistered($_active_week));
+        return $_active_week;
+    }
+
     public function get_reporte_prestamos()
     {        
         $current_periodo_id = $this->controlperiodo->getCurrentPeriodoID();
-        $sql = "SELECT p.id, p.monto_total, p.monto_pago, p.plazo, p.status, u.name, u.no_emp FROM prestamo p
+        $sql = "SELECT p.id, p.monto_total, p.monto_pago, p.plazo, p.status, u.name, u.no_emp, p.interes FROM prestamo p
                 INNER JOIN user u 
                     ON p.user_id = u.id
                 WHERE periodo_id=".$current_periodo_id;
@@ -693,7 +704,7 @@ class Prestamo extends CI_Model {
         $sql = "SELECT 
                 SUM(monto_total) as monto
             FROM  `prestamo` 
-            WHERE  `periodo_id`=".$periodo_id;
+            WHERE  `periodo_id`=".$periodo_id." and status!= 4";
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0)        
             return $query->row()->monto;
@@ -707,7 +718,7 @@ class Prestamo extends CI_Model {
                 SUM(monto_total) as monto
             FROM  `prestamo` 
             WHERE  `periodo_id`=".$periodo_id."
-            AND status=3";
+            AND status=3 ";
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0)        
             return $query->row()->monto;
@@ -758,7 +769,8 @@ class Prestamo extends CI_Model {
                     p.monto_total, 
                     p.monto_pago, 
                     p.plazo, 
-                    p.status
+                    p.status,
+                    p.interes
                 FROM `prestamo` p 
                 INNER JOIN user u
                     ON p.user_id = u.id
@@ -782,6 +794,7 @@ class Prestamo extends CI_Model {
             $response .= $row['gral_info']->monto_pago."\t";
             $response .= $row['gral_info']->plazo."\t";
             $response .= $estatus_label[$row['gral_info']->status]."\t";
+            $response .= $row['gral_info']->interes."\t";
             //$total_prestado += $row['gral_info']->monto_total;
             if( is_array($row['historial']) )
             {

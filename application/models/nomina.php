@@ -317,7 +317,7 @@ if($this->isWeekRegistered($week)){
 			$this->db->query("INSERT INTO ahorro_temp
 				SELECT u.no_emp AS No_Emp, u.name AS Nombre, IFNULL( ar.monto, 0 ) AS total
 				FROM ahorro_registro ar
-				LEFT JOIN ahorro a ON ar.ahorro_id = a.id AND ar.status <> 0
+				LEFT JOIN ahorro a ON ar.ahorro_id = a.id AND ar.status <> 0 AND a.week <= $week
 				RIGHT JOIN user u ON a.user_id = u.id
 				AND ar.week =".$week."
 				AND a.periodo_id = ".$current_periodo_id."
@@ -362,7 +362,7 @@ if($this->isWeekRegistered($week)){
 			$this->db->query("INSERT INTO ahorro_temp
 				SELECT u.no_emp AS No_Emp, u.name AS Nombre, IFNULL( a.monto, 0 ) AS total
 				FROM user u
-				LEFT JOIN ahorro a ON a.user_id = u.id
+				LEFT JOIN ahorro a ON a.user_id = u.id AND a.week <= $week
 				AND a.periodo_id =".$current_periodo_id." AND a.status = 1
 				GROUP BY u.no_emp;"
 			);
@@ -470,15 +470,16 @@ if($this->isWeekRegistered($week)){
 		return $query->result();
 	}
 
-	function get_user_ahorro($user_id, $periodo_id)
+	function get_user_ahorro($user_id, $periodo_id, $week='')
 	{
-		$current_week = date('W');
+		$current_week = !empty($week) ? $week:date('W');
 		$sql = "SELECT 
 					* 
 				FROM ahorro
 				WHERE periodo_id = ".$periodo_id."
 					AND user_id = ".$user_id."
 					AND (status in (1, 2) OR (status = 3 AND week_end=$current_week))
+					AND week <= $week
 				";
 		$query = $this->db->query($sql);
 		return $query->row();
@@ -486,7 +487,7 @@ if($this->isWeekRegistered($week)){
 
 	function get_user_prestamos($user_id, $periodo_id, $week='')
 	{
-		$current_week = date('W');
+		$current_week = !empty($week) ? $week:date('W');
 		$start_week = !empty($week) ? $week:date('W');
 		$sql = "SELECT 
 					* 
@@ -507,7 +508,7 @@ if($this->isWeekRegistered($week)){
 		$users = $this->get_users_from_periodo($periodo_id);
 		$i = 0;
 		foreach($users as $row):
-			$ahorro = $this->get_user_ahorro($row->id, $periodo_id);
+			$ahorro = $this->get_user_ahorro($row->id, $periodo_id, $week);
 			$prestamos = $this->get_user_prestamos($row->id, $periodo_id, $week);
 			$data[$i]['user_data'] = $row;
 			$data[$i]['ahorro'] = $ahorro;
@@ -925,7 +926,7 @@ if($this->isWeekRegistered($week)){
 			$this->db->query("INSERT INTO ahorro_temp
 				SELECT u.no_emp AS No_Emp, u.name AS Nombre, IFNULL( ar.monto, 0 ) AS total
 				FROM ahorro_registro ar
-				LEFT JOIN ahorro a ON ar.ahorro_id = a.id AND ar.status <> 0
+				LEFT JOIN ahorro a ON ar.ahorro_id = a.id AND ar.status <> 0 AND a.week <= $week
 				RIGHT JOIN user u ON a.user_id = u.id
 				AND ar.week =".$week."
 				AND a.periodo_id = ".$current_periodo_id."
@@ -966,7 +967,7 @@ if($this->isWeekRegistered($week)){
 			$this->db->query("INSERT INTO ahorro_temp
 				SELECT u.no_emp AS No_Emp, u.name AS Nombre, IFNULL( a.monto, 0 ) AS total
 				FROM user u
-				LEFT JOIN ahorro a ON a.user_id = u.id
+				LEFT JOIN ahorro a ON a.user_id = u.id AND a.week <= $week
 				AND a.periodo_id =".$current_periodo_id." AND a.status = 1
 				GROUP BY u.id;"
 			);
