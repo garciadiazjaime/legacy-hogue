@@ -2689,3 +2689,465 @@ DEBUG - 2014-11-25 16:43:19 --> File loaded: application/views/be/layout/footer.
 DEBUG - 2014-11-25 16:43:19 --> File loaded: application/views/be/layout/main.php
 DEBUG - 2014-11-25 16:43:19 --> Final output sent to browser
 DEBUG - 2014-11-25 16:43:19 --> Total execution time: 0.0808
+DEBUG - 2014-11-25 16:56:01 --> Config Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Hooks Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Utf8 Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> UTF-8 Support Enabled
+DEBUG - 2014-11-25 16:56:01 --> URI Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Router Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> No URI present. Default controller set.
+DEBUG - 2014-11-25 16:56:01 --> Output Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Security Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Input Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-11-25 16:56:01 --> Language Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Loader Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Controller Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Helper loaded: url_helper
+DEBUG - 2014-11-25 16:56:01 --> Database Driver Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Model Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Model Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Model Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Model Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Model Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Model Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Model Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Model Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Model Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Session Class Initialized
+DEBUG - 2014-11-25 16:56:01 --> Helper loaded: string_helper
+DEBUG - 2014-11-25 16:56:01 --> Session routines successfully run
+DEBUG - 2014-11-25 16:56:01 --> User Agent Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Config Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Hooks Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Utf8 Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> UTF-8 Support Enabled
+DEBUG - 2014-11-25 16:57:47 --> URI Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Router Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> No URI present. Default controller set.
+DEBUG - 2014-11-25 16:57:47 --> Output Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Security Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Input Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-11-25 16:57:47 --> Language Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Loader Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Controller Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Helper loaded: url_helper
+DEBUG - 2014-11-25 16:57:47 --> Database Driver Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Model Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Model Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Model Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Model Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Model Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Model Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Model Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Model Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Model Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Session Class Initialized
+DEBUG - 2014-11-25 16:57:47 --> Helper loaded: string_helper
+DEBUG - 2014-11-25 16:57:47 --> Session routines successfully run
+DEBUG - 2014-11-25 16:57:47 --> User Agent Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Config Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Hooks Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Utf8 Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> UTF-8 Support Enabled
+DEBUG - 2014-11-25 17:04:04 --> URI Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Router Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Output Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Security Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Input Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-11-25 17:04:04 --> Language Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Loader Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Controller Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Helper loaded: url_helper
+DEBUG - 2014-11-25 17:04:04 --> Database Driver Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Session Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Helper loaded: string_helper
+DEBUG - 2014-11-25 17:04:04 --> Session routines successfully run
+DEBUG - 2014-11-25 17:04:04 --> User Agent Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Helper loaded: form_helper
+DEBUG - 2014-11-25 17:04:04 --> Form Validation Class Initialized
+DEBUG - 2014-11-25 17:04:04 --> Language file loaded: language/spanish/form_validation_lang.php
+DEBUG - 2014-11-25 17:04:04 --> File loaded: application/views/be/login.php
+DEBUG - 2014-11-25 17:04:04 --> File loaded: application/views/be/layout/head.php
+DEBUG - 2014-11-25 17:04:04 --> File loaded: application/views/be/layout/login_header.php
+DEBUG - 2014-11-25 17:04:04 --> File loaded: application/views/be/layout/footer.php
+DEBUG - 2014-11-25 17:04:04 --> File loaded: application/views/be/layout/login.php
+DEBUG - 2014-11-25 17:04:04 --> Final output sent to browser
+DEBUG - 2014-11-25 17:04:04 --> Total execution time: 0.0818
+DEBUG - 2014-11-25 17:04:16 --> Config Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Hooks Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Utf8 Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> UTF-8 Support Enabled
+DEBUG - 2014-11-25 17:04:16 --> URI Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Router Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Output Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Security Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Input Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-11-25 17:04:16 --> Language Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Loader Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Controller Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Helper loaded: url_helper
+DEBUG - 2014-11-25 17:04:16 --> Database Driver Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Session Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Helper loaded: string_helper
+DEBUG - 2014-11-25 17:04:16 --> Session routines successfully run
+DEBUG - 2014-11-25 17:04:16 --> User Agent Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Helper loaded: form_helper
+DEBUG - 2014-11-25 17:04:16 --> Form Validation Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Language file loaded: language/spanish/form_validation_lang.php
+DEBUG - 2014-11-25 17:04:16 --> XSS Filtering completed
+DEBUG - 2014-11-25 17:04:16 --> Config Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Hooks Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Utf8 Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> UTF-8 Support Enabled
+DEBUG - 2014-11-25 17:04:16 --> URI Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Router Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Output Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Security Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Input Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-11-25 17:04:16 --> Language Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Loader Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Controller Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Helper loaded: url_helper
+DEBUG - 2014-11-25 17:04:16 --> Database Driver Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Session Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> Helper loaded: string_helper
+DEBUG - 2014-11-25 17:04:16 --> Session routines successfully run
+DEBUG - 2014-11-25 17:04:16 --> User Agent Class Initialized
+DEBUG - 2014-11-25 17:04:16 --> File loaded: application/views/be/dashboard.php
+DEBUG - 2014-11-25 17:04:16 --> File loaded: application/views/be/layout/head.php
+DEBUG - 2014-11-25 17:04:16 --> File loaded: application/views/be/layout/admin_menu.php
+DEBUG - 2014-11-25 17:04:16 --> File loaded: application/views/be/layout/header.php
+DEBUG - 2014-11-25 17:04:16 --> File loaded: application/views/be/layout/footer.php
+DEBUG - 2014-11-25 17:04:16 --> File loaded: application/views/be/layout/main.php
+DEBUG - 2014-11-25 17:04:16 --> Final output sent to browser
+DEBUG - 2014-11-25 17:04:16 --> Total execution time: 0.0877
+DEBUG - 2014-11-25 17:04:19 --> Config Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Hooks Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Utf8 Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> UTF-8 Support Enabled
+DEBUG - 2014-11-25 17:04:19 --> URI Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Router Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Output Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Security Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Input Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-11-25 17:04:19 --> Language Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Loader Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Controller Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Helper loaded: url_helper
+DEBUG - 2014-11-25 17:04:19 --> Database Driver Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Session Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> Helper loaded: string_helper
+DEBUG - 2014-11-25 17:04:19 --> Session routines successfully run
+DEBUG - 2014-11-25 17:04:19 --> User Agent Class Initialized
+DEBUG - 2014-11-25 17:04:19 --> File loaded: application/views/be/prestamos/main.php
+DEBUG - 2014-11-25 17:04:19 --> File loaded: application/views/be/layout/head.php
+DEBUG - 2014-11-25 17:04:19 --> File loaded: application/views/be/layout/admin_menu.php
+DEBUG - 2014-11-25 17:04:19 --> File loaded: application/views/be/layout/header.php
+DEBUG - 2014-11-25 17:04:19 --> File loaded: application/views/be/layout/footer.php
+DEBUG - 2014-11-25 17:04:19 --> File loaded: application/views/be/layout/main.php
+DEBUG - 2014-11-25 17:04:19 --> Final output sent to browser
+DEBUG - 2014-11-25 17:04:19 --> Total execution time: 0.1003
+DEBUG - 2014-11-25 17:04:23 --> Config Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Hooks Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Utf8 Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> UTF-8 Support Enabled
+DEBUG - 2014-11-25 17:04:23 --> URI Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Router Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Output Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Security Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Input Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-11-25 17:04:23 --> Language Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Loader Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Controller Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Helper loaded: url_helper
+DEBUG - 2014-11-25 17:04:23 --> Database Driver Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Session Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Helper loaded: string_helper
+DEBUG - 2014-11-25 17:04:23 --> Session routines successfully run
+DEBUG - 2014-11-25 17:04:23 --> User Agent Class Initialized
+DEBUG - 2014-11-25 17:04:23 --> Final output sent to browser
+DEBUG - 2014-11-25 17:04:23 --> Total execution time: 0.0769
+DEBUG - 2014-11-25 17:04:25 --> Config Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Hooks Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Utf8 Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> UTF-8 Support Enabled
+DEBUG - 2014-11-25 17:04:25 --> URI Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Router Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Output Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Security Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Input Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-11-25 17:04:25 --> Language Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Loader Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Controller Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Helper loaded: url_helper
+DEBUG - 2014-11-25 17:04:25 --> Database Driver Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Session Class Initialized
+DEBUG - 2014-11-25 17:04:25 --> Helper loaded: string_helper
+DEBUG - 2014-11-25 17:04:25 --> Session routines successfully run
+DEBUG - 2014-11-25 17:04:25 --> User Agent Class Initialized
+ERROR - 2014-11-25 17:04:25 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\hogue\application\models\prestamo.php:122) C:\xampp\htdocs\hogue\system\core\Output.php 391
+ERROR - 2014-11-25 17:04:25 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\hogue\application\models\prestamo.php:122) C:\xampp\htdocs\hogue\system\core\Output.php 391
+DEBUG - 2014-11-25 17:04:25 --> Final output sent to browser
+DEBUG - 2014-11-25 17:04:25 --> Total execution time: 0.0653
+DEBUG - 2014-11-25 17:04:28 --> Config Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Hooks Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Utf8 Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> UTF-8 Support Enabled
+DEBUG - 2014-11-25 17:04:28 --> URI Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Router Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Output Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Security Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Input Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-11-25 17:04:28 --> Language Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Loader Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Controller Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Helper loaded: url_helper
+DEBUG - 2014-11-25 17:04:28 --> Database Driver Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:28 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Session Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Helper loaded: string_helper
+DEBUG - 2014-11-25 17:04:29 --> Session routines successfully run
+DEBUG - 2014-11-25 17:04:29 --> User Agent Class Initialized
+ERROR - 2014-11-25 17:04:29 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\hogue\application\models\prestamo.php:122) C:\xampp\htdocs\hogue\system\core\Output.php 391
+ERROR - 2014-11-25 17:04:29 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\hogue\application\models\prestamo.php:122) C:\xampp\htdocs\hogue\system\core\Output.php 391
+DEBUG - 2014-11-25 17:04:29 --> Final output sent to browser
+DEBUG - 2014-11-25 17:04:29 --> Total execution time: 0.0837
+DEBUG - 2014-11-25 17:04:29 --> Config Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Hooks Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Utf8 Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> UTF-8 Support Enabled
+DEBUG - 2014-11-25 17:04:29 --> URI Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Router Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Output Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Security Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Input Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-11-25 17:04:29 --> Language Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Loader Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Controller Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Helper loaded: url_helper
+DEBUG - 2014-11-25 17:04:29 --> Database Driver Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Session Class Initialized
+DEBUG - 2014-11-25 17:04:29 --> Helper loaded: string_helper
+DEBUG - 2014-11-25 17:04:29 --> Session routines successfully run
+DEBUG - 2014-11-25 17:04:29 --> User Agent Class Initialized
+ERROR - 2014-11-25 17:04:29 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\hogue\application\models\prestamo.php:122) C:\xampp\htdocs\hogue\system\core\Output.php 391
+ERROR - 2014-11-25 17:04:29 --> Severity: Warning  --> Cannot modify header information - headers already sent by (output started at C:\xampp\htdocs\hogue\application\models\prestamo.php:122) C:\xampp\htdocs\hogue\system\core\Output.php 391
+DEBUG - 2014-11-25 17:04:29 --> Final output sent to browser
+DEBUG - 2014-11-25 17:04:29 --> Total execution time: 0.0779
+DEBUG - 2014-11-25 17:04:33 --> Config Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Hooks Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Utf8 Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> UTF-8 Support Enabled
+DEBUG - 2014-11-25 17:04:33 --> URI Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Router Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Output Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Security Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Input Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-11-25 17:04:33 --> Language Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Loader Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Controller Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Helper loaded: url_helper
+DEBUG - 2014-11-25 17:04:33 --> Database Driver Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Session Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> Helper loaded: string_helper
+DEBUG - 2014-11-25 17:04:33 --> Session routines successfully run
+DEBUG - 2014-11-25 17:04:33 --> User Agent Class Initialized
+DEBUG - 2014-11-25 17:04:33 --> File loaded: application/views/be/layout/submenu_prestamos.php
+DEBUG - 2014-11-25 17:04:33 --> File loaded: application/views/be/prestamos/ver.php
+DEBUG - 2014-11-25 17:04:33 --> File loaded: application/views/be/layout/head.php
+DEBUG - 2014-11-25 17:04:33 --> File loaded: application/views/be/layout/admin_menu.php
+DEBUG - 2014-11-25 17:04:33 --> File loaded: application/views/be/layout/header.php
+DEBUG - 2014-11-25 17:04:33 --> File loaded: application/views/be/layout/footer.php
+DEBUG - 2014-11-25 17:04:33 --> File loaded: application/views/be/layout/main.php
+DEBUG - 2014-11-25 17:04:33 --> Final output sent to browser
+DEBUG - 2014-11-25 17:04:33 --> Total execution time: 0.0944
+DEBUG - 2014-11-25 17:04:39 --> Config Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Hooks Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Utf8 Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> UTF-8 Support Enabled
+DEBUG - 2014-11-25 17:04:39 --> URI Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Router Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Output Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Security Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Input Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-11-25 17:04:39 --> Language Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Loader Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Controller Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Helper loaded: url_helper
+DEBUG - 2014-11-25 17:04:39 --> Database Driver Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Session Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> Helper loaded: string_helper
+DEBUG - 2014-11-25 17:04:39 --> Session routines successfully run
+DEBUG - 2014-11-25 17:04:39 --> User Agent Class Initialized
+DEBUG - 2014-11-25 17:04:39 --> File loaded: application/views/be/reportes/nomina.php
+DEBUG - 2014-11-25 17:04:39 --> File loaded: application/views/be/layout/head.php
+DEBUG - 2014-11-25 17:04:39 --> File loaded: application/views/be/layout/admin_menu.php
+DEBUG - 2014-11-25 17:04:39 --> File loaded: application/views/be/layout/header.php
+DEBUG - 2014-11-25 17:04:39 --> File loaded: application/views/be/layout/footer.php
+DEBUG - 2014-11-25 17:04:39 --> File loaded: application/views/be/layout/main.php
+DEBUG - 2014-11-25 17:04:39 --> Final output sent to browser
+DEBUG - 2014-11-25 17:04:39 --> Total execution time: 0.0847
+DEBUG - 2014-11-25 17:04:41 --> Config Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Hooks Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Utf8 Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> UTF-8 Support Enabled
+DEBUG - 2014-11-25 17:04:41 --> URI Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Router Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Output Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Security Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Input Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Global POST and COOKIE data sanitized
+DEBUG - 2014-11-25 17:04:41 --> Language Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Loader Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Controller Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Helper loaded: url_helper
+DEBUG - 2014-11-25 17:04:41 --> Database Driver Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Model Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Session Class Initialized
+DEBUG - 2014-11-25 17:04:41 --> Helper loaded: string_helper
+DEBUG - 2014-11-25 17:04:41 --> Session routines successfully run
+DEBUG - 2014-11-25 17:04:41 --> User Agent Class Initialized
+INFO  - 2014-11-25 17:04:41 --> ###### model::nomina::isWeekRegistered: SELECT ifnull(status,0) as status FROM nomina WHERE week = 48 AND periodo_id = 9
+INFO  - 2014-11-25 17:04:41 --> ###### model::nomina::isWeekRegistered: SELECT ifnull(status,0) as status FROM nomina WHERE week = 48 AND periodo_id = 9
+INFO  - 2014-11-25 17:04:42 --> ##### models::nomina::executeNomina: INSERT INTO prestamo_temp
+				SELECT u.no_emp AS No_Emp, u.name AS Nombre, 
+                	IFNULL(GROUP_CONCAT(p.monto_pago SEPARATOR ', '),0)  AS prestamos,
+                	SUM( IFNULL( p.monto_pago, 0 ) ) AS total
+				FROM user u
+				LEFT JOIN prestamo p ON p.user_id = u.id
+				AND p.periodo_id = 9 AND p.status = 1 AND p.week <= 48
+				GROUP BY u.no_emp;
+INFO  - 2014-11-25 17:04:42 --> ##### models::nomina::executeNomina: INSERT INTO ahorro_temp
+				SELECT u.no_emp AS No_Emp, u.name AS Nombre, IFNULL( a.monto, 0 ) AS total
+				FROM user u
+				LEFT JOIN ahorro a ON a.user_id = u.id AND a.week <= 48
+				AND a.periodo_id =9 AND a.status = 1
+				GROUP BY u.no_emp;
+INFO  - 2014-11-25 17:04:42 --> ##### models::nomina::executeNomina: SELECT ahorro_temp.no_emp as no_emp, ahorro_temp.name as name,
+				ahorro_temp.total as ahorro, prestamo_temp.prestamos as prestamos,
+				ROUND((ahorro_temp.total + prestamo_temp.total),2) as total
+				FROM      ahorro_temp
+				JOIN      prestamo_temp ON (ahorro_temp.no_emp = prestamo_temp.no_emp)
+				where (ahorro_temp.total + prestamo_temp.total)  > 0
+				group by ahorro_temp.no_emp
+				order by ahorro_temp.no_emp
+				LIMIT 0,10000;
+DEBUG - 2014-11-25 17:04:42 --> File loaded: application/views/be/reportes/nomina.php
+DEBUG - 2014-11-25 17:04:42 --> File loaded: application/views/be/layout/head.php
+DEBUG - 2014-11-25 17:04:42 --> File loaded: application/views/be/layout/admin_menu.php
+DEBUG - 2014-11-25 17:04:42 --> File loaded: application/views/be/layout/header.php
+DEBUG - 2014-11-25 17:04:42 --> File loaded: application/views/be/layout/footer.php
+DEBUG - 2014-11-25 17:04:42 --> File loaded: application/views/be/layout/main.php
+DEBUG - 2014-11-25 17:04:42 --> Final output sent to browser
+DEBUG - 2014-11-25 17:04:42 --> Total execution time: 0.9481
