@@ -54,7 +54,7 @@ class Nomina extends CI_Model{
 				log_message('info', '###### model::nomina::registrarPrestamos: '.$this->db->last_query());
 
 				$sql_pr = "
-					SELECT SUM(monto) as total_registro 
+					SELECT ROUND(SUM(monto),2) as total_registro 
 					FROM prestamo_registro
 					WHERE prestamo_id = ".$row->id."
 					AND status <> 0";
