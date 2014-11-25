@@ -327,7 +327,16 @@ p.cancel_text_button a{
 	height:100%;
 	margin: 0 0 -130px;
 }
-	
+	#header.fe #nav{
+		padding: 35px 0 0;
+	}
+		#header.fe #home a{
+			display: block;
+			height: 100%;
+			line-height: 1000em;
+			overflow: hidden;
+		}
+		
 	#header{
 		background:#373785 url(../images/header_background.jpg) top repeat-x;
 		margin:0 0 55px 0;
