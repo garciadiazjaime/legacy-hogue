@@ -28,7 +28,8 @@ class Miscellaneous /*extends CI_Controller*/{
 		else{
 			$dayOfYear = mktime(0, 0, 0, 1, 1, $year);
 			$startFrom = 1;
-			$thisMonday = strtotime('monday -7 days', $dayOfYear);
+			// in 2016 it was 'monday 0 days' but before it was 'monday -7 days'
+			$thisMonday = strtotime('monday 0 days', $dayOfYear);
 		}
 		for($i=$startFrom; $i<53 ; $i++)
 		{
