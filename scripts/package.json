@@ -1,0 +1,17 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "import_users_from_csv.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "import_users": "node import_users_from_csv.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fast-csv": "^2.3.0",
+    "mysql": "^2.12.0"
+  }
+}
