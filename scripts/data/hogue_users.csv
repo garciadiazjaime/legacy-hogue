@@ -1,0 +1,132 @@
+name,employee_number,account_number,status,created_at
+Mata Gonzalez Jose Francisco,2797,687942112,1,1/27/2014
+Barrales Miranda Sergio Leoncio,2829,687936399,1,9/12/2012
+Smith Dena Carlos Antonio,2830,832724631,1,1/31/2013
+Resendiz Segura Jaime Osbaldo,2831,849926684,1,1/31/2013
+Navarro Valdez Jacinto Julio,2841,687942916,1,9/12/2012
+Cabrera Jose Rogelio,2878,687936689,1,9/12/2012
+Hernandez Sanchez Roberto,2884,687940417,1,9/12/2012
+Solorio Silva Guillermo,3049,687945672,1,9/12/2012
+Peralta Robles Angel,3214,687943650,1,9/12/2012
+Hernandez Arzabal Ivan,3554,687940154,1,9/26/2014
+Solis Diaz Monica,3690,687945654,1,9/12/2012
+Silva Amaro Adela,3879,687945609,1,9/12/2012
+Pulido Gonzales Socorro,4128,687944040,1,9/12/2012
+Gonzales Castillo Heberto,4206,687939578,1,9/12/2012
+Roacho NuÃ‘ez Rigoberto,4283,687943007,1,9/12/2012
+Guzman Castillo Mauro Antonio,4371,687940051,1,9/12/2012
+Padilla Cardona Pedro Jesus,4402,687943445,1,9/12/2012
+Villanueva Vega Maria del Carmen,4493,687946606,1,9/12/2012
+Cordova Diaz David Adan,4509,687937659,1,5/13/2016
+Velazquez Gomez Aremi,4673,687946437,1,9/12/2012
+Moran Hernandez Imelda,4851,687942626,1,9/12/2012
+Magallon Inocente Fernando,4919,687941759,1,3/15/2013
+Salinas Reyes Manuel Antonio,5368,687945243,1,9/12/2012
+Romo Gasken Ricardo,5460,687945010,1,9/12/2012
+Mayorga Lara Ricardo,5512,687942158,1,9/12/2012
+Trujillo Valenzuela Alejandrina,5639,687946008,1,9/12/2012
+Hernandez Aguilar Luis Enrique,5862,687940499,1,9/12/2012
+Maldonado Guerrero Oscar Felipe,5864,687941786,1,9/12/2012
+Astudillo Hernandez Cristopher,5880,687936287,1,9/12/2012
+Maciel Martinez Mario Eduardo,6313,687941722,1,9/7/2015
+Cisneros Mendez Carlos Adrian,6408,687937556,1,9/12/2012
+Guevara Carrillo Blanca Seleste,6470,278940691,1,4/11/2016
+Lopez Aguilera Clarissa,6669,687941281,1,7/3/2015
+Moran Hernandez Elias Martin,6801,824330822,1,9/12/2012
+Ramirez Reyes Pablo,6802,687944161,1,9/12/2012
+Ramirez Alejandro Rigoberto,6857,687944228,1,9/12/2012
+Santos Benumea Jorge Enrique,6860,687945494,1,7/17/2014
+Sanchez Martinez Javier,7071,687945355,1,1/31/2013
+Hernandez Montes Edgar Eduardo,7131,262282233,1,7/3/2015
+Nicolas Ruvalcaba Miguel Angel,7147,832724529,1,9/12/2012
+Aguayo Leyva Cuauhtemoc,7149,687935619,1,9/12/2012
+Alvaro Guillermo Francisco,7150,687939943,1,9/12/2012
+Gomez Huerta Hipolito,7152,687940668,1,9/12/2012
+Larragoitia Martinez Luis,7249,687941076,1,1/31/2013
+Moreno Bulman Alejandro,7273,687942635,1,1/31/2013
+Becerra Lizarraga Jorge,7308,687936504,1,1/31/2013
+Valadez Hernandez Emilio,7764,687946110,1,9/12/2012
+Cruz Julio Cesar,7765,884686224,1,9/12/2012
+Perez Leonidez Bartineo Abel,8009,687943762,1,1/31/2013
+Medina Tavarez  Oscar,8111,693495721,1,4/16/2014
+Vazquez Galan Simitrio,8191,693886002,1,7/22/2016
+Ramos  Cardenas Josue Nazario,8363,804044998,1,9/12/2012
+Vazquez Hernandez Adrian,8572,813394547,1,9/12/2012
+Ramos Labra Noe,8706,819796415,1,9/12/2012
+Mata Gonzalez Miguel Angel,8828,824330813,1,9/26/2012
+Vazquez Galan Anastacio,8883,826978497,1,9/20/2012
+Cortes Marcial Inez,8906,827730487,1,1/31/2013
+Gutierrez Rodriguez Jose Ricardo,9058,832724435,1,9/26/2012
+Hurtado Gonzalez Alfredo,9091,833492825,1,1/31/2013
+Solis Diaz Johanna,9125,835045720,1,9/18/2015
+Palomares Campoy Victor Manuel,9202,836791903,1,1/31/2013
+Morales Guerrero Marisol,9228,837648750,1,9/12/2012
+Huerta Gomez Victor,9230,837648684,1,1/31/2013
+Solorio Herrera Paulina Abigail,9231,837648826,1,10/5/2012
+Baez Leon Jesus Osiel,9327,843971477,1,1/31/2013
+Mendez Arenas Erick Ivan,9343,846238117,1,1/31/2013
+Mora Vargas Luciano Alberto,9362,847367742,1,1/31/2013
+Garcia Gutierrez Victor Manuel,9366,847367676,1,1/31/2013
+Cabrera Cortes Jose Manuel,9382,848826714,1,1/31/2013
+Hernandez Vazquez Jose Paulino,9426,849926563,1,1/31/2013
+Alvarez Oliva Esteban,9472,850510940,1,1/31/2013
+Medina Tavarez Alberto,9528,851165011,1,1/31/2013
+Montoya Santillan Rene,9551,851938194,1,1/31/2013
+Rodriguez Cedillo Mario Ernesto,9595,852678367,1,1/31/2013
+Gomez Pagaza Pedro Rafael,9610,853316442,1,1/31/2013
+Camarena Contreras Eleuterio,9814,862856520,1,1/31/2013
+Santos Benumea Erika Lizeth,9855,405111082,1,4/26/2016
+Vargas Gallegos Jose,10062,869129205,1,1/10/2014
+Garcia Paez Norberto Vicente,10177,897010397,1,1/10/2014
+Ramos Guarneros Elizabeth,10213,874014127,1,1/10/2014
+Moreno De La Riva Noe,10297,880125435,1,1/10/2014
+Sanchez Zarate Kristian Michell,10391,883866168,1,7/3/2015
+Barcenes Chaparro Sergio,10428,884686176,1,8/16/2013
+Lopez Busane Valeria,10505,886212403,1,1/10/2014
+Cisneros Gutierrez Marina,10568,887749429,1,1/10/2014
+Cordova Diaz Pablo Aurelio,10669,259895071,1,7/3/2015
+Diaz Lopez Cresencia Esli,10892,201506666,1,1/10/2014
+Ortiz Rodriguez Alan,11000,205385270,1,1/10/2014
+Niño Merino Oscar Joaquin,11036,207118315,1,1/10/2014
+Crispin Sanchez Cuellar,11430,219015127,1,11/27/2015
+Gutierrez Rodriguez Rosario Tzitziki,11670,223712852,1,4/18/2014
+Amaro Chavez Juan Mario,11758,225755518,1,1/23/2015
+Zacarias Lozano Jacinto Emilio,12663,253570871,1,7/3/2015
+Perez Rios Omar Daniel,12664,260768247,1,1/23/2015
+Galvan Nieto Mario,12665,253570527,1,1/23/2015
+Gonzalez Enriquez Jesus Adrian,13689,273853732,1,7/3/2015
+Zuñiga Rodriguez Omar,13748,276022146,1,7/3/2015
+Barajas Negrete Braulio,13777,277007319,1,1/4/2016
+Sanchez Santarrosa Rebeca,13836,278045523,1,8/14/2015
+Sanchez Cuellar Javier,13837,278045514,1,7/3/2015
+Vazquez Carrasco Francisco Gerardo,14236,285132113,1,9/18/2015
+Torres Moreno Alfredo,14238,471316789,1,1/28/2016
+Coria Cabrera Guillermo,14346,287325384,1,9/22/2016
+Montes Perez Jose Luis,14420,289085048,1,10/14/2016
+Sanchez Cuellar Amado Guillermo,14422,289085235,1,9/19/2015
+Rangel Pe;a Keyla Gabriela,14950,296455975,1,2/19/2016
+De La Mora Menchaca Jorge Eduardo,15112,298154478,1,2/12/2016
+Sanchez Vazquez Noe,15285,401523614,1,6/24/2016
+Caro Castaños Norberto Guadalupe,15944,414224836,1,1/4/2016
+Zamudio Chairez Gilberto,16348,420301756,1,5/20/2016
+Bernal Castelan Israel,16395,420789886,1,2/12/2016
+Loza Cazarez Juan Javier,16535,423569119,1,7/22/2016
+Zarate Maldonado Marisol,16640,425189771,1,2/26/2016
+Quiroz Hernandez Juan Alejandro,16732,426510626,1,2/26/2016
+Chavez Martinez Cynthia Elizabeth ,16739,426510028,1,4/15/2016
+Ordaz Campos Jose Eduardo ,16931,429889211,1,10/28/2016
+Gutierrez Hernandez Miguel Angel ,16958,429889024,1,8/26/2016
+Perales Jacobo Maria de la Asuncion ,17043,430923045,1,8/26/2016
+Sanchez SantaRosa Carlota ,17086,431908889,1,9/2/2016
+Maga;a Nu;ez Jesus Enrique ,17214,433408459,1,7/29/2016
+Rojas Escandon Paola Michelle ,17219,433408628,1,5/2/2016
+Ornelas Perez Juan Enrique ,17556,439894287,1,10/28/2016
+Linares Garcia Esteban ,17872,448785211,,
+Zamudio Ortiz Karina Sarahi  ,17217,433408767,,
+Ruiz Galeana Maria Guadalupe ,17787,446919946,,
+Gonzalez Toquero Rosa Maria ,18145,455925163,,
+Tellez Robles Jose Angel ,18260,458260100,,
+Villalobos Clara ,17467,438010781,,
+Amparo Trejo Jazmin ,18206,457340395,,
+Parga Garcia Denizze Lizeth ,18221,457341196,,
+Nieto Hernandez Bayron Omar,18856,468775591,,
