@@ -35,7 +35,7 @@ function saveUsers(data) {
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'hogue'
+    database: 'hogue_v3'
   });
   const summary = {
     users: data.length,
