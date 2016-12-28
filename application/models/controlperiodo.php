@@ -53,7 +53,7 @@ class ControlPeriodo extends CI_Model{
                             $class = $counter % 2 == 0 ? 'odd' : 'pair';
 							$start_week = date('d-M-Y', strtotime("1.1.".$row->year." + ".
 							$row->start_week." weeks - 6 days"));
-							$end_week = date('d-M-Y', strtotime("1.1.".$row->id." + ".
+							$end_week = date('d-M-Y', strtotime("1.1.".$row->year." + ".
 							$row->end_week." weeks"));
 							$status = $row->status ? 'Activo':'Pendiente';
                             $response .= "

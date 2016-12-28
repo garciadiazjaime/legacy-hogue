@@ -54,7 +54,7 @@ class Prestamos extends CI_Controller {
 		$msg = '';
 		$yearWeeks = $this->miscellaneous->getYearWeeks(
 			date('Y'), 
-			1, 
+			0, 
 			$saving_starts
 		);
 

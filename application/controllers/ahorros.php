@@ -132,7 +132,7 @@ class Ahorros extends CI_Controller {
 			$date = date("d/M/Y", strtotime("1.1.".$periodo->year." + ".$periodo->start_week." weeks - 6 days"));
 			$date = $this->miscellaneous->getSpanishDate($date);
 			$msg .= "El d&iacute;a en curso corresponde al periodo #".$periodo->id.", fecha de inicio:".$date;
-			$yearWeeks = $this->miscellaneous->getYearWeeks(date('Y'), 1, $saving_starts);
+			$yearWeeks = $this->miscellaneous->getYearWeeks(date('Y'), 0, $saving_starts);
 			$content = $this->load->view('be/ahorros/nuevo',
 					array('yearWeeks'=>$yearWeeks, 'msg'=> $msg, 'post'=>array($employee_number, $amount_to_save, $employee_name, $payee_name)), true);
 		}else
